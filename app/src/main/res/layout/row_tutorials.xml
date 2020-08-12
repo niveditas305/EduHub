@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+
+    android:layout_height="wrap_content">
+    <RelativeLayout
+         android:layout_width="200dp"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/margin_8"
+        android:background="@drawable/round_ed_stroke"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/ll_top"
+            android:orientation="vertical"
+            android:background="@color/colorAccent"
+            android:layout_height="120dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_play"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/ll_top"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_10"
+            android:paddingBottom="@dimen/margin_30"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+
+                android:textSize="@dimen/text_15"
+                android:textColor="@color/black"
+                android:text="@string/equations"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
+                android:textSize="@dimen/text_13"
+                android:textColor="@color/textcolor"
+                android:text="@string/lipsumshort"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

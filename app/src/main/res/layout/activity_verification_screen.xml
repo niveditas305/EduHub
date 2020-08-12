@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.VerificationScreen">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/margin_30"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_button"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_img5"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/margin_30"
+                android:layout_marginLeft="@dimen/padding_15"
+                android:layout_marginRight="@dimen/padding_15"
+                android:layout_marginBottom="@dimen/padding_15"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bold"
+                    android:textSize="@dimen/text25"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:paddingTop="@dimen/margin_5"
+                    android:textColor="@color/black"
+                    android:text="Verification Code"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                      android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Please enter code sent to"
+                        android:textSize="@dimen/text_13"
+                        android:layout_marginRight="@dimen/margin_5"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:fontFamily="@font/regular"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                         android:layout_width="wrap_content"
+                        android:text="+41366725346"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_13"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:fontFamily="@font/regular"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+
+                <com.chaos.view.PinView
+                    android:id="@+id/firstPinView"
+                    style="@style/PinWidget.PinView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_30"
+                    android:cursorVisible="true"
+                    android:inputType="number"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/padding_10"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:cursorColor="@color/colorPrimary"
+                    app:cursorWidth="2dp"
+                    app:hideLineWhenFilled="false"
+                    app:itemCount="4"
+                    app:itemHeight="48dp"
+                    app:itemRadius="4dp"
+                    app:itemSpacing="@dimen/padding_10"
+                    app:itemWidth="48dp"
+                    app:lineColor="@color/grey"
+                    app:lineWidth="2dp"
+                    app:viewType="rectangle" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvsend"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/light"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/padding_15"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:paddingBottom="@dimen/padding_15"
+                    android:paddingLeft="@dimen/margin_side_button"
+                    android:paddingRight="@dimen/margin_side_button"
+                    android:textSize="@dimen/text17"
+                    android:background="@drawable/round_ed"
+                    android:textColor="@color/white"
+                    android:text="Send"
+                    />
+
+
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+
+                </RelativeLayout>
+
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Resend code"
+                        android:layout_marginTop="@dimen/padding_10"
+                        android:textSize="@dimen/text_15"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/regular"
+                        android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

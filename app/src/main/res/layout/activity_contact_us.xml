@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ContactUs">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tool"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:tint="@color/white"
+            android:src="@drawable/left_arrow" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/regular"
+            android:text="Contact Us"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text17" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tool"
+        android:orientation="vertical">
+        <TextView
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/bold"
+            android:layout_marginTop="20dp"
+            android:text="Get in touch!"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_19" />
+        <TextView
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/semi"
+            android:layout_marginTop="@dimen/padding_10"
+            android:text="Good education ends in good talk !"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_15" />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:layout_marginTop="@dimen/padding_15"
+            android:layout_marginRight="@dimen/margin_20"
+            android:textColor="@color/black"
+            android:background="@drawable/round_ed_stroke_cornerles"
+            android:fontFamily="@font/light"
+            android:drawablePadding="@dimen/padding_10"
+
+            android:hint="Name"
+            android:padding="@dimen/padding_10"
+            android:textSize="@dimen/text17" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:layout_marginTop="@dimen/padding_15"
+            android:layout_marginRight="@dimen/margin_20"
+            android:textColor="@color/black"
+            android:background="@drawable/round_ed_stroke_cornerles"
+            android:fontFamily="@font/light"
+            android:drawablePadding="@dimen/padding_10"
+
+            android:hint="Your email"
+            android:padding="@dimen/padding_10"
+            android:textSize="@dimen/text17" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:layout_marginTop="@dimen/padding_15"
+            android:layout_marginRight="@dimen/margin_20"
+            android:background="@drawable/round_ed_stroke_cornerles"
+            android:drawablePadding="@dimen/padding_10"
+            android:hint="Message"
+            android:textColor="@color/black"
+
+            android:gravity="top"
+            android:fontFamily="@font/light"
+            android:minLines="3"
+            android:padding="@dimen/padding_10"
+            android:textSize="@dimen/text17" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_login"
+            android:layout_gravity="center"
+            android:fontFamily="@font/light"
+            android:gravity="center"
+            android:paddingTop="@dimen/padding_15"
+            android:layout_marginTop="@dimen/margin_30"
+            android:paddingBottom="@dimen/padding_15"
+            android:paddingLeft="@dimen/margin_side_button"
+            android:paddingRight="@dimen/margin_side_button"
+            android:textSize="@dimen/text17"
+            android:background="@drawable/round_ed"
+            android:textColor="@color/white"
+            android:text="Send Message"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/regular"
+            android:layout_marginTop="@dimen/padding_10"
+            android:text="We will get back to ou soon"
+            android:textColor="@color/textcolor"
+            android:textSize="@dimen/text_13" />
+    </LinearLayout>
+
+</RelativeLayout>

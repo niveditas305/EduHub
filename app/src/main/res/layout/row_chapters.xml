@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/grey"
+    android:id="@+id/rv_parent"
+    android:layout_margin="@dimen/padding_10"
+    android:padding="@dimen/padding_10"
+    android:layout_height="wrap_content">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:id="@+id/rv"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_baseline_lens_24"
+        android:scaleType="centerCrop"
+
+        android:id="@+id/iv"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:layout_width="30dp"
+        android:src="@drawable/ic_math"
+        android:scaleType="centerCrop"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_height="30dp"/>
+</RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+             android:id="@+id/ll_three"
+            android:layout_toRightOf="@+id/rv"
+
+            android:layout_toLeftOf="@+id/rv_"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_10"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/semi"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/text_15"
+                android:textColor="@color/colorAccent"
+                android:text="01 Foundation Concepts"/>
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/semi"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/margin_5"
+            android:textSize="@dimen/text_15"
+            android:textColor="@color/colorAccent"
+            android:text="5 years Experience"/>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll_subtopic"
+                android:layout_marginTop="@dimen/margin_20"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/semi"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:textSize="@dimen/text_15"
+                    android:textColor="@color/colorAccent"
+                    android:text="1. Unitary Method Ratio and Percentage"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/semi"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:textSize="@dimen/text_15"
+                    android:textColor="@color/colorAccent"
+                    android:text="2. Unit Conversions"/>  <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/semi"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:textSize="@dimen/text_15"
+                    android:textColor="@color/colorAccent"
+                    android:text="3. Coordinate Geometry"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/rv_"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="30dp"
+            android:src="@drawable/down_arrow"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/padding_10"
+            android:id="@+id/iv_down"
+
+            android:layout_height="30dp"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:src="@drawable/up_arrow"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/padding_10"
+            android:id="@+id/iv_up"
+            android:layout_height="30dp"/>
+
+    </RelativeLayout>
+
+ </RelativeLayout>

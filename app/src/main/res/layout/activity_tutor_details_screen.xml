@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.TutorDetailsScreen">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tool_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
+            android:id="@+id/ivback"
+            android:layout_height="match_parent"/>
+   <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/semi"
+            android:text="Sara"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text17" />
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/tool_layout"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/padding_10"
+             android:orientation="vertical"
+            android:id="@+id/ll_parent"
+            android:layout_height="wrap_content">
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:padding="@dimen/margin_5"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/rv_profile"
+                    android:layout_height="wrap_content"
+
+                    >
+                    <ImageView
+                        android:id="@+id/iv_user_image"
+                        android:layout_width="100dp"
+                        android:src="@drawable/user"
+                        android:layout_centerVertical="true"
+                        android:layout_height="100dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_8"
+                        android:layout_toRightOf="@+id/iv_user_image"
+
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:text="Sara"
+                                android:id="@+id/tv_title"
+                                android:textColor="@color/black"
+                                android:gravity="left"
+                                android:layout_toLeftOf="@id/iv_save"
+                                android:textSize="@dimen/text17"
+                                android:fontFamily="@font/semi"
+                                android:layout_height="wrap_content"/>
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:src="@drawable/ic_heart_fill"
+                                android:id="@+id/iv_save"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_height="18dp"/>
+                        </RelativeLayout>
+
+
+
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:id="@+id/tv_review"
+                            android:text="Female"
+                            android:drawablePadding="@dimen/padding_10"
+                            android:drawableLeft="@drawable/ic_male"
+                            android:textColor="@color/colorAccent"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:textSize="@dimen/text_15"
+                            android:fontFamily="@font/bold"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="Sant Martin High School"
+                            android:textColor="@color/colorAccent"
+                            android:drawableLeft="@drawable/ic_school"
+                            android:drawablePadding="@dimen/padding_10"
+                            android:textSize="@dimen/text_15"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:fontFamily="@font/bold"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="300 Kempston Road Port Elizabeth, 6001"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/text_15"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:drawableLeft="@drawable/ic_map"
+                            android:drawablePadding="@dimen/padding_10"
+                            android:fontFamily="@font/bold"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="4.5 | 20 reviews"
+                            android:textColor="@color/colorAccent"
+                            android:drawableLeft="@drawable/ic_star_fil"
+                            android:drawablePadding="@dimen/padding_10"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:textSize="@dimen/text_15"
+                            android:fontFamily="@font/bold"
+                            android:layout_height="wrap_content"/>
+
+
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:background="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="About"
+                     android:textColor="@color/colorPrimary"
+                    android:gravity="left"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginBottom="@dimen/padding_10"
+                    android:layout_toLeftOf="@id/iv_save"
+                    android:textSize="@dimen/text17"
+                    android:fontFamily="@font/bold"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="@string/lipsum"
+                     android:textColor="@color/textcolor"
+                    android:gravity="left"
+                     android:layout_marginBottom="@dimen/padding_10"
+                    android:layout_toLeftOf="@id/iv_save"
+                    android:textSize="@dimen/text_15"
+                    android:fontFamily="@font/bold"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="Subject"
+                    android:textColor="@color/colorPrimary"
+                    android:gravity="left"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginBottom="@dimen/padding_10"
+                    android:layout_toLeftOf="@id/iv_save"
+                    android:textSize="@dimen/text17"
+                    android:fontFamily="@font/bold"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                         android:text="Math"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:paddingLeft="@dimen/margin_30"
+                        android:paddingRight="@dimen/margin_30"
+                        android:paddingTop="@dimen/margin_8"
+                        android:paddingBottom="@dimen/margin_8"
+                        android:background="@color/colorAccent"
+                        android:layout_marginRight="@dimen/margin_30"
+                        android:textSize="@dimen/text_15"
+                        android:fontFamily="@font/bold"
+                        android:layout_height="wrap_content"/>  <TextView
+                        android:layout_width="wrap_content"
+                         android:text="Science"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:paddingLeft="@dimen/margin_30"
+                        android:paddingRight="@dimen/margin_30"
+                        android:paddingTop="@dimen/margin_8"
+                        android:paddingBottom="@dimen/margin_8"
+                        android:background="@color/colorAccent"
+                        android:textSize="@dimen/text_15"
+                        android:fontFamily="@font/bold"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>    <TextView
+                    android:layout_width="match_parent"
+                    android:text="Class"
+                    android:textColor="@color/colorPrimary"
+                    android:gravity="left"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginBottom="@dimen/padding_10"
+                    android:layout_toLeftOf="@id/iv_save"
+                    android:textSize="@dimen/text17"
+                    android:fontFamily="@font/bold"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                         android:text="Class 10"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:paddingLeft="@dimen/margin_30"
+                        android:paddingRight="@dimen/margin_30"
+                        android:paddingTop="@dimen/margin_8"
+                        android:paddingBottom="@dimen/margin_8"
+                        android:background="@color/colorAccent"
+                        android:layout_marginRight="@dimen/margin_30"
+                        android:textSize="@dimen/text_15"
+                        android:fontFamily="@font/bold"
+                        android:layout_height="wrap_content"/>  <TextView
+                        android:layout_width="wrap_content"
+                         android:text="Class 11"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:paddingLeft="@dimen/margin_30"
+                        android:paddingRight="@dimen/margin_30"
+                        android:paddingTop="@dimen/margin_8"
+                        android:paddingBottom="@dimen/margin_8"
+                        android:background="@color/colorAccent"
+                        android:textSize="@dimen/text_15"
+                        android:fontFamily="@font/bold"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="@string/menu_home" />
+
+        <item
+            android:id="@+id/my_profile"
+            android:icon="@drawable/ic_user"
+            android:title="@string/profile" />
+        <item
+            android:id="@+id/learn"
+            android:icon="@drawable/ic_heart"
+            android:title="@string/learn" />
+        <item
+            android:id="@+id/test"
+            android:icon="@drawable/ic_test"
+            android:title="@string/test" />
+        <item
+            android:id="@+id/solution"
+            android:icon="@drawable/ic_solution"
+            android:title="@string/test_solution" />
+     <item
+            android:id="@+id/score"
+            android:icon="@drawable/ic_grade"
+            android:title="@string/score" />
+
+        <item
+            android:id="@+id/favtutor"
+            android:icon="@drawable/ic_heart_w"
+            android:title="@string/favourite_tutor" />
+        <item
+            android:id="@+id/chat"
+            android:icon="@drawable/ic_chat"
+            android:title="@string/chat_with_us" />
+        <item
+            android:id="@+id/setting"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/setting" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/logout" />
+        <item
+            android:id="@+id/nav_home"
+
+             app:actionLayout="@layout/icons_layout"
+          />
+    </group>
+</menu>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.SettingFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_10"
+        android:layout_margin="@dimen/padding_10"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notification"
+                android:textSize="@dimen/text17"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/regular"
+                android:textColor="@color/black"
+                android:drawableTint="@color/colorPrimary"
+                android:drawablePadding="@dimen/padding_10"
+                android:drawableLeft="@drawable/ic_notification"/>
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:id="@+id/s_noti"
+
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"/>
+
+            <!--     <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="36dp"
+                     android:src="@drawable/ic_on_two"
+                     android:layout_alignParentRight="true"
+                     android:layout_centerVertical="true"/>   -->
+
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/change_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Change password"
+            android:layout_marginTop="@dimen/padding_15"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/text17"
+            android:fontFamily="@font/regular"
+            android:drawableTint="@color/colorPrimary"
+            android:textColor="@color/black"
+             android:drawablePadding="@dimen/padding_10"
+            android:drawableLeft="@drawable/ic_password"/>
+        <TextView
+            android:id="@+id/tv_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="About"
+            android:textSize="@dimen/text17"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/regular"
+            android:layout_marginTop="@dimen/padding_15"
+            android:textColor="@color/black"
+            android:drawableTint="@color/colorPrimary"
+            android:drawablePadding="@dimen/padding_10"
+            android:drawableLeft="@drawable/ic_about"/>
+
+        <TextView
+            android:id="@+id/contactus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contact Us"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/padding_15"
+            android:fontFamily="@font/regular"
+            android:textSize="@dimen/text17"
+            android:textColor="@color/black"
+            android:drawableTint="@color/colorPrimary"
+            android:drawablePadding="@dimen/padding_10"
+            android:drawableLeft="@drawable/ic_call"/>
+        <TextView
+            android:id="@+id/tv_privacy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Privacy Policy"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/regular"
+            android:textSize="@dimen/text17"
+            android:layout_marginTop="@dimen/padding_15"
+            android:textColor="@color/black"
+             android:drawablePadding="@dimen/padding_10"
+            android:drawableLeft="@drawable/ic_privacy_policy"/>
+        <TextView
+            android:id="@+id/tv_terms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Terms &amp; Conditions"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/regular"
+            android:layout_marginTop="@dimen/padding_15"
+            android:textSize="@dimen/text17"
+            android:textColor="@color/black"
+             android:drawablePadding="@dimen/padding_10"
+            android:drawableLeft="@drawable/ic_termcondition"/>
+
+
+
+    </LinearLayout>
+
+</FrameLayout>

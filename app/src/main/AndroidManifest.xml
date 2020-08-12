@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.eduhub">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.TermsConditiions"></activity>
+        <activity android:name=".ui.PrivacyScreen" />
+        <activity android:name=".ui.ContactUs" />
+        <activity android:name=".ui.AboutScreen" />
+        <activity android:name=".ui.ChangePassword" />
+        <activity android:name=".ui.TutorDetailsScreen" />
+        <activity android:name=".ui.TestScoreScore" />
+        <activity android:name=".ui.TestSummary" />
+        <activity android:name=".ui.TestSeriesActivity" />
+        <activity android:name=".ui.LearnActivity" />
+        <activity android:name=".ui.TopicClicks" />
+        <activity android:name=".ui.ChapterFurtherClick" />
+        <activity android:name=".ui.ContinueDetails" />
+        <activity android:name=".ui.VerificationScreen" />
+        <activity android:name=".ui.EnterNumberScreen" />
+        <activity android:name=".ui.ForgotPassword" />
+        <activity android:name=".ui.StartedScreen" />
+        <activity android:name=".ui.Signup" />
+        <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".ui.WelcomeSignupScreen" />
+        <activity android:name=".ui.WelcomeActivity" />
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".ui.Splash"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.TermsConditiions">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/left_arrow" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/regular"
+            android:text="@string/terms_conditions"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_19" />
+    </androidx.appcompat.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/margin_30"
+
+            android:layout_margin="@dimen/padding_10"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="@dimen/margin_30"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_logo" />
+            <TextView
+                android:layout_width="match_parent"
+                android:fontFamily="@font/semi"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_30"
+                android:textSize="@dimen/text17"
+                android:text="What is Lorem lipsum?"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:fontFamily="@font/regular"
+                android:layout_marginTop="@dimen/margin_30"
+                android:textColor="@color/black"
+                android:letterSpacing=".1"
+                android:layout_height="wrap_content"
+                android:text="@string/lipsumbig"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:fontFamily="@font/semi"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                android:textSize="@dimen/text17"
+                android:layout_marginTop="@dimen/padding_10"
+                android:text="What is Lorem lipsum?"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:fontFamily="@font/regular"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_height="wrap_content"
+                android:text="@string/lipsum"/><TextView
+            android:layout_width="match_parent"
+            android:fontFamily="@font/semi"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text17"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/padding_10"
+            android:text="What is Lorem lipsum?"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:fontFamily="@font/regular"
+                android:layout_marginTop="@dimen/padding_10"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:text="@string/lipsum"/>
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

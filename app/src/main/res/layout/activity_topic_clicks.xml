@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.TopicClicks">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tool_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
+            android:id="@+id/ivback"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/semi"
+            android:text="Unitary Method,..."
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_15"/>
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/tool_layout"
+         android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_10"
+            android:layout_height="match_parent">
+
+
+            <EditText
+                android:layout_width="match_parent"
+                 android:paddingTop="@dimen/padding_10"
+                 android:paddingLeft="@dimen/margin_8"
+                 android:paddingRight="@dimen/margin_8"
+                 android:paddingBottom="@dimen/margin_5"
+                android:layout_gravity="center|center_vertical"
+
+                android:text="Unitary Method,Ratio and Percentage"
+                android:textColor="@color/textcolor"
+                android:maxLines="1"
+                 android:drawablePadding="@dimen/padding_10"
+                android:textSize="@dimen/text_15"
+                android:drawableRight="@drawable/down_arrow"
+                android:background="@color/grey"
+                android:layout_height="wrap_content">
+
+
+
+
+
+            </EditText>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/semi"
+                android:layout_marginTop="@dimen/padding_10"
+                android:text="Videos"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text17" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/padding_10"
+                android:id="@+id/rvvideos"
+
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/semi"
+                android:text="Worksheet"
+                android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginBottom="@dimen/margin_20"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text17" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorAccent"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tb_w"
+                android:layout_width="match_parent"
+
+                app:tabIndicatorHeight="0dp"
+                style="@style/MyCustomTabLayout"
+                app:tabSelectedTextColor="@color/colorPrimary"
+                android:layout_height="40dp"
+                app:tabMode="scrollable" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                 android:background="@color/colorAccent"/>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vp_worksheet"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_marginTop="@dimen/padding_10"
+                 />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>
