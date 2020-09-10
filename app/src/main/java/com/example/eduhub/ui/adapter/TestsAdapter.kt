@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eduhub.R
 import com.example.eduhub.ui.ChapterFurtherClick
+import com.example.eduhub.ui.TestSeriesActivity
 
 
 class TestsAdapter (var contxt: Context): RecyclerView.Adapter<TestsAdapter.MyViewHolder>() {
@@ -37,6 +38,10 @@ class TestsAdapter (var contxt: Context): RecyclerView.Adapter<TestsAdapter.MyVi
         holder.setViewModel(HomeRowVm())
         Log.e("onBindViewHolder", "data")*/
 
+
+        holder.itemView.findViewById<RelativeLayout>(R.id.rv_parent).setOnClickListener {
+            contxt.startActivity(Intent(contxt,TestSeriesActivity::class.java))
+        }
 
     }
 

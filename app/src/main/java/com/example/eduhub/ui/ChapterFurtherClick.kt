@@ -14,7 +14,9 @@ class ChapterFurtherClick : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topic_click_screen)
-
+        iv_back.setOnClickListener {
+            onBackPressed()
+        }
 
         val  linearLayoutManagertut= LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         rv_one.layoutManager=linearLayoutManagertut

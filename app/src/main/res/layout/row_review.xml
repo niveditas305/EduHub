@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/grey"
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/padding_10"
+    android:padding="@dimen/padding_10"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/iv_user_image"
+        android:layout_width="80dp"
+        android:src="@drawable/profile"
+        android:layout_height="80dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/padding_10"
+        android:layout_toRightOf="@+id/iv_user_image"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Emma"
+            android:id="@+id/tv_title"
+            android:textColor="@color/black"
+            android:gravity="left"
+            android:textSize="@dimen/text17"
+            android:fontFamily="@font/semi"
+            android:layout_height="wrap_content"/>
+
+            <com.whinc.widget.ratingbar.RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 app:rb_max_count="5"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                app:rb_empty="@drawable/ic_star_unfill"
+                app:rb_fill="@drawable/ic_star_fil"
+                app:rb_space="5dp"
+                app:rb_count="4"
+                app:rb_click_rating="false"
+                app:rb_touch_rating="false"
+                />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@string/lipsum"
+            android:id="@+id/tv_review"
+            android:textColor="@color/textcolor"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/margin_5"
+            android:textSize="@dimen/text_13"
+            android:fontFamily="@font/regular"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

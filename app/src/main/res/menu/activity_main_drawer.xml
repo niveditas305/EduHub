@@ -31,10 +31,10 @@
             android:icon="@drawable/ic_grade"
             android:title="@string/score" />
 
-        <item
+      <!--  <item
             android:id="@+id/favtutor"
             android:icon="@drawable/ic_heart_w"
-            android:title="@string/favourite_tutor" />
+            android:title="@string/favourite_tutor" />-->
         <item
             android:id="@+id/chat"
             android:icon="@drawable/ic_chat"

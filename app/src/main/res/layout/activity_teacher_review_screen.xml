@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.TeacherReviewScreen">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tool_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
+            android:id="@+id/iv_back"
+            android:layout_height="match_parent"/>
+
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/semi"
+            android:text="Review"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_15" />
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/tool_layout"
+        android:id="@+id/rv"
+        android:padding="@dimen/margin_20"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="4.5"
+            android:textSize="50sp"
+            android:fontFamily="@font/bold"
+            android:id="@+id/tv_review"
+            android:textColor="@color/colorPrimary"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/tv_review"
+android:layout_marginLeft="@dimen/padding_10"
+            android:padding="@dimen/padding_10"
+            android:layout_height="wrap_content">
+            <com.whinc.widget.ratingbar.RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:rb_max_count="5"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                app:rb_empty="@drawable/ic_star_unfill"
+                app:rb_fill="@drawable/ic_star_fil"
+                app:rb_space="5dp"
+                app:rb_count="4"
+                app:rb_click_rating="false"
+                app:rb_touch_rating="false"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="from 30 students"
+                android:textSize="@dimen/text17"
+                android:fontFamily="@font/semi"
+                android:layout_marginTop="@dimen/padding_10"
+                 android:textColor="@color/colorPrimaryDark"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/rv"
+        android:paddingBottom="@dimen/margin_20"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"/>
+        <!--
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/rv_home"
+                bind:adapter="@{viewModel.homeFragmentAdapter}"
+                android:layout_height="wrap_content"/>-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/rv_review"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+
+</RelativeLayout>

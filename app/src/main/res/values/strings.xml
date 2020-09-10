@@ -45,7 +45,7 @@
     <string name="email">Email</string>
     <string name="your_confirmation_link_will_be_send_to_this_email">Your confirmation link will be send to this email</string>
     <string name="verify_your_number">Verify Your Number</string>
-    <string name="please_enter_your_country_and_your_number"><![CDATA[Please enter your country & your number]]></string>
+    <string name="please_enter_your_country_and_your_number">Please enter your number></string>
     <string name="equations">Equations</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

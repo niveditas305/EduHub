@@ -24,6 +24,7 @@
                 android:id="@+id/tv_heading"
                 android:fontFamily="@font/bold"
                 android:layout_gravity="center"
+                android:textSize="@dimen/text17"
                 android:text="EDUHUB SOUTH AFRICA"
                  android:layout_height="wrap_content"/>
             <ImageView

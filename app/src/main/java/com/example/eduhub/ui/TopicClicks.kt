@@ -17,7 +17,9 @@ class TopicClicks : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topic_clicks)
 
-
+        iv_back.setOnClickListener {
+            onBackPressed()
+        }
         val  linearLayoutManager= GridLayoutManager(this,
             2)
         rvvideos.layoutManager=linearLayoutManager

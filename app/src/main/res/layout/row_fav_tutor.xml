@@ -63,7 +63,7 @@
                                     android:layout_height="wrap_content"/>
                                 <ImageView
                                     android:layout_width="18dp"
-                                    android:src="@drawable/ic_heart"
+                                    android:src="@drawable/ic_heart_fill"
                                     android:id="@+id/iv_save"
                                     android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
@@ -96,6 +96,7 @@
                                 android:textColor="@color/colorAccent"
      android:drawableLeft="@drawable/ic_star_fil"
      android:drawablePadding="@dimen/padding_10"
+     android:id="@+id/tv_rating"
                                 android:textSize="@dimen/text_11sp"
                                 android:fontFamily="@font/regular"
                                 android:layout_height="wrap_content"/>

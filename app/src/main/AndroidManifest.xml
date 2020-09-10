@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.TermsConditiions"></activity>
+        <activity android:name=".ui.TeacherReviewScreen"></activity>
+        <activity android:name=".ui.TermsConditiions" />
         <activity android:name=".ui.PrivacyScreen" />
         <activity android:name=".ui.ContactUs" />
         <activity android:name=".ui.AboutScreen" />

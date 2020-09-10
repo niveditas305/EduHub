@@ -13,11 +13,9 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eduhub.R
-import com.example.eduhub.ui.TeacherReviewScreen
-import com.example.eduhub.ui.TutorDetailsScreen
 
 
-class FavTutAdapter (var contxt: Context): RecyclerView.Adapter<FavTutAdapter.MyViewHolder>() {
+class RatingReviewAdapter (var contxt: Context): RecyclerView.Adapter<RatingReviewAdapter.MyViewHolder>() {
     var data: List<String> = ArrayList()
     fun updateData(data: List<String>) {
         this.data = data
@@ -27,7 +25,7 @@ class FavTutAdapter (var contxt: Context): RecyclerView.Adapter<FavTutAdapter.My
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.row_fav_tutor, parent, false)
+                .inflate(R.layout.row_review, parent, false)
         return MyViewHolder(itemView)
     }
 
@@ -36,22 +34,17 @@ class FavTutAdapter (var contxt: Context): RecyclerView.Adapter<FavTutAdapter.My
         holder.setViewModel(HomeRowVm())
         Log.e("onBindViewHolder", "data")*/
 
-     holder.itemView.findViewById<LinearLayout>(R.id.ll_parent).setOnClickListener {
-            contxt.startActivity(Intent(contxt, TutorDetailsScreen::class.java))
-        }
-        holder.itemView.findViewById<TextView>(R.id.tv_rating).setOnClickListener {
-            contxt.startActivity(Intent(contxt, TeacherReviewScreen::class.java))
-        }
+
     }
 
     override fun getItemCount(): Int {
-        return  /* data.size*/ 4
+        return  /* data.size*/ 10
     }
 
     inner class MyViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
-       // var binding: RowHomebind? = null
+       // var binding: Row? = null
 
-       lateinit var textView: TextView
+     //  lateinit var textView: TextView
 //        fun bind() {
 //            if (binding == null) {
 //                binding = DataBindingUtil.bind(itemView)

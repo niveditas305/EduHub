@@ -38,16 +38,15 @@
                 android:layout_centerVertical="true"
                 android:textSize="@dimen/text_15"
                 android:textColor="@color/colorAccent"
-                android:text="01 Foundation Concepts"/>
+                android:text="Unitary Method"/>
             <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/semi"
             android:layout_centerVertical="true"
-            android:layout_marginTop="@dimen/margin_5"
-            android:textSize="@dimen/text_15"
+             android:textSize="@dimen/text_11sp"
             android:textColor="@color/colorAccent"
-            android:text="5 years Experience"/>
+            android:text="@string/lipsumshort"/>
 
 
 

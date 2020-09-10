@@ -5,7 +5,8 @@ package com.example.eduhub
  import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.view.MenuItem
+ import android.provider.ContactsContract
+ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -13,6 +14,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
  import com.example.eduhub.ui.LearnActivity
+ import com.example.eduhub.ui.ProfileFragment
  import com.example.eduhub.ui.adapter.FavTutAdapter
  import com.example.eduhub.ui.adapter.HomeTopPickAdapter
  import com.example.eduhub.ui.fragments.*
@@ -64,7 +66,9 @@ lateinit var  homeTopPickAdapter:HomeTopPickAdapter
                 loadFragment(HomeFragment())
 
             } R.id.my_profile -> {
-             startActivity(Intent(applicationContext, LearnActivity::class.java))
+
+            tv_heading.setText("Profile")
+            loadFragment(ProfileFragment())
             }
             R.id.learn -> {
 
@@ -95,13 +99,13 @@ lateinit var  homeTopPickAdapter:HomeTopPickAdapter
              //   startActivity(Intent(applicationContext, SettingsActivity::class.java))
 
             }
-            R.id.favtutor -> {
+         /*   R.id.favtutor -> {
 
                 tv_heading.setText("Favourite Tutor")
                 loadFragment(FavouriteTutorFragment())
               //  startActivity(Intent(applicationContext, SettingsActivity::class.java))
 
-            }
+            }*/
             R.id.chat -> {
           //      startActivity(Intent(applicationContext, SettingsActivity::class.java))
 

@@ -18,12 +18,13 @@ import com.google.android.material.tabs.TabLayout
 
 
 class HomeFragment : Fragment() {
-    var image_resources1 = intArrayOf(R.drawable.ic_img1, R.drawable.ic_img1, R.drawable.ic_img1, R.drawable.ic_img1, R.drawable.ic_img1,
+    var image_resources1 = intArrayOf(R.drawable.banner, R.drawable.ic_img1, R.drawable.ic_img1, R.drawable.ic_img1, R.drawable.ic_img1,
         R.drawable.ic_img1)
     lateinit var pager:ViewPager
 lateinit var rv_top_home:RecyclerView
 lateinit var dots:TabLayout
 lateinit var tv_main_two:TextView
+lateinit var tv_one:TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +40,7 @@ lateinit var tv_main_two:TextView
         pager=view.findViewById(R.id.pager)
         dots=view.findViewById(R.id.dots)
         tv_main_two=view.findViewById(R.id.tv_main_two)
+        tv_one=view.findViewById(R.id.tv_one)
         rv_top_home.layoutManager=linearLayoutManager
       val  homeTopPickAdapter= HomeTopPickAdapter(requireContext())
         rv_top_home.adapter=homeTopPickAdapter
@@ -51,6 +53,9 @@ lateinit var tv_main_two:TextView
 
 
         tv_main_two.setOnClickListener {
+            startActivity(Intent(requireContext(), ContinueDetails::class.java))
+        }
+        tv_one.setOnClickListener {
             startActivity(Intent(requireContext(), ContinueDetails::class.java))
         }
         return view

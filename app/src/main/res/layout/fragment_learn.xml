@@ -20,15 +20,17 @@
             android:fontFamily="@font/bold"
              android:background="@color/colorPrimaryDark"
             android:paddingTop="@dimen/margin_30"
+            android:id="@+id/tv_one"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/padding_10"
             android:drawableTop="@drawable/ic_science"
-            android:textSize="@dimen/text23"
+            android:textSize="@dimen/text_21"
             android:drawablePadding="@dimen/padding_10"
             android:gravity="center"
             android:textColor="@color/white"
             android:text="Science"
-            />   <TextView
+            />
+        <TextView
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:fontFamily="@font/bold"
@@ -39,7 +41,7 @@
          android:drawablePadding="@dimen/padding_10"
         android:layout_gravity="center"
         android:drawableTop="@drawable/ic_math"
-        android:textSize="@dimen/text23"
+        android:textSize="@dimen/text_21"
         android:gravity="center"
         android:textColor="@color/white"
         android:text="Mathematics"

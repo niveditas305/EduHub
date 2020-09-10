@@ -58,7 +58,7 @@
             android:layout_marginTop="@dimen/margin_5"
             android:textSize="@dimen/text_15"
             android:textColor="@color/colorAccent"
-            android:text="5 years Experience"/>
+            android:text="3 topics"/>
 
 
 

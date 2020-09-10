@@ -16,7 +16,7 @@ class Splash : AppCompatActivity() {
         val handler = Handler()
         handler.postDelayed({
             //  if (appSession.getAppData() != null) {
-            startActivity(Intent(this@Splash, MainActivity::class.java))
+            startActivity(Intent(this@Splash, WelcomeActivity::class.java))
             finishAffinity()
             /*  } else {
                   startActivity(Intent(this@Splash, WelcomeScreen::class.java))
