@@ -2,25 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
-    android:background="@color/textcolor"
+    android:layout_height="@dimen/_170sdp"
+    android:background="@color/colorPrimary"
     android:gravity="bottom"
-    android:paddingBottom="@dimen/margin_5"
     android:orientation="horizontal"
+    android:paddingTop="@dimen/margin_30"
+    android:paddingBottom="@dimen/margin_5"
 
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="16dp"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal"
+        android:padding="16dp">
 
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:id="@+id/iv_profile"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+
             android:layout_gravity="center"
             app:srcCompat="@drawable/user" />
 
@@ -30,40 +33,50 @@
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/margin_20"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/bold"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_19"
-                android:layout_gravity="center_vertical"
-                android:paddingTop="@dimen/nav_header_vertical_spacing"
-                android:text="Jacob"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:drawableRight="@drawable/ic_edit_w"
+                android:drawablePadding="@dimen/padding_10"
+                android:drawableTint="@color/red"
+                android:fontFamily="@font/bold"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                android:paddingBottom="@dimen/nav_header_vertical_spacing"
+                android:text="Jacob"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text17" />
+
+            <TextView
+                android:id="@+id/tv_schoolname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:fontFamily="@font/regular"
                 android:layout_gravity="center_vertical"
-                android:textSize="@dimen/text17"
-                android:text="Sant. Martin High School" />
+
+                android:fontFamily="@font/regular"
+                android:text="Sant. Martin High School"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_15" />
+
             <TextView
-                 android:layout_width="wrap_content"
+                android:id="@+id/tv_grade"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:fontFamily="@font/regular"
                 android:layout_gravity="center_vertical"
-                android:textSize="@dimen/text17"
-                android:text="11 Grade" />
+                android:fontFamily="@font/regular"
+                android:text="11 Grade"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_15" />
         </LinearLayout>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/grey"
-        android:layout_height="1dp"></View>
+        android:background="@color/grey"></View>
 
 </RelativeLayout>

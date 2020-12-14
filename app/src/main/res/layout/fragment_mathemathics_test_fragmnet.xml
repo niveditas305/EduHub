@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/semi"
             android:text="This week's test"
-            android:textColor="@color/textcolor"
+            android:textColor="@color/black"
             android:textSize="@dimen/text17" />
 
         <RelativeLayout
@@ -40,8 +40,9 @@ android:nestedScrollingEnabled="false"
             android:layout_height="wrap_content"
             android:fontFamily="@font/semi"
             android:text="Older Tests"
+
             android:layout_marginTop="@dimen/margin_20"
-            android:textColor="@color/textcolor"
+            android:textColor="@color/black"
             android:textSize="@dimen/text17" />
 
         <RelativeLayout

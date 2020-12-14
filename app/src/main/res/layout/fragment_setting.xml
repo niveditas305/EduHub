@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="snow.app.eduhub.viewmodels.SettingVM" />
+    </data>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,9 +31,9 @@
                 android:textSize="@dimen/text17"
                 android:gravity="center"
                 android:layout_centerVertical="true"
-                android:fontFamily="@font/regular"
+                android:fontFamily="@font/semi"
                 android:textColor="@color/black"
-                android:drawableTint="@color/colorPrimary"
+                android:drawableTint="@color/black"
                 android:drawablePadding="@dimen/padding_10"
                 android:drawableLeft="@drawable/ic_notification"/>
 
@@ -50,8 +60,8 @@
             android:layout_marginTop="@dimen/padding_15"
             android:gravity="center_vertical"
             android:textSize="@dimen/text17"
-            android:fontFamily="@font/regular"
-            android:drawableTint="@color/colorPrimary"
+            android:fontFamily="@font/semi"
+            android:drawableTint="@color/black"
             android:textColor="@color/black"
              android:drawablePadding="@dimen/padding_10"
             android:drawableLeft="@drawable/ic_password"/>
@@ -62,10 +72,10 @@
             android:text="About"
             android:textSize="@dimen/text17"
             android:gravity="center_vertical"
-            android:fontFamily="@font/regular"
+            android:fontFamily="@font/semi"
             android:layout_marginTop="@dimen/padding_15"
             android:textColor="@color/black"
-            android:drawableTint="@color/colorPrimary"
+            android:drawableTint="@color/black"
             android:drawablePadding="@dimen/padding_10"
             android:drawableLeft="@drawable/ic_about"/>
 
@@ -76,10 +86,10 @@
             android:text="Contact Us"
             android:gravity="center_vertical"
             android:layout_marginTop="@dimen/padding_15"
-            android:fontFamily="@font/regular"
+            android:fontFamily="@font/semi"
             android:textSize="@dimen/text17"
             android:textColor="@color/black"
-            android:drawableTint="@color/colorPrimary"
+            android:drawableTint="@color/black"
             android:drawablePadding="@dimen/padding_10"
             android:drawableLeft="@drawable/ic_call"/>
         <TextView
@@ -88,8 +98,9 @@
             android:layout_height="wrap_content"
             android:text="Privacy Policy"
             android:gravity="center_vertical"
-            android:fontFamily="@font/regular"
+            android:fontFamily="@font/semi"
             android:textSize="@dimen/text17"
+            android:drawableTint="@color/black"
             android:layout_marginTop="@dimen/padding_15"
             android:textColor="@color/black"
              android:drawablePadding="@dimen/padding_10"
@@ -100,7 +111,8 @@
             android:layout_height="wrap_content"
             android:text="Terms &amp; Conditions"
             android:gravity="center_vertical"
-            android:fontFamily="@font/regular"
+            android:fontFamily="@font/semi"
+            android:drawableTint="@color/black"
             android:layout_marginTop="@dimen/padding_15"
             android:textSize="@dimen/text17"
             android:textColor="@color/black"
@@ -112,3 +124,4 @@
     </LinearLayout>
 
 </FrameLayout>
+</layout>

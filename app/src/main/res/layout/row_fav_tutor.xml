@@ -58,8 +58,8 @@
                                     android:textColor="@color/black"
                                     android:gravity="left"
                                     android:layout_toLeftOf="@id/iv_save"
-                                    android:textSize="@dimen/text_13"
-                                    android:fontFamily="@font/regular"
+                                    android:textSize="@dimen/text17"
+                                    android:fontFamily="@font/bold"
                                     android:layout_height="wrap_content"/>
                                 <ImageView
                                     android:layout_width="18dp"

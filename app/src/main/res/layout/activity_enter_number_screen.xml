@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_send"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/light"
+                    android:fontFamily="@font/regular"
                     android:gravity="center"
                     android:paddingTop="@dimen/padding_15"
                     android:layout_marginTop="@dimen/margin_20"

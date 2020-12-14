@@ -1,125 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.TopicClicks">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tool_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
-            android:id="@+id/iv_back"
-            android:layout_height="match_parent"/>
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="snow.app.eduhub.viewmodels.TopicclickVm" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.TopicClicks">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_baseline_keyboard_arrow_left_24" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/bold"
+                android:text="@{viewModel.selected_topic}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text17" />
+            <ImageView
+                android:id="@+id/iv_complete"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="@dimen/padding_10"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="right"
+                android:src="@drawable/ic_complete" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tool_layout">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_10">
+
+
+                <EditText
+                    android:id="@+id/ed_topicname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_vertical"
+                    android:background="@color/grey"
+                    android:drawableRight="@drawable/down_arrow"
+                    android:drawablePadding="@dimen/padding_10"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/regular"
+                    android:hint="Unitary Method,Ratio and . . . . "
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:paddingLeft="@dimen/margin_8"
+                    android:paddingTop="@dimen/padding_10"
+                    android:paddingRight="@dimen/margin_8"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:text="@{viewModel.selected_topic}"
+                    android:textColor="@color/textcolor"
+                    android:textSize="@dimen/text17">
+
+
+                </EditText>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/ll_data"
+    android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:fontFamily="@font/semi"
+                    android:text="Videos"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text17" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvvideos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/padding_10" />
+
+                    <TextView
+                        android:id="@+id/no_record_found"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        android:fontFamily="@font/bold"
+                        android:text="No videos available"
+                        android:textSize="@dimen/text_15"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:layout_marginBottom="@dimen/margin_20"
+                    android:fontFamily="@font/semi"
+                    android:text="Worksheet"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text17" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorAccent" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_pdfs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/padding_10" />
+
+                    <TextView
+                        android:id="@+id/no_pdfs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        android:fontFamily="@font/bold"
+                        android:text="No pdfs available."
+                        android:textSize="@dimen/text_15"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+
+
+</LinearLayout>
+
+
+
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tb_w"
+                    style="@style/MyCustomTabLayout"
+android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMode="scrollable"
+                    app:tabSelectedTextColor="@color/colorPrimary" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:visibility="gone"
+                    android:background="@color/colorAccent" />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/vp_worksheet"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/padding_10" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/no_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/semi"
-            android:text="Unitary Method,..."
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_15"/>
-
-
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_below="@+id/tool_layout"
-         android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_10"
-            android:layout_height="match_parent">
-
-
-            <EditText
-                android:layout_width="match_parent"
-                 android:paddingTop="@dimen/padding_10"
-                 android:paddingLeft="@dimen/margin_8"
-                 android:paddingRight="@dimen/margin_8"
-                 android:paddingBottom="@dimen/margin_5"
-                android:layout_gravity="center|center_vertical"
-
-                android:text="Unitary Method,Ratio and Percentage"
-                android:textColor="@color/textcolor"
-                android:maxLines="1"
-                 android:drawablePadding="@dimen/padding_10"
-                android:textSize="@dimen/text_15"
-                android:drawableRight="@drawable/down_arrow"
-                android:background="@color/grey"
-                android:layout_height="wrap_content">
-
-
-
-
-
-            </EditText>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/semi"
-                android:layout_marginTop="@dimen/padding_10"
-                android:text="Videos"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text17" />
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/padding_10"
-                android:id="@+id/rvvideos"
-
-                android:layout_height="wrap_content"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/semi"
-                android:text="Worksheet"
-                android:layout_marginTop="@dimen/margin_20"
-                android:layout_marginBottom="@dimen/margin_20"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text17" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorAccent"/>
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tb_w"
-                android:layout_width="match_parent"
-
-                app:tabIndicatorHeight="0dp"
-                style="@style/MyCustomTabLayout"
-                app:tabSelectedTextColor="@color/colorPrimary"
-                android:layout_height="40dp"
-                app:tabMode="scrollable" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                 android:background="@color/colorAccent"/>
-
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/vp_worksheet"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:layout_marginTop="@dimen/padding_10"
-                 />
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</RelativeLayout>
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:fontFamily="@font/bold"
+            android:text="No record found."
+            android:textSize="@dimen/text_15"
+            android:visibility="gone" />
+    </RelativeLayout>
+</layout>

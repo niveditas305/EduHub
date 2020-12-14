@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="snow.app.eduhub.viewmodels.VerificationVM" />
+    </data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -53,17 +63,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:text="Please enter code sent to"
-                        android:textSize="@dimen/text_13"
+                        android:textSize="@dimen/text_15"
                         android:layout_marginRight="@dimen/margin_5"
+
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:fontFamily="@font/regular"
                         android:layout_height="wrap_content"/>
                     <TextView
                          android:layout_width="wrap_content"
-                        android:text="+41366725346"
+                        android:text=""
                         android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/text_13"
+                        android:id="@+id/tv_email"
+                        android:textSize="@dimen/text_15"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:fontFamily="@font/regular"
@@ -82,10 +94,10 @@
                     android:inputType="number"
                     android:layout_gravity="center"
                     android:padding="@dimen/padding_10"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:cursorColor="@color/colorPrimary"
+                    app:cursorColor="@color/black"
                     app:cursorWidth="2dp"
                     app:hideLineWhenFilled="false"
                     app:itemCount="4"
@@ -93,7 +105,7 @@
                     app:itemRadius="4dp"
                     app:itemSpacing="@dimen/padding_10"
                     app:itemWidth="48dp"
-                    app:lineColor="@color/grey"
+                    app:lineColor="@color/black"
                     app:lineWidth="2dp"
                     app:viewType="rectangle" />
 
@@ -102,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tvsend"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/light"
+                    android:fontFamily="@font/regular"
                     android:gravity="center"
                     android:paddingTop="@dimen/padding_15"
                     android:layout_marginTop="@dimen/margin_20"
@@ -136,6 +148,7 @@
                         android:layout_width="wrap_content"
                         android:text="Resend code"
                         android:layout_marginTop="@dimen/padding_10"
+                        android:id="@+id/tv_resendcode"
                         android:textSize="@dimen/text_15"
                         android:layout_gravity="center"
                         android:textColor="@color/black"
@@ -148,3 +161,4 @@
 
     </ScrollView>
 </RelativeLayout>
+</layout>

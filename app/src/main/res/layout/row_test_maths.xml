@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/grey"
+    android:background="@drawable/semi_round_ed_stroke"
     android:id="@+id/rv_parent"
     android:layout_margin="@dimen/padding_10"
     android:padding="@dimen/padding_10"
@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:src="@drawable/play_big"
         android:scaleType="centerCrop"
+        android:tint="@color/colorAccent"
         android:id="@+id/rv"
          android:layout_centerVertical="true"
         android:layout_height="wrap_content"/>
@@ -36,19 +37,19 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/semi"
+                android:fontFamily="@font/bold"
                 android:layout_centerVertical="true"
-                android:textSize="@dimen/text_15"
-                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text17"
+                android:textColor="@color/black"
                 android:text="Test 1"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/semi"
+                android:fontFamily="@font/regular"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="@dimen/margin_5"
-                android:textSize="@dimen/text_15"
-                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text14"
+                android:textColor="@color/black"
                 android:text="@string/lipsumshort"/>
 
 

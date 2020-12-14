@@ -1,34 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
+    android:layout_width="@dimen/_150sdp"
     android:orientation="vertical"
     android:layout_margin="@dimen/margin_8"
-    android:background="@drawable/round_ed_stroke"
-    android:layout_height="wrap_content">
+
+    android:id="@+id/rl_parent"
+android:background="@drawable/round_ed_stroke_grey_solidcp"
+    android:layout_height="@dimen/_150sdp">
+
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/round_ed_stroke_grey_nosolid"
+        android:layout_height="wrap_content">
+
+
+    <ImageView
     android:layout_width="match_parent"
     android:id="@+id/ll_top"
     android:orientation="vertical"
-    android:background="@color/textcolor"
-    android:layout_height="120dp">
 
-    </LinearLayout>
+     android:layout_height="@dimen/_80sdp">
+
+    </ImageView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_below="@+id/ll_top"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_10"
-        android:paddingBottom="@dimen/margin_30"
-        android:orientation="vertical">
+         android:layout_height="@dimen/_70sdp"
+android:paddingLeft="@dimen/padding_15"
+android:paddingTop="@dimen/padding_15"
+        android:background="@drawable/half_rounded_ed"
+         android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bold"
 
-        android:textSize="@dimen/text17"
+        android:id="@+id/tv_chaptername"
+        android:textSize="@dimen/text_15"
          android:textColor="@color/black"
         android:text="Fractions"
        />
@@ -37,10 +49,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/regular"
-        android:textSize="@dimen/text_15"
+        android:minLines="1"
+        android:maxLines="1"
+        android:textSize="@dimen/text_13"
+        android:id="@+id/tv_chapterdes"
          android:textColor="@color/textcolor"
         android:text="Difference and sum of "
         />
+    </LinearLayout>
+
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -49,9 +66,10 @@
 android:paddingLeft="@dimen/padding_15"
 android:paddingRight="@dimen/padding_15"
 android:paddingTop="@dimen/margin_5"
-android:paddingBottom="@dimen/margin_5"
+        android:id="@+id/tv_subjects"
+ android:paddingBottom="@dimen/margin_5"
         android:textSize="@dimen/text_15"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/mat_background"
         android:gravity="center"
         android:textColor="@color/white"
         android:text="MAT"

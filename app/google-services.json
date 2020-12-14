@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "611681893709",
+    "project_id": "eduhub-1603790783536",
+    "storage_bucket": "eduhub-1603790783536.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611681893709:android:b513876afda9fb0bc34b04",
+        "android_client_info": {
+          "package_name": "snow.app.eduhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611681893709-j0hg4rr4h8rsfmfsvcpjdhrre596a8jh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "snow.app.eduhub",
+            "certificate_hash": "0e467be3084f2b832194e664fa7c4628cff3a01d"
+          }
+        },
+        {
+          "client_id": "611681893709-nmjsa5si956mql77gt79ks2bpka9hagt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh2K9GpaEkWqx3jZ3xwZpiuZqGZy2m7Ik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "611681893709-nmjsa5si956mql77gt79ks2bpka9hagt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

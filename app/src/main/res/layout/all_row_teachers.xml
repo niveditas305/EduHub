@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent_ll"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_130sdp"
+    android:layout_margin="@dimen/padding_10"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_130sdp"
+        android:layout_marginRight="@dimen/margin_5"
+        android:background="@drawable/round_ed_stroke_grey_nosolid"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_5">
+
+        <ImageView
+            android:id="@+id/iv_teacher"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/user" />
+
+        <LinearLayout
+            android:id="@+id/ll_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_top"
+            android:layout_margin="@dimen/padding_10"
+            android:layout_toRightOf="@+id/iv_teacher"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/tv_teacher_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/padding_10"
+                    android:layout_weight=".8"
+                    android:fontFamily="@font/bold"
+                    android:text="Sara"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_15" />
+
+                <RelativeLayout
+                    android:id="@+id/rv_fav"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:visibility="gone">
+
+
+                    <ImageView
+                        android:id="@+id/iv_fav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_heart_fill" />
+
+                    <ImageView
+                        android:id="@+id/iv_unfav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_heart" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_subject_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/regular"
+                android:text="Mathematics"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_13" />
+
+            <TextView
+                android:id="@+id/tv_exp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/regular"
+                android:text="5 years Experience"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_13" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:orientation="horizontal">
+                <!--
+                                <com.whinc.widget.ratingbar.RatingBar
+                                    android:id="@+id/ratingBar"
+                                    style="@style/Widget.AppCompat.RatingBar.Small"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:rb_click_rating="false"
+                                    app:rb_count="4"
+                                    app:rb_empty="@drawable/ic_star_unfill"
+                                    app:rb_fill="@drawable/ic_star_fil"
+                                    app:rb_max_count="5"
+                                    app:rb_space="5dp"
+                                    app:rb_touch_rating="false" />-->
+                <!-- <com.fuzzproductions.ratingbar.RatingBar
+                     android:id="@+id/rating_bar"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_centerInParent="true"
+                     android:gravity="center"
+                     app:emptyDrawable="@drawable/ic_star_unfill"
+                     app:filledDrawable="@drawable/ic_star_fil"
+                     app:isIndicator="true"
+                     app:minAllowedStars="0"
+                     android:clickable="false"
+                     app:numStars="5"
+
+                     app:starMargin="10dp"
+                     app:starSize="15dp" />-->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.fuzzproductions.ratingbar.RatingBar
+                        android:id="@+id/rating_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="5dp"
+                        android:clickable="false"
+                        android:gravity="center"
+                        app:emptyDrawable="@drawable/ic_star_unfill"
+                        app:filledDrawable="@drawable/ic_star_fil"
+                        app:isIndicator="true"
+                        app:minAllowedStars="0"
+                        app:numStars="5"
+                        app:starMargin="10dp"
+                        app:starSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/tv_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/regular"
+                        android:text="(4.5)"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_13" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/margin_5"
+                android:layout_centerVertical="true"
+                 android:fontFamily="@font/bold"
+                android:text="View Profile"
+
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_13" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

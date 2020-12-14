@@ -40,8 +40,10 @@
     <string name="or">or</string>
     <string name="username_mobile_no">Username/Mobile no.</string>
     <string name="password">Password</string>
-    <string name="forgot_password">Forgot Password</string>
-    <string name="name">Name</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="enter_verification_code_send_in_you_email_id">Enter verification code send in you email id.</string>
+    <string name="name">First Name</string>
+    <string name="last_name">Last Name</string>
     <string name="email">Email</string>
     <string name="your_confirmation_link_will_be_send_to_this_email">Your confirmation link will be send to this email</string>
     <string name="verify_your_number">Verify Your Number</string>
@@ -51,4 +53,18 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="feedback"><![CDATA[Feedback & Support]]></string>
     <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="facebook_app_id">2663361150642793</string>
+    <string name="fb_login_protocol_scheme">fb2663361150642793</string>
+    <string name="no_record_found">No Record found!</string>
+    <string name="title_activity_pdf_view_screen">PdfViewScreen</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="enter_email">Email</string>
+
 </resources>

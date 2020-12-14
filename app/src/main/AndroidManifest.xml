@@ -1,34 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.eduhub">
+    package="snow.app.eduhub">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:allowBackup="true"
+        android:allowClearUserData="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ui.TeacherReviewScreen"></activity>
+
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.NotificationScreen"></activity>
+        <activity android:name=".ui.TestListActivity" />
+        <activity
+            android:name=".PdfViewScreen"
+            android:label="@string/title_activity_pdf_view_screen"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SearchScreen"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity android:name=".QuestionPaperPdfs" />
+        <activity android:name=".ui.QuestionBankCategoryScreen" />
+        <activity android:name=".TeacherProfile" />
+        <activity android:name=".ui.TeacherListingScreen" />
+        <activity android:name=".ui.TeacherReviewScreen" />
         <activity android:name=".ui.TermsConditiions" />
         <activity android:name=".ui.PrivacyScreen" />
-        <activity android:name=".ui.ContactUs" />
+        <activity
+            android:name=".ui.ContactUs"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity android:name=".ui.AboutScreen" />
-        <activity android:name=".ui.ChangePassword" />
+        <activity
+            android:name=".ui.ChangePassword"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity android:name=".ui.TutorDetailsScreen" />
-        <activity android:name=".ui.TestScoreScore" />
         <activity android:name=".ui.TestSummary" />
         <activity android:name=".ui.TestSeriesActivity" />
         <activity android:name=".ui.LearnActivity" />
-        <activity android:name=".ui.TopicClicks" />
+        <activity
+            android:name=".ui.TopicClicks"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".ui.ChapterFurtherClick" />
         <activity android:name=".ui.ContinueDetails" />
         <activity android:name=".ui.VerificationScreen" />
         <activity android:name=".ui.EnterNumberScreen" />
-        <activity android:name=".ui.ForgotPassword" />
+        <activity
+            android:name=".ui.ForgotPassword"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity android:name=".ui.StartedScreen" />
-        <activity android:name=".ui.Signup" />
-        <activity android:name=".ui.LoginActivity" />
+        <activity
+            android:name=".ui.Signup"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity android:name=".ui.WelcomeSignupScreen" />
         <activity android:name=".ui.WelcomeActivity" />
         <activity android:name=".MainActivity" />
@@ -42,6 +73,51 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.ForgotResetPass"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SeeAllTeacherListingScreen" />
+
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/dot_24dp" />
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
+        <service
+            android:name=".fcm.MyFirebaseMessagingService"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

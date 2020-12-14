@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="snow.app.eduhub.viewmodels.ChaptersVM" />
+    </data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ContinueDetails">
@@ -24,10 +33,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
              android:layout_gravity="center"
-            android:fontFamily="@font/semi"
-            android:text="Mathematics"
-             android:textColor="@color/white"
-            android:textSize="@dimen/text_15" />
+            android:fontFamily="@font/bold"
+            android:textSize="@dimen/text17"
+            android:textColor="@color/white"
+
+            android:text="@{viewModel.subjectname}"
+             />
 
 
 
@@ -40,33 +51,54 @@
        <LinearLayout
            android:layout_width="match_parent"
            android:orientation="vertical"
+           android:paddingBottom="@dimen/_50sdp"
            android:layout_height="wrap_content">
 
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:orientation="vertical"
-           android:background="@color/d_grey"
-           android:layout_height="match_parent">
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:orientation="horizontal"
+               android:id="@+id/ll_two"
+               android:paddingLeft="@dimen/margin_20"
+               android:paddingRight="@dimen/margin_20"
+               android:layout_gravity="center"
+               android:layout_marginTop="@dimen/padding_10"
+android:backgroundTint="@color/red"
+               android:background="@drawable/round_ed_stroke"
+               android:layout_below="@+id/ll_one"
+               android:layout_height="wrap_content">
+
+               <ImageView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:tint="@color/red"
+                   android:layout_gravity="center"
+
+                   android:src="@drawable/play_arrow"/>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:fontFamily="@font/regular"
+                   android:layout_gravity="center"
+                   android:layout_margin="@dimen/padding_10"
+                   android:textSize="@dimen/text17"
+                   android:gravity="center"
+                   android:textColor="@color/black"
+                   android:text="Continue :"
+                   />
 
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:fontFamily="@font/bold"
                    android:layout_gravity="center"
-                   android:layout_margin="@dimen/padding_10"
+                   android:layout_marginRight="@dimen/padding_10"
                    android:textSize="@dimen/text17"
                    android:gravity="center"
-                   android:textColor="@color/white"
-                   android:text="Continue | Fractions"
+                   android:textColor="@color/colorPrimaryDark"
+                   android:text="@={viewModel.continue_topic}"
                    />
-
-
-
-
-
-       </LinearLayout>
-
+           </LinearLayout>
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -76,60 +108,84 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/semi"
+            android:fontFamily="@font/bold"
             android:text="Tutorials"
+            android:layout_gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text17" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/grey"
+            android:backgroundTint="@color/grey"
+            android:background="@drawable/roundc_corner_solid_bg"
             android:drawableRight="@drawable/down_arrow"
             android:fontFamily="@font/semi"
-            android:drawablePadding="@dimen/padding_10"
+            android:drawablePadding="@dimen/padding_15"
+            android:visibility="gone"
             android:layout_marginLeft="@dimen/padding_10"
             android:paddingLeft="@dimen/padding_15"
+android:id="@+id/tv_selected"
             android:paddingRight="@dimen/padding_15"
             android:paddingTop="@dimen/margin_8"
             android:paddingBottom="@dimen/margin_8"
-            android:text="Number Theory"
-            android:textColor="@color/textcolor"
+            android:text="@={viewModel.selected_chapter}"
+            android:textColor="@color/textcolordark"
             android:textSize="@dimen/text_15" />
     </LinearLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/padding_10"
-        android:id="@+id/rv_tutorials"
+        android:id="@+id/rv_videos"
 
         android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bold"
+        android:textSize="@dimen/text_15"
+        android:id="@+id/no_record_found"
+        android:text="@string/no_record_found"
+        android:visibility="visible"
+        android:layout_centerInParent="true"
+        />
+</RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/grey"
+         android:background="@drawable/round_ed_stroke_grey"
          android:layout_gravity="center"
         android:layout_marginTop="@dimen/padding_10"
-        android:fontFamily="@font/semi"
+
+        android:id="@+id/tv_loadmore"
+        android:fontFamily="@font/regular"
          android:layout_marginLeft="@dimen/padding_10"
-        android:paddingLeft="@dimen/padding_15"
-        android:paddingRight="@dimen/padding_15"
-        android:paddingTop="@dimen/margin_8"
-        android:paddingBottom="@dimen/margin_8"
+        android:paddingLeft="@dimen/_30sdp"
+        android:paddingRight="@dimen/_30sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:visibility="gone"
         android:text="Load more"
-        android:textColor="@color/textcolor"
-        android:textSize="@dimen/text_15" />
+        android:textColor="@color/black"
+        android:textSize="@dimen/text17" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/semi"
+        android:fontFamily="@font/bold"
         android:text="Chapter"
+        android:layout_marginTop="@dimen/_20sdp"
         android:textColor="@color/black"
         android:textSize="@dimen/text17" />
 
@@ -143,7 +199,16 @@
             android:id="@+id/rv_chapters"
 
             android:layout_height="wrap_content"/>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bold"
+            android:textSize="@dimen/text_15"
+            android:id="@+id/tv_no_record_found"
+            android:text="@string/no_record_found"
+            android:visibility="visible"
+            android:layout_centerInParent="true"
+            />
 
 
     </RelativeLayout>
@@ -153,13 +218,16 @@
        </LinearLayout>
    </androidx.core.widget.NestedScrollView>
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="right"
-
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/padding_10"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/ic_search" />
-</RelativeLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/f_search"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_margin="16dp"
+            app:maxImageSize="@dimen/_32sdp"
+            app:backgroundTint="@color/white"
+            android:src="@drawable/ic_search"
+            />
+    </RelativeLayout></layout>

@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="snow.app.eduhub.viewmodels.PrivacyPolicyVM" />
+    </data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.PrivacyScreen">
@@ -20,14 +29,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/regular"
+            android:fontFamily="@font/bold"
             android:text="Privacy Policy"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_19" />
+            android:textSize="@dimen/text17" />
     </androidx.appcompat.widget.Toolbar>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_below="@+id/toolbar"
+
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,11 +47,13 @@
             android:layout_margin="@dimen/padding_10"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_150sdp"
                 android:layout_marginTop="@dimen/margin_30"
+                android:id="@+id/iv_about"
+                android:visibility="gone"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_logo" />
+                android:src="@drawable/eduhub" />
             <TextView
                 android:layout_width="match_parent"
                 android:fontFamily="@font/semi"
@@ -56,9 +68,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:fontFamily="@font/regular"
-                android:layout_marginTop="@dimen/margin_30"
+                android:layout_marginTop="@dimen/padding_10"
                 android:textColor="@color/black"
-                android:letterSpacing=".1"
+                android:textSize="@dimen/text17"
+android:id="@+id/tv_p"
                 android:layout_height="wrap_content"
                 android:text="@string/lipsumbig"/>
             <TextView
@@ -100,3 +113,4 @@
 
     </ScrollView>
 </RelativeLayout>
+</layout>

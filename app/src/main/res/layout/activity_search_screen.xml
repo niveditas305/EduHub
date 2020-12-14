@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="snow.app.eduhub.viewmodels.SearchVm" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SearchScreen">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:visibility="gone"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                android:id="@+id/tv_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/bold"
+
+                android:gravity="center"
+                android:text="Search"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text17"
+                android:visibility="visible" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:id="@+id/rv_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:background="?attr/colorPrimary"
+            android:padding="@dimen/padding_10"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/ivback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_left_24" />
+
+
+                <EditText
+                    android:id="@+id/ed_search"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".9"
+                    android:background="@drawable/round_ed_stroke_cornerles"
+                    android:fontFamily="@font/regular"
+                    android:hint="@{viewModel.selected_hint}"
+                    android:imeOptions="actionSearch"
+                    android:inputType="textEmailAddress"
+                    android:padding="@dimen/padding_10"
+                    android:text="@={viewModel.keyword_}"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="@dimen/text_15" />
+
+                <LinearLayout
+                    android:id="@+id/ll_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".1"
+                    android:gravity="right"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/regular"
+                        android:gravity="right"
+
+                        android:text="@={viewModel.selected_type}"
+                        android:textColor="@color/white"
+
+                        android:textSize="@dimen/text_13" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/down_arrow" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rv_search">
+
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+android:layout_margin="@dimen/padding_10"
+                    android:layout_height="match_parent">
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_subjects"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tv_head"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/bold"
+                            android:text="Subjects"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text17" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_subjects"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_head"
+                            android:layout_marginTop="@dimen/padding_10"
+                            android:nestedScrollingEnabled="false" />
+
+                    </RelativeLayout>
+
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_chapters"
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/rl_subjects"
+                        android:layout_height="match_parent"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tv_heading_two"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:fontFamily="@font/bold"
+                            android:text="Chapters"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text17" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_chapters"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_heading_two"
+                            android:layout_marginTop="@dimen/padding_10"
+                            android:nestedScrollingEnabled="false" />
+
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+        <TextView
+            android:id="@+id/no_record_found"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/bold"
+            android:gravity="center"
+            android:text="@string/no_record_found"
+            android:textSize="@dimen/text_15"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</layout>

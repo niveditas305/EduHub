@@ -3,7 +3,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/red</item>
         <item name="android:fontFamily">@font/regular</item>
     </style>
 
@@ -17,11 +17,12 @@
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
     </style>
+
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>
         <item name="tabSelectedTextColor">@color/colorPrimary</item>
         <item name="tabTextColor">@color/colorPrimaryDark</item>
-         <item name="android:isIndicator">false</item>
+        <item name="android:isIndicator">false</item>
 
     </style>
 
@@ -36,14 +37,21 @@
         <item name="listPreferredItemHeightSmall">70dp</item>
 
     </style>
+
     <style name="navi" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorControlHighlight">@color/textcolor</item>
     </style>
+
     <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/bold</item>
         <item name="android:textSize">@dimen/text_15</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>

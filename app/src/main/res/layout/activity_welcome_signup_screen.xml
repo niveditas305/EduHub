@@ -9,16 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
      android:layout_centerInParent="true"
+        android:gravity="center"
          android:orientation="vertical">
 
 
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:layout_marginTop="@dimen/margin_top_button"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_img3"/>
+            android:background="@drawable/eduhub"
+             android:layout_gravity="center"
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,13 +43,14 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_login"
                 android:layout_gravity="center"
-                android:fontFamily="@font/light"
+                android:fontFamily="@font/regular"
                 android:gravity="center"
                 android:paddingTop="@dimen/padding_15"
                 android:layout_marginTop="@dimen/margin_20"
                 android:paddingBottom="@dimen/padding_15"
                 android:paddingLeft="@dimen/margin_side_button"
                 android:paddingRight="@dimen/margin_side_button"
+                android:backgroundTint="@color/red"
                 android:textSize="@dimen/text17"
                 android:background="@drawable/round_ed"
                 android:textColor="@color/white"
@@ -58,7 +61,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_register"
             android:layout_gravity="center"
-            android:fontFamily="@font/light"
+            android:fontFamily="@font/regular"
             android:paddingTop="@dimen/padding_15"
             android:gravity="center"
             android:paddingBottom="@dimen/padding_15"

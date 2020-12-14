@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="snow.app.eduhub.viewmodels.TopicclickVm" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_10"
+            android:id="@+id/iv_cancel"
+            android:padding="@dimen/padding_10"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/cancel" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_10"
+            android:background="@drawable/complete_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_10">
+
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/scholar" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/bold"
+                android:gravity="center"
+                android:text="Congrats"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_19" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:fontFamily="@font/regular"
+android:layout_marginTop="@dimen/margin_8"
+                android:text="Your chapter is complete"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text17" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_10"
+                android:fontFamily="@font/bold"
+                android:id="@+id/tv_give"
+                android:text="Give Feedback"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text17" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll_rating"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/padding_10"
+                android:orientation="vertical">
+
+
+                <com.fuzzproductions.ratingbar.RatingBar
+                    android:id="@+id/rating_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginBottom="@dimen/padding_10"
+                    android:gravity="center"
+                    app:emptyDrawable="@drawable/start_inactive"
+                    app:filledDrawable="@drawable/ratingstar_filled"
+                    app:isIndicator="false"
+                    app:minAllowedStars="1"
+                    app:numStars="5"
+                    app:rating="3"
+                    app:selectTheTappedRating="true"
+                    app:starMargin="10dp"
+                    app:starSize="20dp" />
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center"
+                    android:text="3.0 Out of 5.0 Stars"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text17" />
+
+                <EditText
+                    android:id="@+id/review"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:background="@drawable/round_ed_stroke_cornerles"
+                    android:fontFamily="@font/regular"
+                    android:gravity="top"
+                    android:visibility="gone"
+                    android:hint="Your review here..."
+                    android:minLines="4"
+                    android:padding="@dimen/padding_10"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/text14" />
+
+                <Button
+                    android:id="@+id/btn_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:layout_marginBottom="@dimen/margin_20"
+                    android:background="@drawable/round_ed"
+                    android:fontFamily="@font/semi"
+                    android:gravity="center"
+                    android:text="Rate"
+                    android:textAllCaps="false"
+
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</layout>

@@ -1,152 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.ChapterFurtherClick">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tool_layout"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="snow.app.eduhub.viewmodels.TopicDetailsVm" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:layout_height="match_parent"
+        tools:context=".ui.ChapterFurtherClick">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
-            android:id="@+id/iv_back"
-            android:layout_height="match_parent"/>
-
-
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/semi"
-            android:text="Foundations(Bridge)"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_15" />
-
-
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_below="@+id/tool_layout"
-        android:padding="@dimen/padding_10"
-        android:layout_height="match_parent">
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_layout"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_baseline_keyboard_arrow_left_24" />
 
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/bold"
+                android:text="@{viewModel.chaptername}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text17" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tool_layout">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_one"
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:background="@color/d_grey"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
 
-
-
-
-
-            </LinearLayout>
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/semi"
-                        android:text="Unitary Method, Ratio and Percentage"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text17" />
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/padding_10"
-                    android:id="@+id/rv_one"
-
-                    android:layout_height="wrap_content"/>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/semi"
-                    android:text="Unit Conversions"
-                    android:layout_marginTop="@dimen/margin_20"
-                    android:layout_marginBottom="@dimen/margin_20"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text17" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="match_parent"
-                         android:id="@+id/rvtwo"
-
-                        android:layout_height="wrap_content"/>
-
-
-
-                </RelativeLayout>
-
-
+                android:layout_marginTop="@dimen/padding_10" />
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/semi"
-                    android:text="Coordinate Geometry"
-                    android:layout_marginTop="@dimen/margin_20"
-                    android:layout_marginBottom="@dimen/margin_20"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text17" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:textSize="@dimen/text_15"
+                android:id="@+id/no_record_found"
+                android:text="@string/no_record_found"
+                android:visibility="gone"
+                android:layout_centerInParent="true"
+                />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="match_parent"
-                         android:id="@+id/rvthree"
-
-                        android:layout_height="wrap_content"/>
+        </RelativeLayout>
 
 
-
-                </RelativeLayout>
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/semi"
-                    android:text="Simulation Equations and Words"
-                    android:layout_marginTop="@dimen/margin_20"
-                    android:layout_marginBottom="@dimen/margin_20"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text17" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="match_parent"
-                         android:id="@+id/rv_four"
-
-                        android:layout_height="wrap_content"/>
-
-
-
-                </RelativeLayout>
-
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</RelativeLayout>
+    </RelativeLayout>
+</layout>

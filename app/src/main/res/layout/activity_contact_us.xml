@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="snow.app.eduhub.viewmodels.ContactUsVM" />
+    </data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".ui.ContactUs">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tool"
@@ -15,8 +25,8 @@
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           android:tint="@color/white"
-            android:src="@drawable/left_arrow" />
+            android:src="@drawable/left_arrow"
+            app:tint="@color/white" />
 
         <TextView
             android:id="@+id/title"
@@ -52,19 +62,35 @@
             android:text="Good education ends in good talk !"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_15" />
+        <TextView
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/bold"
+             android:text="@{viewModel.phonenumber}"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_15" />
+        <TextView
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/bold"
+            android:text="@{viewModel.time}"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_15" />
 
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_20"
-            android:layout_marginTop="@dimen/padding_15"
+            android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginRight="@dimen/margin_20"
             android:textColor="@color/black"
-            android:background="@drawable/round_ed_stroke_cornerles"
-            android:fontFamily="@font/light"
+            android:background="@drawable/round_ed_stroke_grey"
+            android:fontFamily="@font/regular"
             android:drawablePadding="@dimen/padding_10"
-
+android:text="@={viewModel.fullName}"
             android:hint="Name"
             android:padding="@dimen/padding_10"
             android:textSize="@dimen/text17" />
@@ -75,10 +101,11 @@
             android:layout_marginTop="@dimen/padding_15"
             android:layout_marginRight="@dimen/margin_20"
             android:textColor="@color/black"
-            android:background="@drawable/round_ed_stroke_cornerles"
-            android:fontFamily="@font/light"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/round_ed_stroke_grey"
+            android:fontFamily="@font/regular"
             android:drawablePadding="@dimen/padding_10"
-
+            android:text="@={viewModel.email}"
             android:hint="Your email"
             android:padding="@dimen/padding_10"
             android:textSize="@dimen/text17" />
@@ -89,13 +116,13 @@
             android:layout_marginLeft="@dimen/margin_20"
             android:layout_marginTop="@dimen/padding_15"
             android:layout_marginRight="@dimen/margin_20"
-            android:background="@drawable/round_ed_stroke_cornerles"
+            android:background="@drawable/round_ed_stroke_grey"
             android:drawablePadding="@dimen/padding_10"
             android:hint="Message"
             android:textColor="@color/black"
-
-            android:gravity="top"
-            android:fontFamily="@font/light"
+            android:text="@={viewModel.message}"
+             android:gravity="top"
+            android:fontFamily="@font/regular"
             android:minLines="3"
             android:padding="@dimen/padding_10"
             android:textSize="@dimen/text17" />
@@ -104,9 +131,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_login"
+            android:id="@+id/tv_send"
             android:layout_gravity="center"
-            android:fontFamily="@font/light"
+            android:fontFamily="@font/regular"
             android:gravity="center"
             android:paddingTop="@dimen/padding_15"
             android:layout_marginTop="@dimen/margin_30"
@@ -123,10 +150,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/regular"
-            android:layout_marginTop="@dimen/padding_10"
+            android:layout_marginTop="@dimen/margin_8"
             android:text="We will get back to ou soon"
-            android:textColor="@color/textcolor"
+            android:textColor="@color/red"
             android:textSize="@dimen/text_13" />
     </LinearLayout>
 
 </RelativeLayout>
+</layout>

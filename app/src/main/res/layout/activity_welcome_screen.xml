@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.WelcomeActivity">
+    tools:context="snow.app.eduhub.ui.WelcomeActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
@@ -29,7 +29,8 @@
         android:layout_alignParentLeft="true"
         android:padding="@dimen/margin_20"
         android:text="Skip"
-        android:textColor="@color/colorPrimary"
+        android:fontFamily="@font/bold"
+        android:textColor="@color/black"
         android:textSize="@dimen/text17" />
 
 
@@ -51,7 +52,8 @@
          android:layout_alignParentRight="true"
         android:padding="@dimen/margin_20"
         android:text="Next"
-        android:textColor="@color/colorPrimary"
+        android:fontFamily="@font/bold"
+        android:textColor="@color/black"
         android:textSize="@dimen/text17" />
 </RelativeLayout>
 </RelativeLayout>

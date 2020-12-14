@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="snow.app.eduhub.viewmodels.TestScoreFragmentVm" />
+    </data>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.TestScoreFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-
             android:orientation="vertical">
 
             <LinearLayout
@@ -21,8 +31,7 @@
                 android:weightSum="1"
                 android:background="@color/grey"
                 android:layout_margin="@dimen/margin_20"
-                android:gravity="center
-"
+                android:gravity="center"
                 android:layout_gravity="center"
                  android:layout_height="100dp">
 
@@ -51,6 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                      android:fontFamily="@font/regular"
+                    android:id="@+id/tv_week"
                     android:layout_marginLeft="@dimen/padding_10"
                     android:layout_marginTop="@dimen/padding_10"
                      android:text="6 out of 10 test you have completed in this week"
@@ -71,6 +81,7 @@
                         android:fontFamily="@font/semi"
                         android:gravity="center"
                         android:text="92.5"
+                        android:id="@+id/tv_average"
                          android:textColor="@color/white"
                         android:textSize="@dimen/text_15" />
                     <TextView
@@ -96,14 +107,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:weightSum="1"
 android:layout_marginLeft="@dimen/margin_8"
 android:layout_marginRight="@dimen/margin_8"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".4"
             android:layout_gravity="left"
@@ -134,53 +145,118 @@ android:layout_marginRight="@dimen/margin_8"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_11sp" />
         </LinearLayout>
-        <LinearLayout
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/padding_10"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:id="@+id/lnr_dates"
+                android:weightSum="1"
+                android:layout_toLeftOf="@+id/done"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="0dp"
+                     android:id="@+id/iv_cal"
+                    android:layout_weight="0.1"
+                    android:layout_marginRight="@dimen/margin_5"
+                    android:src="@drawable/ic_calendar"
+                    android:layout_height="30dp"/>
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="0.4"
+                    android:layout_gravity="center"
+
+                    android:background="@drawable/rect_ed_stroke"
+                    android:editable="false"
+
+                    android:focusable="false"
+                    android:id="@+id/ed_startdate"
+                    android:fontFamily="@font/regular"
+                    android:hint="Start Date"
+                    android:textSize="@dimen/text_11sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="0.1"
+                    android:fontFamily="@font/regular"
+                    android:text="to"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp" />
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="0.4"
+                    android:id="@+id/ed_end_date"
+                    android:background="@drawable/rect_ed_stroke"
+                     android:editable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/regular"
+                    android:hint="End Date"
+
+                    android:textSize="@dimen/text_11sp" />
 
 
-            android:layout_width="0dp"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            android:layout_gravity="center"
-            android:paddingBottom="@dimen/margin_8"
-             android:paddingTop="@dimen/margin_8"
-            android:gravity="center"
-            android:background="@color/white"
-
-            android:paddingLeft="@dimen/margin_8"
-            android:paddingRight="@dimen/margin_8"
-             android:layout_weight=".6"
-             android:layout_height="wrap_content">
+            </LinearLayout>
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".8"
-                 android:fontFamily="@font/semi"
-                  android:layout_toLeftOf="@+id/iv_cal"
-                android:text="12 May - 24 May 2020"
-                 android:textColor="@color/textcolor"
-                android:textSize="@dimen/text_13" />
-          <ImageView
-              android:layout_width="0dp"
-              android:layout_weight=".2"
-              android:id="@+id/iv_cal"
-               android:src="@drawable/ic_calendar"
-              android:layout_height="30dp"/>
-        </LinearLayout>
-
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/bold"
+                android:layout_gravity="center"
+                 android:id="@+id/done"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:paddingLeft="@dimen/margin_20"
+                android:paddingRight="@dimen/margin_20"
+                android:text="Done"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text17" />
+        </RelativeLayout>
     </LinearLayout>
 
+
+
+
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        
+
+         android:layout_margin="@dimen/padding_10"
+        android:layout_height="@dimen/_200sdp" />
     <ImageView
         android:layout_width="match_parent"
         android:src="@drawable/graph"
         android:layout_marginLeft="@dimen/margin_8"
+        android:visibility="gone"
         android:layout_marginTop="@dimen/margin_30"
         android:layout_marginRight="@dimen/margin_8"
         android:layout_height="wrap_content"/>
 </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/margin_20"
+                android:layout_marginTop="@dimen/padding_10"
+                android:id="@+id/rv_scorelisting"
+
+                android:layout_height="wrap_content"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:weightSum="1"
+                android:visibility="gone"
                  android:layout_margin="@dimen/margin_20"
                 android:gravity="center
 "
@@ -215,7 +291,7 @@ android:layout_marginRight="@dimen/margin_8"
                         android:layout_marginTop="@dimen/margin_5"
                         android:text="score in "
                         android:textColor="@color/colorPrimaryDark"
-                        android:textSize="@dimen/text17" />
+                        android:textSize="@dimen/text_15" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -255,7 +331,7 @@ android:layout_marginRight="@dimen/margin_8"
                     android:layout_marginTop="@dimen/margin_5"
                     android:text="score in "
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/text17" />
+                    android:textSize="@dimen/text_15" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -269,8 +345,9 @@ android:layout_marginRight="@dimen/margin_8"
 
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 
 </RelativeLayout>
+</layout>

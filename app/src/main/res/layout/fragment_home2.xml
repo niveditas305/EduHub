@@ -1,389 +1,532 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout>
 
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragments.HomeFragment">
+    <data>
 
-    <androidx.core.widget.NestedScrollView
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="snow.app.eduhub.viewmodels.HomeViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        tools:context=".ui.fragments.HomeFragment">
 
-
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:orientation="vertical"
             android:layout_height="wrap_content">
 
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/pager"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"/>
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/dots"
-                android:layout_width="match_parent"
-                android:layout_height="26dp"
-                android:layout_below="@+id/pager"
-                android:layout_marginTop="-40dp"
-                app:tabBackground="@drawable/dot_selector"
-                app:tabGravity="center"
-                app:tabIndicatorHeight="0dp"
-                app:tabPaddingStart="7dp"
-                app:tabPaddingEnd="7dp"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_below="@+id/pager"
-                android:id="@+id/ll_section"
-                android:weightSum="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/_60sdp">
 
-                android:layout_marginTop="@dimen/margin_20"
-                android:layout_height="130dp">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/bold"
-                    android:layout_weight=".5"
-                    android:id="@+id/tv_one"
-                    android:background="@color/colorPrimaryDark"
-                    android:paddingTop="@dimen/margin_30"
-                    android:layout_gravity="center"
-                    android:drawableTop="@drawable/ic_science"
-                    android:textSize="@dimen/text_19"
-                    android:drawablePadding="@dimen/padding_10"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:text="Science"
-                    />   <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/bold"
-                android:id="@+id/tv_main_two"
-                android:background="@color/textcolor"
-                android:paddingTop="@dimen/margin_30"
-                android:layout_weight=".5"
-                android:drawablePadding="@dimen/padding_10"
-                android:layout_gravity="center"
-                android:drawableTop="@drawable/ic_math"
-                android:textSize="@dimen/text_19"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:text="Mathematics"
-                />
-            </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:id="@+id/ll_one"
-                 android:layout_below="@+id/ll_section"
-                android:weightSum="1"
-                android:layout_height="100dp">
-                <TextView
-                    android:layout_width="0dp"
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp" />
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/dots"
+                        android:layout_width="match_parent"
+                        android:layout_height="26dp"
+                        android:layout_below="@+id/pager"
+                        android:layout_marginTop="-40dp"
+                        app:tabBackground="@drawable/dot_selector"
+                        app:tabGravity="center"
+                        app:tabIndicatorHeight="0dp"
+                        app:tabPaddingEnd="7dp"
+                        app:tabPaddingStart="7dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_subjects"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/pager" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_110sdp"
+                    android:layout_below="@+id/pager"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+
+                    android:weightSum="1">
+
+
+                    <LinearLayout
+                        android:id="@+id/tv_one"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_110sdp"
+                        android:layout_weight=".5"
+                        android:background="@color/red"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_10">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_science">
+
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/padding_10"
+                            android:fontFamily="@font/bold"
+                            android:gravity="center"
+                            android:text="Science"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text17" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/tv_main_two"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_110sdp"
+                        android:layout_weight=".5"
+                        android:background="@color/colorAccent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_10">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_math">
+
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/padding_10"
+
+                            android:fontFamily="@font/bold"
+                            android:gravity="center"
+                            android:text="Mathematics"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text17" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_below="@+id/ll_section"
+                    android:background="@color/container_color"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/tv_recenlty"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/padding_10"
+                        android:layout_weight=".5"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="@={viewModel.recently_learned}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_15" />
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="90dp"
+                        android:background="@color/white" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/padding_10"
+                        android:layout_weight=".5"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="Recently Learned"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_15" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_two"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/bold"
-                    android:layout_weight=".5"
+                    android:layout_below="@+id/ll_one"
                     android:layout_gravity="center"
-                    android:layout_margin="@dimen/padding_10"
-                    android:textSize="@dimen/text17"
-                    android:gravity="center"
-                    android:textColor="@color/textcolor"
-                    android:text="Learning Analysis"
-                    />
-                <View
-                    android:layout_width="1dp"
-                    android:background="@color/textcolor"
-                    android:layout_height="90dp"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bold"
-                    android:layout_weight=".5"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/padding_10"
-                    android:textSize="@dimen/text17"
-                    android:gravity="center"
-                    android:textColor="@color/textcolor"
-                    android:text="Recently Learned"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:id="@+id/ll_two"
-                 android:layout_below="@+id/ll_one"
-                android:layout_height="wrap_content">
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:background="@drawable/round_ed_stroke_grey"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/margin_20"
+                    android:paddingRight="@dimen/margin_20">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/play_arrow"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/padding_10"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:text="Continue :"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/padding_10"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="@={viewModel.countinue_topic}"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_15" />
+                </LinearLayout>
+
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/bold"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/padding_10"
-                    android:textSize="@dimen/text_15"
-                    android:gravity="center"
-                    android:textColor="@color/textcolor"
-                    android:text="Continue :"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bold"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/padding_10"
-                    android:textSize="@dimen/text_15"
-                    android:gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:text="Fractions"
-                    />
-            </LinearLayout>
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/bold"
-                android:layout_below="@+id/ll_two"
-                android:layout_margin="@dimen/padding_10"
-                android:textSize="@dimen/text_19"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text="Top Picks"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/regular"
-                android:layout_marginLeft="@dimen/padding_10"
-                android:layout_below="@+id/ll_two"
-                android:textSize="@dimen/text_15"
-                android:textColor="@color/textcolor"
-                android:text="What other students of your grade are studying"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/padding_10"
-                android:id="@+id/rv_top_home"
-
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/bold"
-                android:layout_below="@+id/ll_two"
-                android:layout_margin="@dimen/padding_10"
-                android:textSize="@dimen/text_19"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text="Top Rated Tutor"
-                />
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginRight="@dimen/padding_10"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/regular"
+                    android:layout_below="@+id/ll_two"
                     android:layout_marginLeft="@dimen/padding_10"
-                    android:textSize="@dimen/text_15"
-                    android:textColor="@color/textcolor"
-                    android:text="Hire tutor for grade up your skills"/>
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:text="Top Picks"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text17" />
+
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_alignParentRight="true"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/regular"
-                    android:textSize="@dimen/text_15"
-                    android:textColor="@color/colorPrimary"
-                    android:text="See all"/>
+                    android:layout_below="@+id/ll_two"
+                    android:layout_marginLeft="@dimen/padding_10"
 
-            </RelativeLayout>
+                    android:layout_marginTop="@dimen/margin_5"
+                     android:fontFamily="@font/med"
+                    android:text="What other students of your grade are studying"
+                    android:textColor="@color/textcolor"
+                    android:textSize="@dimen/text_15" />
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_top_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_10" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_two"
+                    android:layout_marginLeft="@dimen/padding_10"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:text="Top Rated Tutor"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text17" />
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:weightSum="1"
-                android:layout_margin="@dimen/padding_10"
-                android:layout_height="wrap_content">
                 <RelativeLayout
-                    android:layout_width="0dp"
-                    android:orientation="vertical"
-                    android:padding="@dimen/margin_5"
-                    android:layout_weight=".5"
-                    android:layout_marginRight="@dimen/margin_5"
-                    android:background="@drawable/round_ed_stroke_black"
-                    android:layout_height="wrap_content">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:layout_marginRight="@dimen/padding_10"
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:src="@drawable/user"
-                        android:id="@+id/iv"
-                        android:layout_centerVertical="true"
-                        android:layout_height="50dp"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_below="@+id/ll_top"
-                        android:id="@+id/ll_three"
-                        android:layout_toRightOf="@+id/iv"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/padding_10"
-                        android:orientation="vertical">
+                        android:layout_marginLeft="@dimen/padding_10"
+                        android:fontFamily="@font/med"
+                        android:text="Hire tutor for grade up your skills"
+                        android:textColor="@color/textcolor"
+                        android:textSize="@dimen/text_15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:fontFamily="@font/regular"
+                        android:text="see all"
+                        android:id="@+id/tv_see_all"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_15" />
+
+                </RelativeLayout>
 
 
-                        <RelativeLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_topteachers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_10" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_10"
+                    android:visibility="gone"
+                    android:weightSum="1">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/margin_5"
+                        android:layout_weight=".5"
+                        android:background="@drawable/round_ed_stroke_grey_nosolid"
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_5">
+
+                        <ImageView
+                            android:id="@+id/iv"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/user" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_three"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ll_top"
+                            android:layout_margin="@dimen/padding_10"
+                            android:layout_toRightOf="@+id/iv"
+                            android:orientation="vertical">
+
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/tv_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+
+                                    android:layout_toLeftOf="@+id/iv_heart"
+                                    android:fontFamily="@font/bold"
+                                    android:text="Sara"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/text_15" />
+
+                                <ImageView
+                                    android:id="@+id/iv_heart"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/ic_heart_fill" />
+                            </RelativeLayout>
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
                                 android:fontFamily="@font/regular"
-                                android:layout_centerVertical="true"
 
-                                android:id="@+id/tv_name"
-                                android:layout_toLeftOf="@+id/iv_heart"
-                                android:textSize="@dimen/text_15"
-                                android:textColor="@color/black"
-                                android:text="Sara"
-                                />
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:src="@drawable/ic_heart"
-                                android:layout_centerVertical="true"
-                                android:id="@+id/iv_heart"
-                                android:layout_alignParentRight="true"
-                                android:layout_height="wrap_content"/>
-                        </RelativeLayout>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/regular"
-                            android:layout_centerVertical="true"
+                                android:text="Mathematics"
+                                android:textColor="@color/textcolor"
+                                android:textSize="@dimen/text_11sp" />
 
-                            android:textSize="@dimen/text_11sp"
-                            android:textColor="@color/textcolor"
-                            android:text="Mathematics"
-                            />   <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/regular"
-                        android:layout_centerVertical="true"
-
-                        android:textSize="@dimen/text_11sp"
-                        android:textColor="@color/textcolor"
-                        android:text="5 years Experience"
-                        /> <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/regular"
-                        android:layout_centerVertical="true"
-                        android:drawableLeft="@drawable/ic_star_fil"
-                        android:drawablePadding="@dimen/padding_10"
-                        android:textSize="@dimen/text_11sp"
-                        android:textColor="@color/textcolor"
-                        android:text="4.5"
-                        />
-                    </LinearLayout>
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:orientation="vertical"
-                    android:padding="@dimen/margin_5"
-                    android:layout_weight=".5"
-                    android:layout_marginLeft="@dimen/margin_5"
-                    android:background="@drawable/round_ed_stroke_black"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:src="@drawable/user"
-                        android:id="@+id/iv_"
-                        android:layout_centerVertical="true"
-                        android:layout_height="50dp"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:id="@+id/ll_three_"
-                        android:layout_toRightOf="@+id/iv_"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/padding_10"
-                        android:orientation="vertical">
-
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
                                 android:fontFamily="@font/regular"
-                                android:layout_centerVertical="true"
 
-                                android:id="@+id/tv_name_"
-                                android:layout_toLeftOf="@+id/iv_heart_"
-                                android:textSize="@dimen/text_15"
-                                android:textColor="@color/black"
-                                android:text="Sara"
-                                />
-                            <ImageView
+                                android:text="5 years Experience"
+                                android:textColor="@color/textcolor"
+                                android:textSize="@dimen/text_11sp" />
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:src="@drawable/ic_heart"
-                                android:layout_centerVertical="true"
-                                android:id="@+id/iv_heart_"
-                                android:layout_alignParentRight="true"
-                                android:layout_height="wrap_content"/>
-                        </RelativeLayout>
-                        <TextView
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <com.fuzzproductions.ratingbar.RatingBar
+                                    android:id="@+id/rating_bar"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:clickable="false"
+                                    android:gravity="center"
+                                    app:emptyDrawable="@drawable/ic_star_unfill"
+                                    app:filledDrawable="@drawable/ic_star_fil"
+                                    app:isIndicator="true"
+                                    app:minAllowedStars="0"
+                                    app:numStars="5"
+
+                                    app:starMargin="10dp"
+                                    app:starSize="15dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/regular"
+                                    android:text="(4.5)"
+                                    android:textColor="@color/textcolor"
+                                    android:textSize="@dimen/text_11sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_5"
+                        android:layout_weight=".5"
+                        android:background="@drawable/round_ed_stroke_grey_nosolid"
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_5">
+
+                        <ImageView
+                            android:id="@+id/iv_"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/user" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_three_"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/regular"
-                            android:layout_centerVertical="true"
+                            android:layout_margin="@dimen/padding_10"
+                            android:layout_toRightOf="@+id/iv_"
+                            android:orientation="vertical">
 
-                            android:textSize="@dimen/text_11sp"
-                            android:textColor="@color/textcolor"
-                            android:text="Mathematics"
-                            />   <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/regular"
-                        android:layout_centerVertical="true"
 
-                        android:textSize="@dimen/text_11sp"
-                        android:textColor="@color/textcolor"
-                        android:text="5 years Experience"
-                        /> <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/regular"
-                        android:layout_centerVertical="true"
-                        android:drawableLeft="@drawable/ic_star_fil"
-                        android:drawablePadding="@dimen/padding_10"
-                        android:textSize="@dimen/text_11sp"
-                        android:textColor="@color/textcolor"
-                        android:text="4.5"
-                        />
-                    </LinearLayout>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
-                </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/tv_name_"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+
+                                    android:layout_toLeftOf="@+id/iv_heart_"
+                                    android:fontFamily="@font/bold"
+                                    android:text="Sara"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/text_15" />
+
+                                <ImageView
+                                    android:id="@+id/iv_heart_"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/ic_heart" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/regular"
+
+                                android:text="Mathematics"
+                                android:textColor="@color/textcolor"
+                                android:textSize="@dimen/text_11sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/regular"
+
+                                android:text="5 years Experience"
+                                android:textColor="@color/textcolor"
+                                android:textSize="@dimen/text_11sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <com.fuzzproductions.ratingbar.RatingBar
+                                    android:id="@+id/rating_bar_"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:clickable="false"
+                                    android:gravity="center"
+                                    app:emptyDrawable="@drawable/ic_star_unfill"
+                                    app:filledDrawable="@drawable/ic_star_fil"
+                                    app:isIndicator="true"
+                                    app:minAllowedStars="0"
+                                    app:numStars="5"
+
+                                    app:starMargin="10dp"
+                                    app:starSize="15dp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                    <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:layout_margin="@dimen/padding_10"
+                    android:src="@drawable/ic_search"
+                    android:visibility="gone"/>
             </LinearLayout>
-            <ImageView
-                android:layout_width="50dp"
-                android:src="@drawable/ic_search"
-                android:layout_gravity="right"
-                android:layout_margin="@dimen/padding_10"
-                android:layout_centerVertical="true"
-                android:layout_height="50dp"/>
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/f_search"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_margin="16dp"
+            app:maxImageSize="@dimen/_32sdp"
+            app:backgroundTint="@color/white"
+            android:src="@drawable/ic_search"
+         />
+    </RelativeLayout>
+</layout>
