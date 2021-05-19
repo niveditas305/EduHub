@@ -33,9 +33,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:id="@+id/iv_banner"
+    android:background="@color/colorPrimary"
+    android:layout_height="200dp">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/margin_top_button"
+        android:layout_gravity="center"
+
+
+        android:src="@drawable/ic_logo_eduhub"/>
+</RelativeLayout>
 
                     <androidx.viewpager.widget.ViewPager
                         android:id="@+id/pager"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="250dp" />
 
@@ -43,6 +60,7 @@
                         android:id="@+id/dots"
                         android:layout_width="match_parent"
                         android:layout_height="26dp"
+                        android:visibility="gone"
                         android:layout_below="@+id/pager"
                         android:layout_marginTop="-40dp"
                         app:tabBackground="@drawable/dot_selector"
@@ -55,7 +73,7 @@
                         android:id="@+id/rv_subjects"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/pager" />
+                        android:layout_below="@+id/iv_banner" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -225,7 +243,7 @@
                     android:layout_marginTop="@dimen/margin_20"
                     android:fontFamily="@font/bold"
                     android:gravity="center"
-                    android:text="Top Picks"
+                    android:text="Top Topics"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text17" />
 
@@ -247,17 +265,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_10" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/ll_two"
-                    android:layout_marginLeft="@dimen/padding_10"
-                    android:layout_marginTop="@dimen/padding_10"
-                    android:fontFamily="@font/bold"
-                    android:gravity="center"
-                    android:text="Top Rated Tutor"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text17" />
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -270,11 +278,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/padding_10"
+                        android:visibility="gone"
                         android:fontFamily="@font/med"
                         android:text="Hire tutor for grade up your skills"
                         android:textColor="@color/textcolor"
                         android:textSize="@dimen/text_15" />
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                         android:layout_marginLeft="@dimen/padding_10"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="Top Rated Teacher/Tutor"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text17" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -515,7 +532,6 @@
                     android:visibility="gone"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/f_search"
             android:layout_width="@dimen/_45sdp"
@@ -524,7 +540,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
             android:layout_margin="16dp"
-            app:maxImageSize="@dimen/_32sdp"
+             app:maxImageSize="@dimen/_32sdp"
             app:backgroundTint="@color/white"
             android:src="@drawable/ic_search"
          />

@@ -2,10 +2,12 @@ package snow.app.eduhub.ui
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -72,7 +74,14 @@ class ContinueDetails : BaseActivity() {
             }
 
         })
-
+        binding.llTwo.setOnClickListener {
+            var intent: Intent = Intent(this, TopicClicks::class.java)
+            intent.putExtra("chapterId", viewModel.con_chapter_id.get().toString())
+            intent.putExtra("teacherId", viewModel.con_teacher_id.get().toString())
+            intent.putExtra("subjectId", viewModel.con_subject_id.get().toString())
+            intent.putExtra("topic_id", viewModel.con_topic_id.get().toString())
+            startActivity(intent)
+        }
         binding.fSearch.setOnClickListener {
             startActivity(Intent(this, SearchScreen::class.java))
         }
@@ -86,7 +95,6 @@ class ContinueDetails : BaseActivity() {
 
 
 
-
         viewModel.respData.observe(this, Observer {
             Log.e("respData ", "login--")
             if (it != null) {
@@ -97,6 +105,9 @@ class ContinueDetails : BaseActivity() {
 
 
                     if (it.data.chapter.size > 0) {
+
+                        binding.tvSelected.visibility = View.VISIBLE
+
                         val linearLayoutManagertut = LinearLayoutManager(this)
                         rv_chapters.layoutManager = linearLayoutManagertut
                         chaptersAdapter = ChaptersAdapter(this, it.data.chapter, this)
@@ -125,6 +136,14 @@ class ContinueDetails : BaseActivity() {
                         if (it.data.continueTopic != null) {
                             viewModel.continue_topic.set(it.data.continueTopic.topicName)
                             binding.llTwo.visibility = View.VISIBLE
+                           
+
+                            viewModel.con_chapter_id.set(it.data.continueTopic.chapterId.toString())
+                            viewModel.con_teacher_id.set(it.data.continueTopic.teacherId.toString())
+                            viewModel.con_subject_id.set(it.data.continueTopic.subjectId.toString())
+                            viewModel.con_topic_id.set(it.data.continueTopic.id.toString())
+
+
                         } else {
                             viewModel.continue_topic.set("")
                             binding.llTwo.visibility = View.GONE
@@ -132,6 +151,7 @@ class ContinueDetails : BaseActivity() {
 
 
                     } else {
+                        binding.tvSelected.visibility = View.GONE
                         binding.llTwo.visibility = View.GONE
                     }
                 } else {
@@ -159,28 +179,38 @@ class ContinueDetails : BaseActivity() {
             Log.e("respData ", "login--")
             if (it != null) {
                 if (it.status) {
-                    val linearLayoutManager = GridLayoutManager(
+                    val linearLayoutManager = LinearLayoutManager(
                         this,
-                        2
+                         LinearLayoutManager.HORIZONTAL,false
+
                     )
                     binding.rvVideos.layoutManager = linearLayoutManager
                     tutorialsAdapter = TutorialsAdapter(this, it.data, this)
                     binding.rvVideos.adapter = tutorialsAdapter
-                    binding.noRecordFound.visibility = View.GONE
 
-                    binding.tvSelected.visibility = View.VISIBLE
+                    if(it.data.size>0){
+                        binding.noRecordFound.visibility = View.GONE
+                        binding.rvVideos.visibility = View.VISIBLE
+                    }else{
+                        binding.noRecordFound.visibility = View.VISIBLE
+                        binding.rvVideos.visibility = View.GONE
+                    }
 
 
-                    if (it.data.size > 4) {
+                 //   binding.tvSelected.visibility = View.VISIBLE
+
+
+                  /*  if (it.data.size > 4) {
                         binding.tvLoadmore.visibility = View.VISIBLE
                     } else {
                         binding.tvLoadmore.visibility = View.GONE
-                    }
+                    }*/
                 } else {
                     Log.e("statusfalse", "login--")
+
                     binding.noRecordFound.visibility = View.VISIBLE
-                    binding.tvLoadmore.visibility = View.GONE
-                    binding.tvSelected.visibility = View.GONE
+                    binding.rvVideos.visibility = View.GONE
+                //    binding.tvSelected.visibility = View.GONE
                     //  showError(it.message, this)
                 }
             }
@@ -205,6 +235,7 @@ class ContinueDetails : BaseActivity() {
             .setTextGravity(Gravity.CENTER)
             .setSelectedTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
             .setMenuColor(Color.WHITE)
+            .setTextTypeface(Typeface.create(getResources().getFont(R.font.semi), Typeface.NORMAL))
             .setSelectedMenuColor(ContextCompat.getColor(this, R.color.colorPrimary))
             .setOnMenuItemClickListener(onMenuItemClickListener)
             .build()

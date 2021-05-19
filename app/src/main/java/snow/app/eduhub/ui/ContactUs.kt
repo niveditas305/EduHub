@@ -1,5 +1,7 @@
 package snow.app.eduhub.ui
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -53,6 +55,17 @@ class ContactUs : BaseActivity() {
 
 
 
+        binding.tvContact.setOnClickListener {
+
+
+            if (viewModel.phonenumber.get().toString().isEmpty()){
+                showToast("Not able to contact!")
+            }else{
+                callNow(viewModel.phonenumber.get().toString())
+            }
+
+        }
+
         viewModel.respData.observe(this, Observer {
             Log.e("respData ", "login--")
             if (it != null) {
@@ -90,5 +103,9 @@ class ContactUs : BaseActivity() {
         }
     }
 
-
+    fun callNow(number: String) {
+        val dialIntent = Intent(Intent.ACTION_DIAL)
+        dialIntent.data = Uri.parse("tel:" + number)
+        startActivity(dialIntent)
+    }
 }

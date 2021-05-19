@@ -17,10 +17,12 @@ class TopicclickVm(var token: String) : BaseViewModel() {
     val res_rating = MutableLiveData<BaseRes>(null)
 
     val subject_id = ObservableField<String>("")
+    val rating = ObservableField<String>("0")
     val rating_value = ObservableField<String>("")
     val teacher_id = ObservableField<String>("")
     val chapter_id = ObservableField<String>("")
     val topic_id = ObservableField<String>("")
+    val topic_name = ObservableField<String>("")
     val selected_topic = ObservableField<String>("")
 
     // interface call back for api call
@@ -139,13 +141,13 @@ class TopicclickVm(var token: String) : BaseViewModel() {
 
         }
     }
-    fun resprecentContinueTopic(chapterid: String, subjectid: String, topicid: String) {
+    fun resprecentContinueTopic(chapterid: String, subjectid: String, topicid: String,type:String) {
         // isLoading.postValue(true)
         val map: HashMap<String, String> = HashMap<String, String>()
         map.put("chapter_id", chapterid)
         map.put("subject_id", subjectid)
         map.put("topic_id", topicid)
-        map.put("type", "1") //type 1 (recent topic), 2 (continue topic)
+        map.put("type", type) //type 1 (recent topic), 2 (continue topic)
 
 
         repoModel.recentContinueTopic(callback_recentContinueTopic, map, token)

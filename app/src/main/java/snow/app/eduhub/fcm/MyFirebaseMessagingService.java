@@ -31,6 +31,7 @@ import java.util.Random;
 
 import snow.app.eduhub.MainActivity;
 import snow.app.eduhub.R;
+import snow.app.eduhub.ui.NotificationScreen;
 
 
 /**
@@ -133,7 +134,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
 
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, NotificationScreen.class);
         intent.putExtra("noti", "fromnoti");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);

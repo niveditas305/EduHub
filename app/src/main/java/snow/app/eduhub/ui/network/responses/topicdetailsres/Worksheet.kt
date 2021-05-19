@@ -10,10 +10,17 @@ data class Worksheet(
     val chapterId: Int,
     @SerializedName("created_at")
     val createdAt: String,
+
+    @SerializedName("updated_date")
+    val updated_date: String,
+    @SerializedName("created_date")
+    val created_date: String,
     @SerializedName("id")
     val id: Int,
     @SerializedName("school_class_id")
     val schoolClassId: Int,
+    @SerializedName("worksheet_time")
+    val worksheet_time: Long,
     @SerializedName("subject_id")
     val subjectId: Int,
     @SerializedName("teacher_id")

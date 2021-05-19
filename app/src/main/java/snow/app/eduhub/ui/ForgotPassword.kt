@@ -23,6 +23,19 @@ class ForgotPassword : BaseActivity() {
         }
 
 
+        viewModel.isLoading.observe(this, Observer {
+            if (it) {
+                dialog.show()
+            } else {
+                dialog.hide()
+            }
+        })
+        viewModel.isError.observe(this, Observer {
+            if (it.isError) {
+                showError(it.message, this);
+            }
+
+        })
         tv_send_forgot.setOnClickListener {
 
 

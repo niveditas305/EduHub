@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import snow.app.eduhub.MainActivity
 import snow.app.eduhub.QuestionPaperPdfs
@@ -40,8 +41,6 @@ class NotificationListAdapter(
         5(new topic video), 6 (new test add), 7 (new question paper), 8 (new chat message)
 
 */
-
-
         holder.cardview_parent.setOnClickListener {
             if (arrayList.get(position).notificationType == 1) { //1= new chapter add
 
@@ -49,25 +48,26 @@ class NotificationListAdapter(
                 intent.putExtra("teacherId", arrayList.get(position).teacherId.toString())
                 intent.putExtra("subjectId", arrayList.get(position).subjectId.toString())
                 intent.putExtra("subjectname", arrayList.get(position).subjectName.toString())
-
                 context.startActivity(intent)
 
-            } else if (arrayList.get(position).notificationType == 2) { //3= new worksheet add
+            } else if (arrayList.get(position).notificationType == 2) {   //3= new worksheet add
                 val intent: Intent = Intent(context, TopicClicks::class.java)
                 intent.putExtra("teacherId", arrayList.get(position).teacherId.toString())
                 intent.putExtra("chapterId", arrayList.get(position).chapterId.toString())
                 intent.putExtra("subjectId", arrayList.get(position).subjectId.toString())
-
+                intent.putExtra("topic_id", arrayList.get(position).topicId.toString())
+                intent.putExtra("topic_name", arrayList.get(position).topicName.toString())
                 context.startActivity(intent)
-            } else if (arrayList.get(position).notificationType == 3) {//1= new topic add
 
+            } else if (arrayList.get(position).notificationType == 3) {   //1= new topic add
                 val intent: Intent = Intent(context, ChapterFurtherClick::class.java)
                 intent.putExtra("chapterId", arrayList.get(position).chapterId.toString())
                 intent.putExtra("teacherId", arrayList.get(position).teacherId.toString())
                 intent.putExtra("subjectId", arrayList.get(position).subjectId.toString())
                 intent.putExtra("chaptername", arrayList.get(position).chapterName.toString())
-
                 context.startActivity(intent)
+
+
             } else if (arrayList.get(position).notificationType == 4) {//4= new topic pdf
                 val intent: Intent = Intent(context, ChapterFurtherClick::class.java)
                 intent.putExtra("chapterId", arrayList.get(position).chapterId.toString())
@@ -83,26 +83,22 @@ class NotificationListAdapter(
                 intent.putExtra("teacherId", arrayList.get(position).teacherId.toString())
                 intent.putExtra("chapterId", arrayList.get(position).chapterId.toString())
                 intent.putExtra("subjectId", arrayList.get(position).subjectId.toString())
+                intent.putExtra("topic_id", arrayList.get(position).topicId.toString())
+                intent.putExtra("topic_name", arrayList.get(position).topicName.toString())
                 context.startActivity(intent)
 
             } else if (arrayList.get(position).notificationType == 6) {//1= new test add
 
                 val intent: Intent = Intent(context, TestListActivity::class.java)
                 intent.putExtra("subjectname", arrayList.get(position).subjectName.toString())
-                intent.putExtra("subjectId", arrayList.get(position).subjectId.toString())
+                intent.putExtra("subjectid", arrayList.get(position).subjectId.toString())
                 context.startActivity(intent)
 
             } else if (arrayList.get(position).notificationType == 7) {//1= new question paper
 
                 val intent: Intent = Intent(context, QuestionPaperPdfs::class.java)
-                intent.putExtra(
-                    "past_question_category_id",
-                    arrayList.get(position).pastQuestionCategoryId.toString()
-                )
-                intent.putExtra(
-                    "past_question_category_name",
-                    arrayList.get(position).pastQuestionCategoryName.toString()
-                )
+                intent.putExtra("past_question_category_id", arrayList.get(position).pastQuestionCategoryId.toString())
+                intent.putExtra("past_question_category_name", arrayList.get(position).pastQuestionCategoryName.toString())
                 intent.putExtra("subject_id", arrayList.get(position).subjectId.toString())
                 context.startActivity(intent)
 
@@ -110,7 +106,6 @@ class NotificationListAdapter(
 
                 val intent: Intent = Intent(context, MainActivity::class.java)
                 intent.putExtra("chat", "from")
-
                 context.startActivity(intent)
 
             } else {
@@ -118,10 +113,6 @@ class NotificationListAdapter(
                 context.startActivity(intent)
             }
         }
-
-
-
-
         holder.rl_root.setOnClickListener {
             if (arrayList.get(position).notificationType == 1) { //1= new chapter add
 
@@ -129,25 +120,26 @@ class NotificationListAdapter(
                 intent.putExtra("teacherId", arrayList.get(position).teacherId.toString())
                 intent.putExtra("subjectId", arrayList.get(position).subjectId.toString())
                 intent.putExtra("subjectname", arrayList.get(position).subjectName.toString())
-
                 context.startActivity(intent)
 
-            } else if (arrayList.get(position).notificationType == 2) { //3= new worksheet add
+            } else if (arrayList.get(position).notificationType == 2) {   //3= new worksheet add
                 val intent: Intent = Intent(context, TopicClicks::class.java)
                 intent.putExtra("teacherId", arrayList.get(position).teacherId.toString())
                 intent.putExtra("chapterId", arrayList.get(position).chapterId.toString())
                 intent.putExtra("subjectId", arrayList.get(position).subjectId.toString())
-
+                intent.putExtra("topic_id", "")
+                intent.putExtra("topic_name", arrayList.get(position).topicName.toString())
                 context.startActivity(intent)
-            } else if (arrayList.get(position).notificationType == 3) {//1= new topic add
 
+            } else if (arrayList.get(position).notificationType == 3) {   //1= new topic add
                 val intent: Intent = Intent(context, ChapterFurtherClick::class.java)
                 intent.putExtra("chapterId", arrayList.get(position).chapterId.toString())
                 intent.putExtra("teacherId", arrayList.get(position).teacherId.toString())
                 intent.putExtra("subjectId", arrayList.get(position).subjectId.toString())
                 intent.putExtra("chaptername", arrayList.get(position).chapterName.toString())
-
                 context.startActivity(intent)
+
+
             } else if (arrayList.get(position).notificationType == 4) {//4= new topic pdf
                 val intent: Intent = Intent(context, ChapterFurtherClick::class.java)
                 intent.putExtra("chapterId", arrayList.get(position).chapterId.toString())
@@ -163,26 +155,22 @@ class NotificationListAdapter(
                 intent.putExtra("teacherId", arrayList.get(position).teacherId.toString())
                 intent.putExtra("chapterId", arrayList.get(position).chapterId.toString())
                 intent.putExtra("subjectId", arrayList.get(position).subjectId.toString())
+                intent.putExtra("topic_id", arrayList.get(position).topicId.toString())
+                intent.putExtra("topic_name", arrayList.get(position).topicName.toString())
                 context.startActivity(intent)
 
             } else if (arrayList.get(position).notificationType == 6) {//1= new test add
 
                 val intent: Intent = Intent(context, TestListActivity::class.java)
                 intent.putExtra("subjectname", arrayList.get(position).subjectName.toString())
-                intent.putExtra("subjectId", arrayList.get(position).subjectId.toString())
+                intent.putExtra("subjectid", arrayList.get(position).subjectId.toString())
                 context.startActivity(intent)
 
             } else if (arrayList.get(position).notificationType == 7) {//1= new question paper
 
                 val intent: Intent = Intent(context, QuestionPaperPdfs::class.java)
-                intent.putExtra(
-                    "past_question_category_id",
-                    arrayList.get(position).pastQuestionCategoryId.toString()
-                )
-                intent.putExtra(
-                    "past_question_category_name",
-                    arrayList.get(position).pastQuestionCategoryName.toString()
-                )
+                intent.putExtra("past_question_category_id", arrayList.get(position).pastQuestionCategoryId.toString())
+                intent.putExtra("past_question_category_name", arrayList.get(position).pastQuestionCategoryName.toString())
                 intent.putExtra("subject_id", arrayList.get(position).subjectId.toString())
                 context.startActivity(intent)
 
@@ -190,7 +178,6 @@ class NotificationListAdapter(
 
                 val intent: Intent = Intent(context, MainActivity::class.java)
                 intent.putExtra("chat", "from")
-
                 context.startActivity(intent)
 
             } else {
@@ -198,6 +185,7 @@ class NotificationListAdapter(
                 context.startActivity(intent)
             }
         }
+
 
 
 
@@ -213,10 +201,10 @@ class NotificationListAdapter(
             .error(R.drawable.user)
 
 
-/*
-        Glide.with(context).load(arrayList.get(position).userProfilePhoto).apply(options)
+
+        Glide.with(context).load(arrayList.get(position).photo).apply(options)
                 .apply(RequestOptions.circleCropTransform())
-                .into(holder.image)*/
+                .into(holder.image)
     }
 
     override fun getItemCount(): Int {

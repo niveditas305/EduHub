@@ -5,9 +5,11 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
@@ -19,6 +21,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.gms.ads.*
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -30,7 +33,6 @@ import snow.app.eduhub.ui.adapter.HomeTopPickAdapter
 import snow.app.eduhub.ui.fragments.*
 import snow.app.eduhub.ui.network.responses.NotificationCountRes
 import snow.app.eduhub.util.BaseActivity
-import java.util.HashMap
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -41,20 +43,23 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     lateinit var tv_grade: TextView
     lateinit var tv_unread_noti: TextView
     lateinit var iv_profile: ImageView
+    lateinit var iv_facebook: ImageView
+    lateinit var iv_insta: ImageView
+    lateinit var toolbar: Toolbar
+    lateinit var iv_youtube: ImageView
     lateinit var iv_noti: ImageView
-
+    private lateinit var mInterstitialAd: InterstitialAd
     var repoModel: Repo = Repo()
     lateinit var homeTopPickAdapter: HomeTopPickAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+          toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         iv_noti = toolbar.findViewById<ImageView>(R.id.iv_noti)
         tv_unread_noti = toolbar.findViewById<TextView>(R.id.tv_unread_noti)
 
-        setSupportActionBar(toolbar)
-        getSupportActionBar()?.setDisplayShowTitleEnabled(false);
+         getSupportActionBar()?.setDisplayShowTitleEnabled(false);
 
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         val toggle = ActionBarDrawerToggle(
@@ -68,7 +73,30 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         nav_view.setNavigationItemSelectedListener(this)
 
         val v: View = nav_view.getHeaderView(0)
+
+        nav_view.getMenu().findItem(R.id.nav_home).actionView.findViewById<ImageView>(R.id.iv_insta)
+            .setOnClickListener {
+                gotoLink("https://www.instagram.com/invites/contact/?i=1kv8gyrk5s6vu&utm_content=kkypow8")
+            }
+
+
+        nav_view.getMenu()
+            .findItem(R.id.nav_home).actionView.findViewById<ImageView>(R.id.iv_facebook)
+            .setOnClickListener {
+                gotoLink("https://www.facebook.com/EduHubAfrica")
+            }
+        nav_view.getMenu()
+            .findItem(R.id.nav_home).actionView.findViewById<ImageView>(R.id.iv_youtube)
+            .setOnClickListener {
+                gotoLink("https://www.youtube.com/")
+            }
+
+
         iv_profile = v.findViewById<ImageView>(R.id.iv_profile)
+
+
+        //   iv_youtube = v.findViewById<ImageView>(R.id.iv_youtube)
+        //  iv_facebook = v.findViewById<ImageView>(R.id.iv_facebook)
         tv_name = v.findViewById<TextView>(R.id.tv_name)
         tv_schoolname = v.findViewById<TextView>(R.id.tv_schoolname)
         tv_grade = v.findViewById<TextView>(R.id.tv_grade)
@@ -83,14 +111,78 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
 
 
-        if(intent.hasExtra("chat")){
-            loadFragment(ChatFragmentJava(), "")
-        }else{
-            loadFragment(HomeFragment(), "Home")
+
+
+        if (getSession()?.getAppData()?.data?.schoolClassName!!.isEmpty()) {
+            tv_heading.setText("Profile")
+            loadFragment(ProfileFragment(), "")
+        } else {
+            if (intent.hasExtra("chat")) {
+                loadFragment(ChatFragmentJava(), "")
+            } else {
+                loadFragment(HomeFragment(), "Home")
+            }
         }
+
+        if (isNetworkConnected()) {
+//init adds
+            initAdds()
+
+            mInterstitialAd.adListener = object : AdListener() {
+                override fun onAdLoaded() {
+                    // Code to be executed when an ad finishes loading.
+
+
+                    if (mInterstitialAd.isLoaded) {
+                        mInterstitialAd.show()
+                    } else {
+                        Log.d("TAG", "The interstitial wasn't loaded yet.")
+                    }
+                }
+
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    // Code to be executed when an ad request fails.
+                    Log.d("TAG", "The interstitial wasn't loaded onAdFailedToLoad.")
+                }
+
+                override fun onAdOpened() {
+                    // Code to be executed when the ad is displayed.
+                }
+
+                override fun onAdClicked() {
+                    // Code to be executed when the user clicks on an ad.
+                }
+
+                override fun onAdLeftApplication() {
+                    // Code to be executed when the user has left the app.
+                }
+
+                override fun onAdClosed() {
+                    // Code to be executed when the interstitial ad is closed.
+
+                    //mInterstitialAd.loadAd(AdRequest.Builder().build())
+                }
+            }
+        } else {
+            showInternetToast()
+        }
+
 
     }
 
+
+    fun initAdds() {
+
+        MobileAds.initialize(
+            this,
+            "ca-app-pub-3344875363675061~5961754024"
+        )
+
+        mInterstitialAd = InterstitialAd(this)
+        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712" //test key
+        //  mInterstitialAd.adUnitId = "ca-app-pub-3344875363675061/2836951139" //live key
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
+    }
 
     override fun onBackPressed() {
 
@@ -99,38 +191,41 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
             //  super.onBackPressed()
-
-
-            val fragment: Fragment? = supportFragmentManager.findFragmentByTag("Home")
-
-            Log.e("frag", "--" + fragment)
-            if (fragment != null && fragment is HomeFragment) {
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Exit")
-                builder.setMessage("Are you sure you want to exit the app?")
-                builder.setPositiveButton(
-                    "Exit"
-                ) { dialog: DialogInterface?, which: Int ->
-
-
-                    super.onBackPressed()
-
-
-                }
-
-                builder.setNegativeButton(
-                    "cancel"
-                ) { dialog: DialogInterface?, which: Int ->
-
-
-                    dialog?.dismiss()
-                }
-                builder.show()
+            if (getSession()?.getAppData()?.data?.schoolClassName!!.isEmpty()) {
+                super.onBackPressed()
             } else {
-                tv_heading.setText("EDUHUB SOUTH AFRICA")
-                loadFragment(HomeFragment(), "Home")
-            }
 
+                val fragment: Fragment? = supportFragmentManager.findFragmentByTag("Home")
+
+                Log.e("frag", "--" + fragment)
+                if (fragment != null && fragment is HomeFragment) {
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("Exit")
+                    builder.setMessage("Are you sure you want to exit the app?")
+                    builder.setPositiveButton(
+                        "Exit"
+                    ) { dialog: DialogInterface?, which: Int ->
+
+
+                        super.onBackPressed()
+
+
+                    }
+
+                    builder.setNegativeButton(
+                        "cancel"
+                    ) { dialog: DialogInterface?, which: Int ->
+
+
+                        dialog?.dismiss()
+                    }
+                    builder.show()
+                } else {
+                    tv_heading.setText("EDUHUB SOUTH AFRICA")
+                    loadFragment(HomeFragment(), "Home")
+                }
+
+            }
 
         }
     }
@@ -164,8 +259,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
+
         when (item.itemId) {
 
+
+            R.id.iv_facebook -> {
+                showToast("hello fb")
+            }
             R.id.home -> {
 
                 tv_heading.setText("EDUHUB SOUTH AFRICA")
@@ -180,7 +280,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.learn -> {
 
                 tv_heading.setText("Lesson")
-                loadFragment(LearnFragment(), "")
+                loadFragment(LearnFragment("lesson"), "")
 
             }
             R.id.test -> {
@@ -189,14 +289,22 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 loadFragment(TestSubjectFragment(), "")
 
             }
-          /*  R.id.solution -> {
 
 
-                tv_heading.setText("Test")
-                loadFragment(TestFragment(), "")
+            R.id.worksheets -> {
 
-                // startActivity(Intent(applicationContext, WithdrawScreen::class.java))
-            }*/
+                tv_heading.setText("Worksheets")
+                loadFragment(LearnFragment("work"), "")
+
+            }
+            /*  R.id.solution -> {
+
+
+                  tv_heading.setText("Test")
+                  loadFragment(TestFragment(), "")
+
+                  // startActivity(Intent(applicationContext, WithdrawScreen::class.java))
+              }*/
 
             R.id.score -> {
 
@@ -242,18 +350,20 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 builder.setMessage("Are you sure you want to logout?")
                 builder.setPositiveButton(
                     "Logout"
-                ) { dialog: DialogInterface?, which: Int ->
-                    dialog?.dismiss()
+                ) { dialogg: DialogInterface?, which: Int ->
+                    dialogg?.dismiss()
                     getSession()?.logout()
-
-                    //   viewModel!!.logout()
+                    dialog?.dismiss()
+                  //  viewModel!!.logout()
 
 
                 }
 
                 builder.setNegativeButton(
                     "cancel"
-                ) { dialog: DialogInterface?, which: Int ->
+                ) { dialogg: DialogInterface?, which: Int ->
+                    dialogg?.dismiss()
+
                     dialog?.dismiss()
                 }
                 builder.show()
@@ -349,4 +459,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         updateWidgetHandler.removeCallbacks(updateWidgetRunnable)
     }
 
+    fun gotoLink(link: String) {
+        val viewIntent = Intent(
+            "android.intent.action.VIEW",
+            Uri.parse(link)
+        )
+        startActivity(viewIntent)
+    }
 }

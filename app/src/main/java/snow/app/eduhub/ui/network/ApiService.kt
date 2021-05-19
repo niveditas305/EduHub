@@ -14,15 +14,18 @@ import Constants.Companion.GET_ALL_CHAT_MESSAGES
 import Constants.Companion.GET_ALL_NOTIFICATIONS
 import Constants.Companion.GET_CHAPTERS
 import Constants.Companion.GET_CONVERSATION_ID
+import Constants.Companion.GET_NOTIFICATION_STATUS
 import Constants.Companion.GET_NOTI_COUNT
 import Constants.Companion.GET_STARTED_URL
 import Constants.Companion.GET_SUBJECT
 import Constants.Companion.GET_SUBJECTS_BY_ID
  import Constants.Companion.GET_TOP_PICK
 import Constants.Companion.GET_TOP_TEACHER
+import Constants.Companion.GET_UNIQUE_ID
 import Constants.Companion.GRADES_URL
 import Constants.Companion.HOME_BANNER
 import Constants.Companion.HOME_DATA_API
+import Constants.Companion.LESSON_LIST
 import Constants.Companion.LOGIN
 import Constants.Companion.NOTIFICATION
 import Constants.Companion.PAST_QUESTION_PPRS
@@ -52,6 +55,7 @@ import Constants.Companion.UPDATE_PROFILE
 import Constants.Companion.USER_DETAIL
 import Constants.Companion.VERIFY_OTP
 import Constants.Companion.WELCOME_URL
+import Constants.Companion.WORKSHEET_LIST
 import app.sixdegree.network.responses.sendmessage.SendMessageRes
 import snow.app.eduhub.network.responses.PrivacyPolicyResponse
 import snow.app.eduhub.network.responses.TermsAndConditionsResponse
@@ -70,6 +74,7 @@ import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
+import snow.app.beautasapserviceprovider.network.responses.signupres.getnotistatus.GetNotificationStatus
 import snow.app.eduhub.ui.network.responses.NotificationCountRes
 import snow.app.eduhub.ui.network.responses.admindetailsres.FetchAdminDetails
 import snow.app.eduhub.ui.network.responses.baseres.BaseRes
@@ -84,7 +89,9 @@ import snow.app.eduhub.ui.network.responses.getChapters.GetChaptersResponse
 import snow.app.eduhub.ui.network.responses.getallchats.GetAllChatsRes
 import snow.app.eduhub.ui.network.responses.getconversationid.GetConverstaionIdRes
 import snow.app.eduhub.ui.network.responses.getsubjectlistbyid.GetSubjectListById
+import snow.app.eduhub.ui.network.responses.getuniqueid.GetUniqueId
 import snow.app.eduhub.ui.network.responses.homedatares.HomeDataRes
+import snow.app.eduhub.ui.network.responses.lessonlistres.LessonListRes
 import snow.app.eduhub.ui.network.responses.pastquestions.PastQuestionPpr
 import snow.app.eduhub.ui.network.responses.scoreres.ScoreRes
 import snow.app.eduhub.ui.network.responses.searchres.SearchRes
@@ -97,6 +104,7 @@ import snow.app.eduhub.ui.network.responses.testsummaryres.TestSummaryRes
 import snow.app.eduhub.ui.network.responses.topicdetails.TopicDetailsRes
 import snow.app.eduhub.ui.network.responses.topicdetailsres.GetTopicDetailsRes
 import snow.app.eduhub.ui.network.responses.topiclistres.TopicListRes
+import snow.app.eduhub.ui.network.responses.worksheetlist.WorksheetListRes
 
 interface ApiService {
 
@@ -139,6 +147,9 @@ interface ApiService {
                              ): Observable<FetchNotificationListRes>
     @GET(SUBJECT_LIST)
     fun getSubjectList(@Header("Authorization") token: String): Observable<SubjectList>
+
+    @GET(GET_NOTIFICATION_STATUS)
+    fun getNotificationStatus(@Header("Authorization")  token:String ): Observable<GetNotificationStatus>
 
     @POST(CONTACT_US)
     fun fetchContactUsData(
@@ -243,6 +254,27 @@ interface ApiService {
         @Body params: HashMap<String, String>
     ): Observable<GetConverstaionIdRes>
 
+
+    @POST(GET_UNIQUE_ID)
+    fun getUniqueId(
+        @Header("Authorization") token: String,
+        @Body params: HashMap<String, String>
+    ): Observable<GetUniqueId>
+
+    @POST(LESSON_LIST)
+    fun getLessonList(
+        @Header("Authorization") token: String,
+        @Body params: HashMap<String, String>
+    ): Observable<LessonListRes>
+
+
+
+    @POST(WORKSHEET_LIST)
+    fun getWorksheetList(
+        @Header("Authorization") token: String,
+        @Body params: HashMap<String, String>
+    ): Observable<WorksheetListRes>
+
     @POST(GET_CHAPTERS)
     fun getChapters(
         @Header("Authorization") token: String,
@@ -345,6 +377,7 @@ interface ApiService {
         @Part("student_school") student_school: RequestBody,
         @Part("school_class_id") school_class_id: RequestBody,
         @Part("student_address") student_address: RequestBody,
+        @Part("country_code") country_code: RequestBody,
 
         @Part profile_photo: MultipartBody.Part?
     ): Observable<SignupRes> //image

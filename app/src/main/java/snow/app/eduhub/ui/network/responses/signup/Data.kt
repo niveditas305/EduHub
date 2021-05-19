@@ -38,6 +38,9 @@ data class Data(
     var studentImage: String,
     @SerializedName("student_moblie")
     var studentMoblie: String,
+
+    @SerializedName("country_code")
+    var country_code: String,
     @SerializedName("student_school")
     var studentSchool: String,
     @SerializedName("student_status")

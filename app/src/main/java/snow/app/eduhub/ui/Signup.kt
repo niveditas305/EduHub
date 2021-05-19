@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -15,8 +16,6 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.facebook.login.LoginManager
-import snow.app.eduhub.network.responses.grades.Data
-
 import com.skydoves.powermenu.MenuAnimation
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
@@ -26,6 +25,7 @@ import kotlinx.android.synthetic.main.activity_signup.*
 import snow.app.eduhub.MainActivity
 import snow.app.eduhub.R
 import snow.app.eduhub.databinding.ActivitySignupBinding
+import snow.app.eduhub.network.responses.grades.Data
 import snow.app.eduhub.util.AppSession
 import snow.app.eduhub.util.BaseActivity
 import snow.app.eduhub.viewmodels.SignupVm
@@ -34,7 +34,6 @@ import kotlin.collections.ArrayList
 
 class Signup : BaseActivity() {
     var gradelist: ArrayList<String> = ArrayList()
-
     var viewModel: SignupVm? = null
     lateinit var binding: ActivitySignupBinding
     lateinit var grades: List<Data>
@@ -54,12 +53,13 @@ class Signup : BaseActivity() {
         viewModel = SignupVm(deviceTokenn)
         binding.viewModel = viewModel
         binding.executePendingBindings()
-
-
+        val locale: String = getResources().getConfiguration().locale.getCountry()
+        Log.e("locale", "--" + locale)
+        binding.ccp.setDefaultCountryUsingNameCode(locale)
         binding.tvSignup.setOnClickListener {
 
             if (isNetworkConnected()) {
-                viewModel!!.onSignupClick()
+                viewModel!!.onSignupClick(binding.ccp.selectedCountryCode)
             } else {
                 showInternetToast()
             }
@@ -141,7 +141,7 @@ class Signup : BaseActivity() {
 
 
 
-        iv_g_signup.setOnClickListener {
+        binding.ivGSignup.setOnClickListener {
 
             if (isNetworkConnected()) {
                 googleLogin()
@@ -213,7 +213,9 @@ class Signup : BaseActivity() {
                     session.saveSession(it);
                     session.saveEntryType(LOGINN)
                     if (it.data.studentStatus == 0) {
-                        startActivity(Intent(this, VerificationScreen::class.java))
+                        val intent = Intent(this, VerificationScreen::class.java)
+                        startActivity(intent)
+                        // startActivity(Intent(this, VerificationScreen::class.java))
                     } else {
                         startActivity(Intent(this, MainActivity::class.java))
                         finishAffinity()
@@ -277,8 +279,10 @@ class Signup : BaseActivity() {
             .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
             .setMenuRadius(10f)
             .setMenuShadow(10f)
+            .setHeaderView(R.layout.powermenu_header)
             .setTextColor(ContextCompat.getColor(this, R.color.black))
             .setTextGravity(Gravity.CENTER)
+            .setTextTypeface(Typeface.create(getResources().getFont(R.font.semi), Typeface.NORMAL))
             .setSelectedTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
             .setMenuColor(Color.WHITE)
             .setSelectedMenuColor(ContextCompat.getColor(this, R.color.colorPrimary))

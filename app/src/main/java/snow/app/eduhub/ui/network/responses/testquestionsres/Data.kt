@@ -7,5 +7,7 @@ data class Data(
     @SerializedName("questions")
     val questions: List<Question>,
     @SerializedName("questions_count")
-    val questionsCount: Int
+    val questionsCount: Int ,
+    @SerializedName("test_time")
+    val test_time: Int
 )

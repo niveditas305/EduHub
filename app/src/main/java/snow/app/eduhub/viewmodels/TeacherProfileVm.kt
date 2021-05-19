@@ -6,7 +6,6 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import snow.app.eduhub.repo.OnDataReadyCallback
-import snow.app.eduhub.ui.network.responses.searchres.SearchRes
 import snow.app.eduhub.ui.network.responses.teachersprofile.TeachersProfileRes
 import snow.app.eduhub.util.AlertModel
 import snow.app.eduhub.util.AppUtils
@@ -16,6 +15,7 @@ class TeacherProfileVm(var token: String) : BaseViewModel() {
     val res_teachersprofile = MutableLiveData<TeachersProfileRes>(null)
 
     val teacher_id = ObservableField<String>("")
+    val teacher_email = ObservableField<String>("")
     val profile = ObservableField<String>("")
     val name = ObservableField<String>("")
     val subjects = ObservableField<String>("")

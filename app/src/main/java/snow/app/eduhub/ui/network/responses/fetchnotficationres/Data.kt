@@ -39,5 +39,7 @@ data class Data(
     @SerializedName("topic_name")
     val topicName: String,
     @SerializedName("updated_at")
-    val updatedAt: String
+    val updatedAt: String ,
+    @SerializedName("photo")
+    val photo: String
 )

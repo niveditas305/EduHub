@@ -87,12 +87,13 @@ open class BaseActivity : AppCompatActivity(), DialogInterface.OnDismissListener
 
         //    return device_token
     }
+
+
     /*fun getDeviceToken(): String {
 
         //  device_token = Settings.Secure.getString(this.contentResolver, Settings.Secure.ANDROID_ID)
 
-
-        device_token = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+  device_token = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         System.out.println("device toekn--" + device_token);
 
         *//*   FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(this
@@ -279,7 +280,7 @@ open class BaseActivity : AppCompatActivity(), DialogInterface.OnDismissListener
                 account?.photoUrl.toString(),
                 "",
                 account?.id.toString()
-                , getDeviceToken()
+                , getDeviceToken(),""
             )
 
 
@@ -361,7 +362,7 @@ open class BaseActivity : AppCompatActivity(), DialogInterface.OnDismissListener
                                                 "/picture?type=large",
                                         "",
                                         fid,
-                                        getDeviceToken()
+                                        getDeviceToken(),""
 
                                     )
                                 }

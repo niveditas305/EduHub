@@ -26,7 +26,7 @@ open class BaseViewModel(/*var devicetoken:String*/) : BaseObservable() {
         image: String,
         mobile: String,
         id: String,
-        devicetoken: String
+        devicetoken: String,ccp: String
     ) {
 
         val map: HashMap<String, String> = HashMap<String, String>()
@@ -37,8 +37,9 @@ open class BaseViewModel(/*var devicetoken:String*/) : BaseObservable() {
         map.put("student_mobile", mobile)
         map.put("facebook_id", "")
         map.put("google_id", id)
+        map.put("country_code", ccp )
         map.put("device_token", devicetoken)
-
+        map.put("time_zone", TimeZone.getDefault().id)
         Log.e("map", map.toString())
         isLoading.postValue(true)
         repoModel.socialLogin(onDataReadyCallbackkk, map)
@@ -52,7 +53,7 @@ open class BaseViewModel(/*var devicetoken:String*/) : BaseObservable() {
         image: String,
         mobile: String,
         id: String,
-        devicetoken: String
+        devicetoken: String,ccp:String
     ) {
 
         val map: HashMap<String, String> = HashMap<String, String>()
@@ -62,9 +63,10 @@ open class BaseViewModel(/*var devicetoken:String*/) : BaseObservable() {
         map.put("image", image)
         map.put("student_mobile", mobile)
         map.put("facebook_id", id)
+        map.put("country_code", ccp )
         map.put("google_id", "")
         map.put("device_token", devicetoken)
-
+        map.put("time_zone", TimeZone.getDefault().id)
         Log.e("map", map.toString())
 
         Log.e("map", map.toString())

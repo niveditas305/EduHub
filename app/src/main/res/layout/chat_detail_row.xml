@@ -40,7 +40,7 @@
             android:fontFamily="@font/regular"
             android:text=" "
             android:textColor="@color/black"
-            android:textSize="@dimen/text17" />
+            android:textSize="@dimen/text_15" />
 
         <TextView
             android:id="@+id/time"
@@ -49,8 +49,9 @@
             android:background="#FCFAE1"
             android:layout_gravity="right"
             android:text=" "
-            android:paddingRight="@dimen/margin_8"
             android:textStyle="italic"
+
+            android:paddingRight="@dimen/margin_8"
             android:textSize="@dimen/text_11sp" />
 
     </LinearLayout>
@@ -83,7 +84,7 @@
             android:fontFamily="@font/regular"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="@dimen/text14" />
+            android:textSize="@dimen/text_15" />
 
         <TextView
             android:id="@+id/time1"

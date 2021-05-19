@@ -11,8 +11,9 @@ import snow.app.eduhub.util.AlertModel
 
 class TestSummaryVm(var token: String) : BaseViewModel() {
     val resSummary = MutableLiveData<TestSummaryRes>(null)
-     var test_id = ObservableField("")
-     var sol_pdf = ObservableField("")
+    var test_id = ObservableField("")
+    var sol_pdf = ObservableField("")
+    var test_unique_id = ObservableField("")
     val onTopTeachersDataReadyCallback = object : OnDataReadyCallback {
         override fun onDataReady(data: Any?, isErrr: Boolean) {
             isLoading.postValue(false)
@@ -41,9 +42,9 @@ class TestSummaryVm(var token: String) : BaseViewModel() {
     fun fetchSummary() {
         val map: HashMap<String, String> = HashMap<String, String>()
         map.put("test_id", test_id.get().toString())
-        map.put("question_id", "")
+        map.put("test_unique_id", test_unique_id.get().toString())
         isLoading.postValue(true)
-        repoModel.testSummary(onTopTeachersDataReadyCallback,map, token)
+        repoModel.testSummary(onTopTeachersDataReadyCallback, map, token)
     }
 
 }

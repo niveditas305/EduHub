@@ -18,6 +18,11 @@
             android:id="@+id/learn"
             android:icon="@drawable/ic_lesson"
             android:title="Lesson" />
+
+        <item
+            android:id="@+id/worksheets"
+            android:icon="@drawable/ic_contract"
+            android:title="Worksheets" />
         <item
             android:id="@+id/test"
             android:icon="@drawable/ic_test"

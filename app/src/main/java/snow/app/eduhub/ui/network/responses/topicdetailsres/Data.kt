@@ -7,5 +7,7 @@ data class Data(
     @SerializedName("videos")
     val videos: List<Video>,
     @SerializedName("worksheets")
-    val worksheets: List<Worksheet>
+    val worksheets: List<Worksheet>,
+    @SerializedName("rating_status")
+    val rating_status: String
 )

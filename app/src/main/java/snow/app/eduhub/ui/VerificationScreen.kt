@@ -9,9 +9,12 @@ import androidx.lifecycle.Observer
 import snow.app.eduhub.MainActivity
 
 import kotlinx.android.synthetic.main.activity_verification_screen.*
+import snow.app.eduhub.ChangeEmailScreen
 import snow.app.eduhub.R
 import snow.app.eduhub.databinding.ActivityForgotResetPassBinding
 import snow.app.eduhub.databinding.ActivityVerificationScreenBinding
+import snow.app.eduhub.ui.network.responses.signup.SignupRes
+import snow.app.eduhub.util.AppSession
 import snow.app.eduhub.util.BaseActivity
 import snow.app.eduhub.viewmodels.ResetPasswordVm
 import snow.app.eduhub.viewmodels.VerificationVM
@@ -30,16 +33,43 @@ class VerificationScreen : BaseActivity() {
         viewModel = VerificationVM(getUserToken())
         binding.viewModel = viewModel
         binding.executePendingBindings()
-        viewModel = VerificationVM(getUserToken())
+        binding.tvEmail.setText(getSession()?.getAppData()?.data?.email)
+        viewModel?.email?.set(getSession()?.getAppData()?.data?.email)
+        viewModel!!.isLoading.observe(this, Observer {
+            if (it) {
+                dialog.show()
+            } else {
+                dialog.hide()
+            }
+        })
+        viewModel!!.isError.observe(this, Observer {
+            if (it.isError) {
+                showError(it.message, this);
+            }
 
+        })
+        binding.tvChangeemail.setOnClickListener {
+            startActivity(Intent(this, ChangeEmailScreen::class.java))
+        }
         firstPinView.addTextChangedListener {
             val sb = StringBuilder()
             sb.append(it)
             otp = sb.toString()
 
         }
-        binding.tvEmail.setText(getSession()?.getAppData()?.data?.email)
-        viewModel?.email?.set(getSession()?.getAppData()?.data?.email)
+
+        if (intent.hasExtra("from")) {
+            if (isNetworkConnected()) {
+                viewModel?.sendOtp()
+            } else {
+                showInternetToast()
+            }
+        }
+
+
+
+
+
         binding.tvsend.setOnClickListener {
 
 
@@ -74,9 +104,20 @@ class VerificationScreen : BaseActivity() {
             Log.e("respData ", "login--")
             if (it != null) {
                 if (it.status) {
-                    showSuccess(it.message, this)
+
+
+                    if (getSession()?.getAppData() != null) {
+                        var data: SignupRes = getSession()?.getAppData()!!
+                        data?.data.studentStatus = 1
+                        val session: AppSession = AppSession(this)
+                        session.saveSession(data)
+                    }
+
+
+                    dialog.dismiss()
+                    showToast(it.message)
                     startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+                    finishAffinity()
                 } else {
                     Log.e("statusfalse", "login--")
 
@@ -89,9 +130,8 @@ class VerificationScreen : BaseActivity() {
             Log.e("respData ", "login--")
             if (it != null) {
                 if (it.status) {
-
-                    Log.e("status true", "login--")
                     dialog.dismiss()
+                    Log.e("status true", "login--")
 
                     showToast(it.message)
                 } else {

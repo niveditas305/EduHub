@@ -48,12 +48,12 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_150sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_30"
                 android:id="@+id/iv_about"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_gravity="center"
-                android:src="@drawable/eduhub" />
+                android:src="@drawable/ic_eduhub_logo" />
             <TextView
                 android:layout_width="match_parent"
                 android:fontFamily="@font/semi"
@@ -68,12 +68,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:fontFamily="@font/regular"
-                android:layout_marginTop="@dimen/padding_10"
+                android:layout_marginTop="@dimen/margin_20"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text17"
 android:id="@+id/tv_p"
                 android:layout_height="wrap_content"
-                android:text="@string/lipsumbig"/>
+                android:text=""/>
             <TextView
                 android:layout_width="match_parent"
                 android:fontFamily="@font/semi"

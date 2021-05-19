@@ -5,17 +5,17 @@ import com.google.gson.annotations.SerializedName
 
 data class SubjectData(
     @SerializedName("created_at")
-    val createdAt: String,
+    var createdAt: String,
     @SerializedName("id")
-    val id: Int,
+    var id: Int,
     @SerializedName("school_class_id")
-    val schoolClassId: Int,
+    var schoolClassId: Int,
     @SerializedName("status")
-    val status: Int,
+    var status: Int,
     @SerializedName("subject_image")
-    val subjectImage: String,
+    var subjectImage: String,
     @SerializedName("subject_name")
-    val subjectName: String,
+    var subjectName: String,
     @SerializedName("updated_at")
-    val updatedAt: String
+    var updatedAt: String
 )

@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 
 data class SearchRes(
     @SerializedName("data")
-    val `data`: Data,
+    var `data`: Data,
     @SerializedName("message")
-    val message: String,
+    var message: String,
     @SerializedName("status")
-    val status: Boolean
+    var status: Boolean
 )

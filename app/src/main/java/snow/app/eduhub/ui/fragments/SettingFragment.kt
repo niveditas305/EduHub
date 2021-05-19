@@ -53,7 +53,19 @@ class SettingFragment : BaseFragment() {
             }
 
         })
+        viewModel.respData.observe(requireActivity(), Observer {
+            if (it != null) {
+                if (it.status) {
+                    dialog.dismiss()
 
+                    showToast(it.message)
+                } else {
+
+                    showError(it.message, requireContext())
+                }
+            }
+
+        })
         binding.sNoti.setOnClickListener {
 
             if (isNetworkConnected()) {
@@ -68,6 +80,23 @@ class SettingFragment : BaseFragment() {
 
 
         }
+
+        viewModel.respDataGetStatus.observe(requireActivity(), Observer {
+            if (it != null) {
+                if (it.status) {
+                    dialog.dismiss()
+                    if (it.data == 0) {
+                        binding.sNoti.isChecked = false
+                    } else {
+                        binding.sNoti.isChecked = true
+                    }
+                } else {
+                    showError(it.message, requireContext())
+                }
+            }
+
+        })
+
         binding.changePwd.setOnClickListener {
             startActivity(Intent(requireContext(), ChangePassword::class.java))
         }
@@ -83,10 +112,6 @@ class SettingFragment : BaseFragment() {
         binding.tvTerms.setOnClickListener {
             startActivity(Intent(requireContext(), TermsConditiions::class.java))
         }
-
-
-
-
         viewModel.respData.observe(requireActivity(), Observer {
             Log.e("respData ", "login--")
             if (it != null) {
@@ -99,6 +124,14 @@ class SettingFragment : BaseFragment() {
             }
 
         })
+
+
+
+        if (isNetworkConnected()) {
+            viewModel.getNotificationStatus()
+        } else {
+            showInternetToast()
+        }
 
         return binding.root
     }

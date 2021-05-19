@@ -45,6 +45,19 @@ class QuestionBankCategoryScreen : BaseActivity() {
              startActivity(Intent(this, QuestionPaperPdfs::class.java))
          }*/
 
+        viewModel.isLoading.observe(this, Observer {
+            if (it) {
+                dialog.show()
+            } else {
+                dialog.hide()
+            }
+        })
+        viewModel.isError.observe(this, Observer {
+            if (it.isError) {
+                showError(it.message, this);
+            }
+
+        })
 
         viewModel.respData.observe(this, Observer {
             Log.e("respData ", "login--")

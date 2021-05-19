@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rv_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_10"
+        android:background="@drawable/semi_round_ed_stroke"
+        android:padding="@dimen/margin_8">
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_pdf_big"/>
+
+
+        <LinearLayout
+            android:id="@+id/ll_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+android:paddingLeft="@dimen/margin_5"
+            android:layout_centerVertical="true"
+             android:layout_toLeftOf="@+id/iv_down"
+            android:layout_toRightOf="@+id/iv"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tv_lesson_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/bold"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_15" />
+
+            <TextView
+                android:id="@+id/lesson_des"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/margin_5"
+                android:fontFamily="@font/regular"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_13" />
+
+            <TextView
+                android:id="@+id/teacher_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/margin_5"
+                android:fontFamily="@font/regular"
+                android:text=" "
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_13"
+                />
+
+            <TextView
+                android:id="@+id/tv_chapter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/margin_5"
+                android:fontFamily="@font/regular"
+                android:text=" "
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_13"
+                  />
+
+            <TextView
+                android:id="@+id/tv_uploaded_on"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/margin_5"
+                android:fontFamily="@font/regular"
+                android:text=""
+                android:textColor="@color/d_grey"
+                android:textSize="@dimen/text_13"
+                  />
+
+            <TextView
+                android:id="@+id/tv_pdf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_marginTop="@dimen/margin_5"
+android:layout_gravity="left"
+                android:paddingVertical="@dimen/margin_5"
+                android:fontFamily="@font/bold"
+                android:text="View PDF"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_13" />
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+</LinearLayout>

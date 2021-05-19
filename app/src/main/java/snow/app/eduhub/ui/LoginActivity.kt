@@ -21,7 +21,7 @@ import java.util.*
 
 class LoginActivity : BaseActivity() {
     lateinit var viewModel: LoginViewModel
-    var token: String = "";
+    var token: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -157,7 +157,11 @@ class LoginActivity : BaseActivity() {
                     session.saveSession(it);
                     session.saveEntryType(LOGINN)
                     if (it.data.studentStatus == 0) {
-                        startActivity(Intent(this, VerificationScreen::class.java))
+                     //   startActivity(Intent(this, VerificationScreen::class.java))
+
+                        val intent=Intent(this,VerificationScreen::class.java)
+                        intent.putExtra("from","login")
+                        startActivity(intent)
                     } else {
                         startActivity(Intent(this, MainActivity::class.java))
                         finishAffinity()

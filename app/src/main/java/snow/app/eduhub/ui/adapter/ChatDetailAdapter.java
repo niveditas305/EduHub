@@ -58,7 +58,7 @@ public class ChatDetailAdapter extends
             holder.l1.setVisibility(View.GONE);
             holder.l2.setVisibility(View.VISIBLE);
 //            holder.img_detail.setVisibility(View.GONE);
-            holder.time1.setText(chatM.getCreated_date());
+            holder.time1.setText(chatM.getCreated_date() +" ");
             holder.msg1.setText(chatM.getMessage());
             holder.sender.setText("");
 

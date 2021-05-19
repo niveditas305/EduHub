@@ -37,7 +37,15 @@ android:layout_marginTop="@dimen/padding_10"
                 android:textColor="@color/black"
                 android:maxLines="1"
                 android:text="Unitary Method"/>
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
+                android:id="@+id/pdf_des"
+                android:textColor="@color/black"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/text_13"
+                android:text="@string/lipsumshort"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,14 +67,7 @@ android:layout_marginTop="@dimen/padding_10"
                 android:textColor="@color/black"
                 android:text="9th"/>
 
-            <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/regular"
-                android:id="@+id/pdf_des"
-            android:layout_centerVertical="true"
-             android:textSize="@dimen/text_11sp"
-             android:text="@string/lipsumshort"/>
+
 
     <TextView
             android:layout_width="match_parent"
@@ -86,9 +87,8 @@ android:layout_marginTop="@dimen/padding_10"
                 android:layout_height="wrap_content"
                 android:id="@+id/ll_subtopic"
                 android:layout_marginTop="@dimen/margin_20"
-                android:layout_gravity="right"
-                android:gravity="right"
-                android:visibility="visible"
+                 android:gravity="right"
+                 android:visibility="visible"
                 android:orientation="horizontal">
 
                 <TextView
@@ -98,9 +98,22 @@ android:layout_marginTop="@dimen/padding_10"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="@dimen/margin_5"
                     android:textSize="@dimen/text_15"
-                    android:id="@+id/tv_ans"
+                    android:id="@+id/tv_que"
                     android:textColor="@color/red"
-                    android:text="View Pdf"/>
+                    android:text="Questions"/>
+
+                <TextView
+                    android:id="@+id/tv_ans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:fontFamily="@font/bold"
+                    android:layout_marginLeft="25dp"
+                    android:text="Solutions"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_15"
+                    android:visibility="visible" />
             </LinearLayout>
         </LinearLayout>
 

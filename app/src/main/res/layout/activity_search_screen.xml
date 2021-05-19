@@ -182,6 +182,36 @@ android:layout_margin="@dimen/padding_10"
 
 
                     </RelativeLayout>
+
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_topics"
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/rl_chapters"
+                        android:layout_height="match_parent"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tv_heading_three"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:fontFamily="@font/bold"
+                            android:text="Topics"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text17" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_topics"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_heading_three"
+                            android:layout_marginTop="@dimen/padding_10"
+                            android:nestedScrollingEnabled="false" />
+
+
+                    </RelativeLayout>
                 </RelativeLayout>
 
         </androidx.core.widget.NestedScrollView>

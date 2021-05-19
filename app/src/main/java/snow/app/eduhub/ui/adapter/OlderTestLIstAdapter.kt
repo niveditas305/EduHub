@@ -46,6 +46,13 @@ class OlderTestLIstAdapter(var contxt: Context, var list: List<OldWeekTest>) :
 
 
 
+        if (dataModel.test_attempt_status == 1) {
+            holder.tv_test_status.visibility = View.VISIBLE
+            holder.tv_test_status.setText("Last scored: " + dataModel.last_attempt_score + "%")
+        } else {
+            holder.tv_test_status.visibility = View.GONE
+        }
+
         holder.itemView.findViewById<LinearLayout>(R.id.rv_parent).setOnClickListener {
             val intent = Intent(contxt, TestSeriesActivity::class.java)
             intent.putExtra("teacherId", dataModel.teacherId.toString())
@@ -56,7 +63,20 @@ class OlderTestLIstAdapter(var contxt: Context, var list: List<OldWeekTest>) :
 
         holder.tv_test_name.setText(dataModel.setName)
         holder.tv_test_des.setText(dataModel.setDescription)
-        holder.tv_test_date.setText("Uploaded on : "+ AppUtils.getFormatDate(dataModel.createdAt))
+        holder.tv_passing.setText("Passing marks: "+dataModel.passing_marks +"%")
+        holder.tv_test_date.setText("Uploaded on : " + AppUtils.getFormatDate(dataModel.createdAt))
+
+
+
+
+        if (dataModel.last_attempt_score.toDouble() > dataModel.passing_marks.toDouble()) {
+            holder.tv_note.visibility = View.GONE
+
+        } else {
+            holder.tv_note.visibility = View.VISIBLE
+
+            holder.tv_note.setText("You need improvement in " + dataModel.topic_name + "(" + dataModel.chapter_name + ")")
+        }
     }
 
     override fun getItemCount(): Int {
@@ -67,7 +87,9 @@ class OlderTestLIstAdapter(var contxt: Context, var list: List<OldWeekTest>) :
         var tv_test_name: TextView = view!!.findViewById(R.id.tv_test_name)
         var tv_test_des: TextView = view!!.findViewById(R.id.tv_test_des)
         var tv_test_date: TextView = view!!.findViewById(R.id.tv_test_date)
-
+        var tv_test_status: TextView = view!!.findViewById(R.id.tv_test_status)
+        var tv_note: TextView = view!!.findViewById(R.id.tv_note)
+        var tv_passing: TextView = view!!.findViewById(R.id.tv_passing)
     }
 
     override fun onViewAttachedToWindow(holder: MyViewHolder) {

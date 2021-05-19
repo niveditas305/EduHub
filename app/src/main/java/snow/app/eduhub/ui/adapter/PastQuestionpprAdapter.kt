@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import snow.app.eduhub.QuestionPaperPdfs
 import snow.app.eduhub.R
- import snow.app.eduhub.ui.network.responses.pastquestions.Data
+import snow.app.eduhub.ui.network.responses.pastquestions.Data
 import snow.app.eduhub.ui.network.responses.topicdetailsres.Worksheet
 
 
@@ -46,8 +46,17 @@ class PastQuestionpprAdapter(
              Log.e("onBindViewHolder", "data")*/
 
         holder.tv_ans.setOnClickListener {
+            if (topicClicks.isNetworkConnected()) {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.answer_pdf))
+                contxt.startActivity(browserIntent)
+            } else {
+                Toast.makeText(contxt, "Please check your internet connection!", Toast.LENGTH_SHORT)
+                    .show()
+            }
 
 
+        }
+        holder.tv_que.setOnClickListener {
             if (topicClicks.isNetworkConnected()) {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.questionPdf))
                 contxt.startActivity(browserIntent)
@@ -60,7 +69,7 @@ class PastQuestionpprAdapter(
         }
 
 
-        holder.tv_class.setText("Class: "+dataModel.class_name +"th")
+        holder.tv_class.setText("Class: " + dataModel.class_name + "th")
         holder.tv_date.setText("Uploaded on: " + dataModel.date)
         holder.tv_subject.setText("Subject: " + dataModel.subjectName)
         /*   holder.tv_ans.setOnClickListener {
@@ -86,6 +95,7 @@ class PastQuestionpprAdapter(
         var tv_pdfname: TextView = view!!.findViewById(R.id.tv_pdfname)
         var tv_pdf_des: TextView = view!!.findViewById(R.id.pdf_des)
         var tv_ans: TextView = view!!.findViewById(R.id.tv_ans)
+        var tv_que: TextView = view!!.findViewById(R.id.tv_que)
         var tv_class: TextView = view!!.findViewById(R.id.tv_class)
         var tv_subject: TextView = view!!.findViewById(R.id.tv_subject)
         var tv_date: TextView = view!!.findViewById(R.id.tv_date)

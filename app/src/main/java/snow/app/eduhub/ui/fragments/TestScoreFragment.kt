@@ -43,6 +43,8 @@ class TestScoreFragment : BaseFragment() {
     lateinit var binding: FragmentTestScoreBinding
     var x: ArrayList<Entry>? = null
     var y: ArrayList<String>? = null
+    val values = java.util.ArrayList<Entry>()
+
     companion object {
         var testnamearray = ArrayList<String>()
     }
@@ -94,15 +96,25 @@ class TestScoreFragment : BaseFragment() {
                 if (it.status) {
                     dialog.dismiss()
                     testnamearray.clear()
+
+                    /*       if(it.data.testListing.size==0){
+                               binding.noRecordFound.visibility=View.VISIBLE
+                           }else {
+                               binding.noRecordFound.visibility = View.GONE
+       */
+
+
+                    binding.chart.clear()
                     for (i in 0 until it.data.testListing.size) {
                         testnamearray.add(it.data.testListing.get(i).testName)
                     }
                     setDummyDataOnChart(it.data.testListing, binding.root)
+
+                    //  }
                     binding.tvAverage.setText("" + it.data.averageCurrentWeek)
                     binding.tvWeek.setText(
                         "" + it.data.currentAttendTestCount +
-                                " out of " + it.data.currentWeekTestCount + " test you have completed in this week"
-                    )
+                                " out of " + it.data.currentWeekTestCount + " test you have completed in this week")
 
 
                     binding.customProgressBar.progress = it.data.currentAttendTestCount
@@ -113,6 +125,8 @@ class TestScoreFragment : BaseFragment() {
                     val chaptersAdapter =
                         SubScoreListingAdapter(requireContext(), it.data.scoreListing)
                     binding.rvScorelisting.adapter = chaptersAdapter
+
+
                 } else {
                     dialog.dismiss()
                     Log.e("statusfalse", "login--")
@@ -159,7 +173,6 @@ class TestScoreFragment : BaseFragment() {
     }
 
 
-
     fun areDatesValid(): Boolean {
         var dateCompareOne = parseDate(binding.edStartdate.text.toString());
         var dateCompareTwo = parseDate(binding.edEndDate.text.toString());
@@ -169,7 +182,7 @@ class TestScoreFragment : BaseFragment() {
 //                }
         if (dateCompareTwo.before(dateCompareOne)) {
             //checkes whether the current time is between 14:49:00 and 20:11:13.
-            showToast("Endtime should be greater than start time in Mon")
+            showToast("End date should be greater than start date")
 
             return false
         }
@@ -178,7 +191,7 @@ class TestScoreFragment : BaseFragment() {
 
     fun parseDate(date: String): Date {
 
-        var inputFormat = "yyyy-mm-dd";
+        var inputFormat = "yyyy-MM-dd";
         var inputParser = SimpleDateFormat(inputFormat, Locale.US);
         try {
             return inputParser.parse(date);
@@ -214,7 +227,7 @@ class TestScoreFragment : BaseFragment() {
     fun setDummyDataOnChart(data: List<TestListing>, view: View) {
         x = ArrayList<Entry>()
         y = ArrayList<String>()
-    //  binding.chart.setViewPortOffsets(0f, 20f, 0f, 0f)
+        //  binding.chart.setViewPortOffsets(0f, 20f, 0f, 0f)
         // binding.chart.setBackgroundColor(Color.rgb(104, 241, 175))
 
         // no description text
@@ -229,12 +242,11 @@ class TestScoreFragment : BaseFragment() {
         binding.chart.setPinchZoom(false)
 
 
-         // enable scaling and dra10gging
-         // enable scaling and dragging
+        // enable scaling and dra10gging
+        // enable scaling and dragging
         binding.chart.setDragEnabled(true)
         binding.chart.setScaleEnabled(true)
-     // binding.chart.getLegend().setWordWrapEnabled(true);
-
+        // binding.chart.getLegend().setWordWrapEnabled(true);
 
 
         val yAxisRight = binding.chart.axisRight
@@ -242,7 +254,7 @@ class TestScoreFragment : BaseFragment() {
         // if disabled, scaling can be done on x- and y-axis separately
 
         // if disabled, scaling can be done on x- and y-axis separately
-       // binding.chart.setPinchZoom(false)
+        // binding.chart.setPinchZoom(false)
 
         binding.chart.setDrawGridBackground(false)
         //  chart.setMaxHighlightDistance(300)
@@ -250,11 +262,11 @@ class TestScoreFragment : BaseFragment() {
         val x: XAxis = binding.chart.getXAxis()
 
         x.setPosition(XAxis.XAxisPosition.BOTTOM)
-       // x.valueFormatter = MyXAxisFormatter()
+        // x.valueFormatter = MyXAxisFormatter()
         x.setLabelCount(testnamearray.size);
-      binding.chart.setScaleMinima(1.5f, 0.6f)
+        binding.chart.setScaleMinima(1.5f, 0.6f)
 
-         //new code
+        //new code
 
         // axis range
 
@@ -275,7 +287,7 @@ class TestScoreFragment : BaseFragment() {
 
         val y: YAxis = binding.chart.getAxisLeft()
         y.typeface = ResourcesCompat.getFont(requireContext(), R.font.regular)
-      // y.setLabelCount(6, false)
+        // y.setLabelCount(6, false)
         y.textColor = Color.BLACK
         y.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
         y.setDrawGridLines(true)
@@ -287,11 +299,11 @@ class TestScoreFragment : BaseFragment() {
         // add data
 
 
-     // binding.chart.getLegend().setEnabled(false)
+        // binding.chart.getLegend().setEnabled(false)
 
 
         binding.chart.animateXY(2000, 2000)
-      //  binding.chart.setExtraOffsets(10F, 20F, 50f, 10F);
+        //  binding.chart.setExtraOffsets(10F, 20F, 50f, 10F);
         // don't forget to refresh the drawing
 
         // don't forget to refresh the drawing
@@ -311,7 +323,7 @@ class TestScoreFragment : BaseFragment() {
     }
 
     private fun setData(/*count: Int, range: Float*/data: List<TestListing>, xAxis: XAxis) {
-        val values = java.util.ArrayList<Entry>()
+        values.clear()
 
 
 
@@ -328,7 +340,7 @@ class TestScoreFragment : BaseFragment() {
         }
 
 
-      // values.add(Entry(0.0f, 0.0f))
+        // values.add(Entry(0.0f, 0.0f))
         Log.e("values aaray--", "--" + Gson().toJson(values))
         val set1: LineDataSet
         if (binding.chart.getData() != null &&
@@ -342,11 +354,11 @@ class TestScoreFragment : BaseFragment() {
             // create a dataset and give it a type
             set1 = LineDataSet(values, "")
             set1.setMode(LineDataSet.Mode.CUBIC_BEZIER)
-       //  set1.cubicIntensity = 0.2f
+            //  set1.cubicIntensity = 0.2f
             set1.setDrawFilled(true)
 
-           // set1.setDrawCircles(false)
-       //     set1.setValueFormatter(MyXAxisFormatter())
+            // set1.setDrawCircles(false)
+            //     set1.setValueFormatter(MyXAxisFormatter())
             set1.lineWidth = 1.8f
             // set1.circleRadius = 2f
             set1.setCircleColor(Color.LTGRAY)

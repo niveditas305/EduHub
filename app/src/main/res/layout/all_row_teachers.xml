@@ -140,6 +140,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
                     <com.fuzzproductions.ratingbar.RatingBar
@@ -157,7 +158,7 @@
                         app:numStars="5"
                         app:starMargin="10dp"
                         app:starSize="15dp" />
-
+                </LinearLayout>
                     <TextView
                         android:id="@+id/tv_rating"
                         android:layout_width="wrap_content"
@@ -166,9 +167,11 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/regular"
                         android:text="(4.5)"
+                        android:drawablePadding="@dimen/margin_5"
+                        android:drawableLeft="@drawable/ic_star_fil"
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_13" />
-                </LinearLayout>
+
 
             </LinearLayout>
 

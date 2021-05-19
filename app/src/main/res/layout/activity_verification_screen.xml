@@ -18,7 +18,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:scrollbars="none"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -47,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textSize="@dimen/text25"
+                    android:textSize="@dimen/text_21"
                     android:paddingBottom="@dimen/margin_5"
                     android:paddingTop="@dimen/margin_5"
                     android:textColor="@color/black"
@@ -65,23 +65,36 @@
                         android:text="Please enter code sent to"
                         android:textSize="@dimen/text_15"
                         android:layout_marginRight="@dimen/margin_5"
-
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:fontFamily="@font/regular"
                         android:layout_height="wrap_content"/>
                     <TextView
-                         android:layout_width="wrap_content"
+                        android:layout_width="wrap_content"
                         android:text=""
-                        android:textColor="@color/colorPrimary"
                         android:id="@+id/tv_email"
-                        android:textSize="@dimen/text_15"
+                        android:gravity="center"
+                        android:textSize="@dimen/text_11sp"
+                        android:layout_gravity="center"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:fontFamily="@font/regular"
                         android:layout_height="wrap_content"/>
 
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_changeemail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center"
+                    android:text="Change email"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_13" />
 
 
                 <com.chaos.view.PinView
@@ -124,7 +137,7 @@
                     android:textSize="@dimen/text17"
                     android:background="@drawable/round_ed"
                     android:textColor="@color/white"
-                    android:text="Send"
+                    android:text="Next"
                     />
 
 

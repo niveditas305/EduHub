@@ -23,7 +23,7 @@ import snow.app.eduhub.viewmodels.LessonVM
 import snow.app.eduhub.viewmodels.ProfileViewModel
 
 
-class LearnFragment : BaseFragment() {
+class LearnFragment(var from:String) : BaseFragment() {
 
     lateinit var viewModel: LessonVM
     lateinit var binding: FragmentLearnBinding
@@ -64,7 +64,7 @@ class LearnFragment : BaseFragment() {
                     if (it.data.size > 0) {
                         val linearLayoutManager_ = GridLayoutManager(requireContext(), 2)
                         binding.rvLessons.layoutManager = linearLayoutManager_
-                        val searchSubjectsAdapter = SubjectListAdapter(requireContext(), it.data)
+                        val searchSubjectsAdapter = SubjectListAdapter(requireContext(), it.data,from)
                         binding.rvLessons.adapter = searchSubjectsAdapter
 
                         binding.rvLessons.visibility = View.VISIBLE

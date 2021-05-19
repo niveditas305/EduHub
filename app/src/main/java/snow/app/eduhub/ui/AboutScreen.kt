@@ -53,14 +53,10 @@ class AboutScreen : BaseActivity() {
             if (it != null) {
                 if (it.status) {
                     dialog.dismiss()
-                    AppUtils.ImageWithGlide(binding.ivAbout, it.data.get(0).page_image)
-                    binding.tvAbout.setText(HtmlCompat.fromHtml(it.data.get(0).page_content, 0))
+                     binding.tvAbout.setText(HtmlCompat.fromHtml(it.data.get(0).page_content, 0))
 
                 } else {
-                    Log.e("statusfalse", "login--")
-                    Glide.with(this)
-                        .load(R.drawable.eduhub) /*  .transform(new GlideCircleWithBorder(view.getContext(), 2, Color.parseColor("#005194")))*/
-                        .into(binding.ivAbout)
+
                    // showError(it.message, this)
                 }
             }

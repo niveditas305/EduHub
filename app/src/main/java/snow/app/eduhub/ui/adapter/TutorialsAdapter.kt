@@ -63,12 +63,6 @@ class TutorialsAdapter (var contxt: Context, var list: List<Data>,var continueDe
 
     inner class MyViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
        // var binding: RowHomebind? = null
-
-
-
-
-
-
         var iv_video_thumb: ImageView = view!!.findViewById(R.id.iv_video_thumb)
         var iv_play: ImageView = view!!.findViewById(R.id.iv_play)
         var tv_tut_name: TextView = view!!.findViewById(R.id.tv_tut_name)

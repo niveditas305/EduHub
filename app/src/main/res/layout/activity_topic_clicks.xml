@@ -2,7 +2,9 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="snow.app.eduhub.viewmodels.TopicclickVm" />
@@ -35,13 +37,14 @@
                 android:text="@{viewModel.selected_topic}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text17" />
+
             <ImageView
                 android:id="@+id/iv_complete"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:padding="@dimen/padding_10"
-                android:layout_marginRight="5dp"
                 android:layout_gravity="right"
+                android:layout_marginRight="5dp"
+                android:padding="@dimen/padding_10"
                 android:src="@drawable/ic_complete" />
 
 
@@ -79,101 +82,99 @@
                     android:paddingBottom="@dimen/margin_5"
                     android:text="@{viewModel.selected_topic}"
                     android:textColor="@color/textcolor"
-                    android:textSize="@dimen/text17">
+                    android:textSize="@dimen/text_15">
 
 
                 </EditText>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/ll_data"
-    android:layout_height="match_parent">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/padding_10"
-                    android:fontFamily="@font/semi"
-                    android:text="Videos"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text17" />
-
-                <RelativeLayout
+                <LinearLayout
+                    android:id="@+id/ll_data"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvvideos"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        android:layout_marginTop="@dimen/padding_10" />
 
                     <TextView
-                        android:id="@+id/no_record_found"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_marginTop="@dimen/_50sdp"
+                        android:layout_marginTop="@dimen/padding_10"
                         android:fontFamily="@font/bold"
-                        android:text="No videos available"
-                        android:textSize="@dimen/text_15"
-                        android:visibility="gone" />
-                </RelativeLayout>
+                        android:text="Explanation Videos"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text17" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_20"
-                    android:layout_marginBottom="@dimen/margin_20"
-                    android:fontFamily="@font/semi"
-                    android:text="Worksheet"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text17" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorAccent" />
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_pdfs"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="wrap_content">
 
-                        android:visibility="gone"
-                        android:layout_marginTop="@dimen/padding_10" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvvideos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/padding_10"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/no_record_found"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="@dimen/_50sdp"
+                            android:fontFamily="@font/bold"
+                            android:text="No videos available"
+                            android:textSize="@dimen/text_15"
+                            android:visibility="gone" />
+                    </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/no_pdfs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_marginTop="@dimen/_50sdp"
+                        android:layout_marginTop="@dimen/margin_20"
+                        android:layout_marginBottom="@dimen/margin_20"
                         android:fontFamily="@font/bold"
-                        android:text="No pdfs available."
-                        android:textSize="@dimen/text_15"
-                        android:visibility="gone" />
-                </RelativeLayout>
+                        android:text="Worksheet"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text17" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorAccent" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_pdfs"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="@dimen/padding_10"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/no_pdfs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="@dimen/_50sdp"
+                            android:fontFamily="@font/bold"
+                            android:text="No pdfs available."
+                            android:textSize="@dimen/text_15"
+                            android:visibility="gone" />
+                    </RelativeLayout>
 
 
-
-</LinearLayout>
-
-
+                </LinearLayout>
 
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tb_w"
                     style="@style/MyCustomTabLayout"
-android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:visibility="gone"
                     app:tabIndicatorHeight="0dp"
                     app:tabMode="scrollable"
                     app:tabSelectedTextColor="@color/colorPrimary" />
@@ -181,19 +182,18 @@ android:visibility="gone"
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:visibility="gone"
-                    android:background="@color/colorAccent" />
+                    android:background="@color/colorAccent"
+                    android:visibility="gone" />
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/vp_worksheet"
                     android:layout_width="match_parent"
                     android:layout_height="500dp"
-                    android:visibility="gone"
-                    android:layout_marginTop="@dimen/padding_10" />
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:visibility="gone" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
 
 
         <TextView

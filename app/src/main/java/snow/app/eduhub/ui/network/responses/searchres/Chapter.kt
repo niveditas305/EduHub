@@ -5,27 +5,27 @@ import com.google.gson.annotations.SerializedName
 
 data class Chapter(
     @SerializedName("chapter_description")
-    val chapterDescription: String,
+    var chapterDescription: String,
     @SerializedName("chapter_image")
-    val chapterImage: String,
+    var chapterImage: String,
     @SerializedName("chapter_name")
-    val chapterName: String,
+    var chapterName: String,
     @SerializedName("chapter_status")
-    val chapterStatus: Int,
+    var chapterStatus: Int,
     @SerializedName("created_at")
-    val createdAt: String,
+    var createdAt: String,
     @SerializedName("id")
-    val id: Int,
+    var id: Int,
     @SerializedName("school_class_id")
-    val schoolClassId: Int,
+    var schoolClassId: Int,
     @SerializedName("subject_id")
-    val subjectId: Int,
+    var subjectId: Int,
     @SerializedName("teacher_id")
-    val teacherId: Int,
+    var teacherId: Int,
     @SerializedName("topic")
-    val topic: List<Topic>,
+    var topic: List<Topic>,
     @SerializedName("topic_count")
-    val topicCount: Int,
+    var topicCount: Int,
     @SerializedName("updated_at")
-    val updatedAt: String
+    var updatedAt: String
 )

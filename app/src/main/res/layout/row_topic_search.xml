@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_parent"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_150sdp"
+
+    android:layout_margin="@dimen/margin_8"
+    android:background="@drawable/round_ed_stroke_grey_solidcp"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_ed_stroke_grey_nosolid"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/ll_top"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+
+            android:orientation="vertical">
+
+        </ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_below="@+id/ll_top"
+            android:background="@drawable/half_rounded_ed"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/padding_15"
+            android:paddingTop="@dimen/padding_15">
+
+            <TextView
+                android:id="@+id/tv_chaptername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/bold"
+                android:text="Fractions"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_15" />
+
+            <TextView
+                android:id="@+id/tv_chapterdes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="Difference and sum of "
+                android:textColor="@color/textcolor"
+                android:textSize="@dimen/text_13" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_subjects"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mat_background"
+        android:fontFamily="@font/bold"
+        android:gravity="center"
+        android:paddingLeft="@dimen/padding_15"
+        android:paddingTop="@dimen/margin_5"
+        android:paddingRight="@dimen/padding_15"
+        android:paddingBottom="@dimen/margin_5"
+        android:text="MAT"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_15" />
+</RelativeLayout>

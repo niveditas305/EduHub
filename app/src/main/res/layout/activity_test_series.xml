@@ -88,7 +88,7 @@
                             android:padding="@dimen/padding_10"
                             android:text="Time remaining: 00:00:00"
 
-
+android:visibility="gone"
                             android:textSize="@dimen/text_13" />
                     </RelativeLayout>
 
@@ -241,6 +241,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+
             android:layout_marginBottom="@dimen/margin_30"
             android:paddingLeft="@dimen/margin_30"
             android:paddingRight="@dimen/margin_30">
@@ -250,7 +251,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
+                 android:layout_centerVertical="true"
+android:visibility="gone"
                 android:src="@drawable/left_arrow"
                 app:tint="@color/textcolor" />
 

@@ -51,8 +51,7 @@ class TermsConditiions : BaseActivity() {
                     binding.tvTerms.setText(HtmlCompat.fromHtml(it.data.get(0).page_content, 0))
 
                 } else {
-                    Log.e("statusfalse", "login--")
-                   // showError(it.message, this)
+                    // showError(it.message, this)
                 }
             }
 

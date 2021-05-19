@@ -111,13 +111,14 @@ class QuestionsAdapter(
         rv_topics.layoutManager = linearLayoutManagertut
 
         for (i in 0 until listt.size) {
-            optionModel = OptionModel(false, listt.get(i), false,(list.get(position).correctAnswere.toInt()-1).toString(),"","")
+            optionModel = OptionModel(false, listt.get(i), false,
+                (list.get(position).correctAnswere.toInt()-1).toString(),"","")
             optionlist.add(optionModel)
         }
 
         optionAdapter = OptionAdapter(
             contxt, optionlist, getcorrectoption, que_id, sub_id, submitInterface, getIds
-        )
+        ,list)
         rv_topics.adapter = optionAdapter
     }
 

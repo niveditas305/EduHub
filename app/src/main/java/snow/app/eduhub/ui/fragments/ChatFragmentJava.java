@@ -64,16 +64,18 @@ public class ChatFragmentJava extends BaseFragment {
     String admin_id = "";
     String conversation_id = "0";
     ImageView sendBtn, user_img;
-
-
-    @Override
+ProgressDialog dialogg;
+     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chat_java, container, false);
-        dialog = new ProgressDialog(requireContext());
-        dialog.setMessage("Please wait...");
-        dialog.setCancelable(false);
+         dialogg = new ProgressDialog(requireContext());
+         dialogg.setMessage("Please wait...");
+         dialogg.setCancelable(false);
+      //  dialog.show();
+
+
         // txt_top_header = view.findViewById(R.id.txt_top_header);
         // appSession=new AppSession( context );
         sendBtn = view.findViewById(R.id.attach);
@@ -127,11 +129,11 @@ public class ChatFragmentJava extends BaseFragment {
                     datum.setId(0l);
                     datum.setConversationId(/*Long.parseLong(getIntent().getStringExtra("chat_group_id"))*/(long) 0);
                     datum.setFromUserId(Long.valueOf(getSession().getAppData().getData().getId()));
-                    datum.setCreatedAt("");
+                    datum.setCreated_date("");
                     datum.setMessage(sendmsg.getText().toString());
-                    Date d = new Date();
+                   Date d = new Date();
                     CharSequence s = DateFormat.format("yyyy-MM-dd HH:mm:ss", d.getTime());
-                    datum.setCreatedAt(String.valueOf(s));
+                 datum.setCreated_date(String.valueOf(s));
 
                     //  datum.setFromName(getSession().getAppData().getData().getName() );
                     chatUserList.add(datum);
@@ -204,7 +206,7 @@ public class ChatFragmentJava extends BaseFragment {
                     @Override
                     public void onNext(SendMessageRes res) {
                         if (!res.getStatus()) {
-                            dialog.dismiss();
+
                             chatUserList.remove(chatUserList.size() - 1);
                             chatDetailAdapter.notifyDataSetChanged();
 
@@ -235,7 +237,7 @@ public class ChatFragmentJava extends BaseFragment {
         message:hieeee
 */
 
-
+        dialogg.show();
         Observer<FetchAdminDetails> observer = apiService.fetchAdminDetails(getUserToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -248,7 +250,7 @@ public class ChatFragmentJava extends BaseFragment {
                     @Override
                     public void onNext(FetchAdminDetails res) {
                         if (res.getStatus()) {
-
+                            dialogg.dismiss();
                             admin_id = String.valueOf(res.getData().getId());
 
 
@@ -269,13 +271,13 @@ public class ChatFragmentJava extends BaseFragment {
 
                     @Override
                     public void onError(Throwable e) {
-                        dialog.dismiss();
+                        dialogg.dismiss();
                         Log.e("err", "=" + e);
                     }
 
                     @Override
                     public void onComplete() {
-                        dialog.dismiss();
+                        dialogg.dismiss();
                     }
                 });
 
@@ -283,7 +285,7 @@ public class ChatFragmentJava extends BaseFragment {
     }
 
     public void getConversationId() {
-
+        dialogg.show();
         HashMap<String, String> map = new HashMap<>();
         map.put("from_user_id", String.valueOf(getSession().getAppData().getData().getId()));
         map.put("to_user_id", admin_id);
@@ -307,13 +309,13 @@ public class ChatFragmentJava extends BaseFragment {
                     }
                     @Override
                     public void onError(Throwable e) {
-                        dialog.dismiss();
+                        dialogg.dismiss();
                         Log.e("err", "=" + e);
                     }
 
                     @Override
                     public void onComplete() {
-                        dialog.dismiss();
+                        dialogg.dismiss();
                         //  pbar.setVisibility(View.GONE);
                     }
                 });
@@ -322,6 +324,9 @@ public class ChatFragmentJava extends BaseFragment {
 
 
     public void fetchMessages() {
+
+       dialogg.show();
+
         HashMap<String, String> map = new HashMap<>();
         map.put("from_user_id", String.valueOf(getSession().getAppData().getData().getId()));
         map.put("to_user_id", admin_id);
@@ -337,6 +342,8 @@ public class ChatFragmentJava extends BaseFragment {
                     @Override
                     public void onNext(GetAllChatsRes res) {
                         if (res.getStatus()) {
+
+                            dialogg.dismiss();
                             chatUserList.addAll(res.getData());
                             chatDetailAdapter.notifyDataSetChanged();
                             if (chatUserList.size() > 0) {
@@ -356,13 +363,13 @@ public class ChatFragmentJava extends BaseFragment {
 
                     @Override
                     public void onError(Throwable e) {
-                        dialog.dismiss();
+                        dialogg.dismiss();
                         Log.e("err", "=" + e);
                     }
 
                     @Override
                     public void onComplete() {
-                        dialog.dismiss();
+                        dialogg.dismiss();
                         //  pbar.setVisibility(View.GONE);
                     }
                 });

@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import snow.app.eduhub.R
+import snow.app.eduhub.ui.network.responses.testquestionsres.Question
 import snow.app.eduhub.util.*
 
 
@@ -22,7 +23,7 @@ class OptionAdapter(
     var que_id: String,
     var sub_id: String,
     var submitInterface: SubmitInterface,
-    var getIds: GetIds
+    var getIds: GetIds, var quelist: List<Question>
 
 ) :
     RecyclerView.Adapter<OptionAdapter.MyViewHolder>() {
@@ -63,14 +64,24 @@ class OptionAdapter(
 
         getIds.getId(que_id, sub_id)
         Log.e("correct an--", "--" + correctans + "sele--" + selectedans)
-        Log.e("list in optn--", "--" +  Gson().toJson(list))
-        if (list.get(position).correct) {
+        Log.e("list in optn--", "--" + Gson().toJson(list))
+        Log.e("list in quelist--", "--" + Gson().toJson(quelist))
+        /*if (list.get(position).correct) {
             holder.ll_option.setBackgroundResource(R.drawable.semi_round_ed_stroke_cp_stroke)
-        }
+        }*/
 
         if (correctans.equals("") && selectedans.equals("")) {
+
+
+
+
+
             if (list.get(position).selected) {
-                holder.ll_option.setBackgroundResource(R.drawable.semi_round_ed_stroke_dgrey_stroke)
+
+
+
+//new code
+                  holder.ll_option.setBackgroundResource(R.drawable.semi_round_ed_stroke_dgrey_stroke)
             } else {
                 holder.ll_option.setBackgroundResource(R.drawable.semi_round_ed_stroke)
             }
@@ -79,7 +90,7 @@ class OptionAdapter(
         } else {
             if (correctans.equals(select)) {
                 holder.ll_option.setBackgroundResource(R.drawable.semi_round_ed_stroke_cp_stroke)
-            }else if (list.get(position).correct) {
+            } else if (list.get(position).correct) {
                 holder.ll_option.setBackgroundResource(R.drawable.semi_round_ed_stroke_cp_stroke)
             }
 
@@ -155,11 +166,12 @@ class OptionAdapter(
         holder.ll_option.setOnClickListener {
             setSelected(position)
             getcorrectoption.getId((position + 1).toString(), que_id, sub_id)
-              //submitInterface.onSubmitClick(list)
+            //submitInterface.onSubmitClick(list)
         }
         holder.tv_ans.setText(dataModel.name)
         holder.tv_serial.setText(serialno)
     }
+
     fun setCorrect(position: Int) {
 
         list.get(position).correct = true
@@ -176,15 +188,15 @@ class OptionAdapter(
         notifyDataSetChanged()
     }
 
- /*   fun setIsCorrect(position: Int) {
+    /*   fun setIsCorrect(position: Int) {
 
-        for (muser: OptionModel in list) {
-            muser.correct = false
-        }
+           for (muser: OptionModel in list) {
+               muser.correct = false
+           }
 
-        list.get(position).correct = true
-notifyDataSetChanged()
-    }*/
+           list.get(position).correct = true
+   notifyDataSetChanged()
+       }*/
 
     override fun getItemCount(): Int {
         return list.size

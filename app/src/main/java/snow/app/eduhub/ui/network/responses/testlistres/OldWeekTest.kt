@@ -12,6 +12,10 @@ data class OldWeekTest(
     val id: Int,
     @SerializedName("school_class_id")
     val schoolClassId: Int,
+
+
+    @SerializedName("test_attempt_status")
+    val test_attempt_status: Int,
     @SerializedName("set_description")
     val setDescription: String,
     @SerializedName("set_name")
@@ -25,5 +29,15 @@ data class OldWeekTest(
     @SerializedName("topic_id")
     val topicId: Int,
     @SerializedName("updated_at")
-    val updatedAt: String
+    val updatedAt: String ,
+    @SerializedName("last_attempt_score")
+    val last_attempt_score: String ,
+    @SerializedName("passing_marks")
+    val passing_marks: String
+    ,@SerializedName("chapter_name")
+    val chapter_name: String,
+
+
+    @SerializedName("topic_name")
+    val topic_name: String
 )

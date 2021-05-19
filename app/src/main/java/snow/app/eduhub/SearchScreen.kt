@@ -1,6 +1,7 @@
 package snow.app.eduhub
 
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -16,12 +17,8 @@ import com.skydoves.powermenu.MenuAnimation
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
-import snow.app.eduhub.databinding.ActivityContinueDetailBinding
 import snow.app.eduhub.databinding.ActivitySearchScreenBinding
-import snow.app.eduhub.ui.adapter.ChaptersAdapter
-import snow.app.eduhub.ui.adapter.SearchChaptersAdapter
-import snow.app.eduhub.ui.adapter.SearchSubjectsAdapter
-import snow.app.eduhub.ui.adapter.TutorialsAdapter
+import snow.app.eduhub.ui.adapter.*
 import snow.app.eduhub.util.BaseActivity
 import snow.app.eduhub.viewmodels.ChaptersVM
 import snow.app.eduhub.viewmodels.SearchVm
@@ -50,6 +47,7 @@ class SearchScreen : BaseActivity() {
                 ArrayList()
             list.add("Subjects")
             list.add("Chapters")
+            list.add("Topics")
             show(list, binding.llSelect)
         })
 
@@ -88,37 +86,31 @@ class SearchScreen : BaseActivity() {
             Log.e("respData ", "login--")
             if (it != null) {
                 if (it.status) {
-
-
                     dialog.dismiss()
                     hideKeyboard(this)
-
-
-
-
-                    if (it.data.subjectData.size == 0 && it.data.chapter.size == 0) {
+                    if (it.data.subjectData.size == 0 && it.data.chapter.size == 0 && it.data.topicData.size == 0) {
                         binding.noRecordFound.visibility = View.VISIBLE
                         binding.rlChapters.visibility = View.GONE
                         binding.rlSubjects.visibility = View.GONE
+                        binding.rlTopics.visibility = View.GONE
                     } else {
 
-                        binding.noRecordFound.visibility = View.GONE
-                        viewModel.keyword_.set("")
-                        if (it.data.subjectData.size == 0) {
-                            val linearLayoutManager_ = LinearLayoutManager(
-                                this
+
+                        if (it.data.topicData.size > 0) {
+
+                            val linearLayoutManager_ = GridLayoutManager(
+                                this,
+                                2
                             )
 
-                            binding.rvChapters.layoutManager = linearLayoutManager_
-                            val searchChaptersAdapter = SearchChaptersAdapter(this, it.data.chapter)
-                            binding.rvChapters.adapter = searchChaptersAdapter
-                            binding.rlChapters.visibility = View.VISIBLE
+                            binding.rvTopics.layoutManager = linearLayoutManager_
+                            val searchChaptersAdapter =
+                                SearchTopicAdapter(this, it.data.topicData, this)
+                            binding.rvTopics.adapter = searchChaptersAdapter
+                            binding.rlTopics.visibility = View.VISIBLE
                             binding.rlSubjects.visibility = View.GONE
-
-
-                        } else {
-
-
+                            binding.rlChapters.visibility = View.GONE
+                        } else if (it.data.subjectData.size > 0) {
                             val linearLayoutManager_ = GridLayoutManager(
                                 this,
                                 2
@@ -128,16 +120,33 @@ class SearchScreen : BaseActivity() {
                             val searchSubjectsAdapter =
                                 SearchSubjectsAdapter(this, it.data.subjectData)
                             binding.rvSubjects.adapter = searchSubjectsAdapter
-
                             binding.rlSubjects.visibility = View.VISIBLE
+
+
+
                             binding.rlChapters.visibility = View.GONE
+                            binding.rlTopics.visibility = View.GONE
+                        } else if (it.data.chapter.size > 0) {
+                            val linearLayoutManager_ = LinearLayoutManager(this)
+
+                            binding.rvChapters.layoutManager = linearLayoutManager_
+                            val searchChaptersAdapter = SearchChaptersAdapter(this, it.data.chapter)
+                            binding.rvChapters.adapter = searchChaptersAdapter
+                            binding.rlChapters.visibility = View.VISIBLE
+                            binding.rlSubjects.visibility = View.GONE
+                            binding.rlTopics.visibility = View.GONE
+
                         }
+
+                        binding.noRecordFound.visibility = View.GONE
+                        viewModel.keyword_.set("")
+
                     }
 
 
                 } else {
                     Log.e("statusfalse", "login--")
-                   // binding.noRecordFound.visibility = View.VISIBLE
+                    // binding.noRecordFound.visibility = View.VISIBLE
                     dialog.dismiss()
                     showError(it.message, this)
                 }
@@ -160,7 +169,9 @@ class SearchScreen : BaseActivity() {
             .addItemList(l1)
             .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
             .setMenuRadius(10f)
+            .setHeaderView(R.layout.powermenu_header_search)
             .setMenuShadow(10f)
+            .setTextTypeface(Typeface.create(getResources().getFont(R.font.semi), Typeface.NORMAL))
             .setTextColor(ContextCompat.getColor(this, R.color.black))
             .setTextGravity(Gravity.CENTER)
             .setSelectedTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
@@ -180,9 +191,12 @@ class SearchScreen : BaseActivity() {
         if (textSelected.equals("Subjects")) {
             viewModel.search_type.set("1")
             viewModel.selected_hint.set("Search Subjects")
-        } else {
+        } else if (textSelected.equals("Chapters")) {
             viewModel.search_type.set("2")
             viewModel.selected_hint.set("Search Chapters")
+        } else {
+            viewModel.search_type.set("3")
+            viewModel.selected_hint.set("Search Topics")
         }
 
 

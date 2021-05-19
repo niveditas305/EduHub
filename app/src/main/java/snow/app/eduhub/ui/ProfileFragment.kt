@@ -3,6 +3,7 @@ package snow.app.eduhub.ui
 import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -44,6 +45,7 @@ class ProfileFragment : BaseFragment() {
     lateinit var binding: FragmentProfileBinding
     lateinit var powerMenu: PowerMenu
     lateinit var grades: List<Data>
+    var locale: String = ""
     var gradelist: ArrayList<String> = ArrayList()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,6 +61,12 @@ class ProfileFragment : BaseFragment() {
         dialog = ProgressDialog(context)
         dialog.setMessage("Please wait...")
         dialog.setCancelable(false)
+
+
+
+        locale = getResources().getConfiguration().locale.getCountry()
+        //  Log.e("locale","--"+locale)
+        binding.ccp.setDefaultCountryUsingNameCode(locale)
         viewModel.isLoading.observe(requireActivity(), Observer {
             if (it) {
                 dialog.show()
@@ -90,7 +98,7 @@ class ProfileFragment : BaseFragment() {
 
         binding.tvUpdate.setOnClickListener {
             if (isNetworkConnected()) {
-                viewModel.update()
+                viewModel.update(binding.ccp.selectedCountryCode)
             } else {
                 showInternetToast()
             }
@@ -103,6 +111,14 @@ class ProfileFragment : BaseFragment() {
             if (it != null) {
                 if (it.status) {
                     dialog.dismiss()
+
+
+                    if (it.data.country_code != null) {
+                        binding.ccp.setCountryForPhoneCode(it.data.country_code.toInt())
+                    } else {
+                        binding.ccp.setDefaultCountryUsingNameCode(locale)
+                    }
+
                     // AppUtils.roundImageWithGlide(binding.ivProfile, it.data.studentImage)
                     // showSuccess(it.message, requireActivity())
                 } else {
@@ -126,12 +142,20 @@ class ProfileFragment : BaseFragment() {
                     data.data.lastName = it.data.lastName
                     data.data.email = it.data.email
                     data.data.studentMoblie = it.data.studentMoblie
+                    data.data.country_code = it.data.country_code
                     data.data.schoolClassName = it.data.schoolClassName
                     data.data.studentImage = it.data.studentImage
                     data.data.studentSchool = it.data.studentSchool
-                    data.data.studentAddress = it.data.studentAddress
+                    if (it.data.studentAddress == null || it.data.studentAddress.equals("null")) {
+
+                        data.data.studentAddress = ""
+                    } else {
+                        data.data.studentAddress = it.data.studentAddress
+                    }
+
+
                     getSession()?.saveSession(data)
-                    startActivity(Intent(requireContext(),MainActivity::class.java))
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
                 } else {
                     dialog.dismiss()
                     showError("Something went wrong", requireContext())
@@ -193,11 +217,18 @@ class ProfileFragment : BaseFragment() {
             .addItemList(l1)
             .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
             .setMenuRadius(10f)
+            .setHeaderView(R.layout.powermenu_header_grade)
             .setMenuShadow(10f)
             .setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
             .setTextGravity(Gravity.CENTER)
             .setSelectedTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
             .setMenuColor(Color.WHITE)
+            .setTextTypeface(
+                Typeface.create(
+                    getResources().getFont(R.font.semi),
+                    Typeface.NORMAL
+                )
+            )
             .setSelectedMenuColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
             .setOnMenuItemClickListener(onMenuItemClickListener)
             .build()

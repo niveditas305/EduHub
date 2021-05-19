@@ -23,6 +23,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.lang.reflect.Field;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -70,14 +71,137 @@ public class AppUtils {
 
 
             diff = date_current.getTime() - date_created.getTime();
-            System.out.println("Days: " + TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS));
+            System.out.println("diff: " + diff);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS);
+        /*return TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS)*/
+        return diff;
     }
 
-    public static String getDiffInddmmyyBetweenDates(String current_date, String created_date) {
+
+
+
+
+
+    public static String getworksheetTime(String createddate, int worksheettime) {
+        // final String dateString = "16-08-2015 16:15:16";
+        // final long millisToAdd = 7_200_000; //two hours
+        long worksheetmili = 0;
+        long aftermili = 0;
+        long currentmili = 0;
+        long finalmili = 0;
+     //   DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date dd = null;
+        Date d = null;
+        try {
+            d = format.parse(createddate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        worksheetmili = worksheettime * 60 * 60 * 1000;
+        d.setTime(d.getTime() + worksheetmili);
+
+     //   DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String strDate = dateFormat.format(d);
+      /*  aftermili = (d.getTime() + worksheetmili) * 60 * 60 * 1000;
+
+
+        try {
+            dd = format.parse(getCurrentDateTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        currentmili = dd.getTime();
+        finalmili = aftermili - currentmili;*/
+       // return getSHowTimeWOrksheet(finalmili, "HH:mm:ss");
+        return strDate;
+    }
+
+
+
+
+    public  static Boolean isTimeCrossed(String givenDate){
+        long afterplusworksheetdate = 0;
+        long currentmili = 0;
+
+        Date date=null;
+
+      //  String dtStart = "2010-10-15T09:27:37Z";
+       // SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+              date = format.parse(givenDate);
+
+
+            currentmili=Calendar.getInstance().getTimeInMillis();
+
+
+            afterplusworksheetdate=date.getTime();
+
+
+            System.out.println(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+//
+//        if (currentmili > afterplusworksheetdate) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+        Date currentTime = Calendar.getInstance().getTime();
+
+        if (date.before(currentTime)){
+            return true;
+        }else {
+                   return false;
+
+        }
+
+    }
+
+    public  static  String convertDateToTime(String datee){
+
+
+       // String inputPattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+        String inputPattern = "yyyy-MM-dd HH:mm:ss";
+
+        String outputPattern = "yyyy-MM-dd hh:mm a";
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+        Date date = null;
+        String str = null;
+
+        try {
+            date = inputFormat.parse(datee);
+            str = outputFormat.format(date);
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return str;
+
+    }
+
+    public static String getSHowTimeWOrksheet(long milliSeconds, String dateFormat) {
+        // Create a DateFormatter object for displaying date in specified format.
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+
+        // Create a calendar object that will convert the date and time value in milliseconds to date.
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(milliSeconds);
+        return formatter.format(calendar.getTime());
+    }
+
+    public static String getDiffInddmmyyBetweenDates(String current_date, String created_date, int apihours) {
         long diff = 0;
         long left_hours = 0;
         long left_min = 0;
@@ -87,9 +211,9 @@ public class AppUtils {
             Date date_current = sdf.parse(current_date);
             Date date_created = sdf.parse(created_date);
             diff = date_current.getTime() - date_created.getTime();
-            left_hours = 24 - TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS);
-            left_min = 1440 - TimeUnit.MINUTES.convert(diff, TimeUnit.MILLISECONDS);
-            left_sec = 86400 - TimeUnit.SECONDS.convert(diff, TimeUnit.MILLISECONDS);
+            left_hours = apihours - TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS);
+            left_min = apihours * 60 - TimeUnit.MINUTES.convert(diff, TimeUnit.MILLISECONDS);
+            left_sec = apihours * 60 * 60 - TimeUnit.SECONDS.convert(diff, TimeUnit.MILLISECONDS);
 
             System.out.println("Days: " + TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS));
         } catch (ParseException e) {

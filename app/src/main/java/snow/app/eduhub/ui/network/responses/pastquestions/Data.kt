@@ -18,6 +18,8 @@ data class Data(
     val questionName: String,
     @SerializedName("question_pdf")
     val questionPdf: String,
+    @SerializedName("answer_pdf")
+    val answer_pdf: String,
     @SerializedName("school_class_id")
     val schoolClassId: Int,
     @SerializedName("subject_id")

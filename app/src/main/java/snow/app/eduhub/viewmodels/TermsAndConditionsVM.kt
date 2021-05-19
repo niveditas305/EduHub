@@ -27,7 +27,7 @@ class TermsAndConditionsVM(): BaseViewModel(){
 
 
                 }else{
-                    isError.postValue(AlertModel(d.message.toString(),true));
+                  //  isError.postValue(AlertModel(d.message.toString(),true));
                     Log.e("status","e");
                 }
 

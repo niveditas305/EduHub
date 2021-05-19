@@ -16,155 +16,150 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/top"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:gravity="center"
-            android:padding="@dimen/margin_20">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/eduhub" />
-        </LinearLayout>
-
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/top">
+            android:fillViewport="true">
 
-            <ScrollView
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_20"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="@dimen/margin_20"
+                android:layout_marginBottom="@dimen/margin_20"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/_40sdp">
 
                 <LinearLayout
+                    android:id="@+id/top"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_20">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_eduhub_logo" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bold"
+                    android:paddingTop="@dimen/margin_5"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:text="Reset Password"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_21" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/regular"
+
+
+                    android:text="@string/enter_verification_code_send_in_you_email_id"
+                    android:textSize="@dimen/text_15" />
+
+
+                <com.chaos.view.PinView
+                    android:id="@+id/pinview_otp"
+                    style="@style/PinWidget.PinView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:cursorVisible="true"
+                    android:fontFamily="@font/regular"
+                    android:hint="*"
+                    android:inputType="number"
+
+                    android:itemBackground="@color/white"
+                    android:onTextChanged="@{(text, start, before, count) -> viewModel.onPinTextChanged(text)}"
+                    android:text="@{viewModel.pin}"
+                    android:textColor="@color/red"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:cursorColor="@color/colorPrimary"
+                    app:cursorWidth="2dp"
+                    app:hideLineWhenFilled="false"
+                    app:itemCount="4"
+                    app:itemHeight="48dp"
+                    app:itemSpacing="@dimen/padding_10"
+                    app:lineColor="@color/colorPrimary"
+                    app:lineWidth="1dp"
+                    app:viewType="rectangle" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_12"
+                    android:fontFamily="@font/bold"
+                    android:paddingTop="@dimen/margin_5"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:text="New Password"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_21" />
+
+
+                <EditText
+                    android:id="@+id/ed_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_20"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="@dimen/margin_20"
-                    android:layout_marginBottom="@dimen/margin_20"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bold"
-                        android:paddingTop="@dimen/margin_5"
-                        android:paddingBottom="@dimen/margin_5"
-                        android:text="Reset Password"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text25" />
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:background="@drawable/round_ed_stroke_black"
+                    android:hint="Enter your new password"
+                    android:maxLines="1"
+                    android:onTextChanged="@{(text, start, before, count) -> viewModel.onNewPassChanged(text)}"
+                    android:paddingHorizontal="@dimen/padding_10"
+                    android:paddingVertical="@dimen/padding_12"
+                    android:textSize="@dimen/text14" />
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:fontFamily="@font/regular"
-
-
-                        android:text="@string/enter_verification_code_send_in_you_email_id"
-                        android:textSize="@dimen/text_15" />
-
-
-                    <com.chaos.view.PinView
-                        android:id="@+id/pinview_otp"
-                        style="@style/PinWidget.PinView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/padding_10"
-                        android:cursorVisible="true"
-                        android:fontFamily="@font/regular"
-                        android:hint="*"
-                        android:inputType="number"
-
-                        android:itemBackground="@color/white"
-                        android:onTextChanged="@{(text, start, before, count) -> viewModel.onPinTextChanged(text)}"
-                        android:text="@{viewModel.pin}"
-                        android:textColor="@color/red"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:cursorColor="@color/colorPrimary"
-                        app:cursorWidth="2dp"
-                        app:hideLineWhenFilled="false"
-                        app:itemCount="4"
-                        app:itemHeight="48dp"
-                        app:itemSpacing="@dimen/padding_10"
-                        app:lineColor="@color/colorPrimary"
-                        app:lineWidth="1dp"
-                        app:viewType="line" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bold"
-                        android:paddingTop="@dimen/margin_5"
-                        android:layout_marginTop="@dimen/padding_12"
-                        android:paddingBottom="@dimen/margin_5"
-                        android:text="New Password"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text25" />
+                <TextView
+                    android:id="@+id/tvreset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:background="@drawable/round_ed"
+                    android:backgroundTint="@color/red"
+                    android:fontFamily="@font/regular"
 
 
-                    <EditText
-                        android:id="@+id/ed_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/padding_10"
-                        android:background="@drawable/round_ed_stroke_black"
-                         android:hint="Enter your new password"
-                        android:maxLines="1"
-                        android:onTextChanged="@{(text, start, before, count) -> viewModel.onNewPassChanged(text)}"
-                        android:paddingHorizontal="@dimen/padding_10"
-                        android:paddingVertical="@dimen/padding_12"
-                        android:textSize="@dimen/text14" />
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/margin_side_button"
+                    android:paddingTop="@dimen/padding_15"
+                    android:paddingRight="@dimen/margin_side_button"
+                    android:paddingBottom="@dimen/padding_15"
+                    android:text="Send"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text17" />
 
+                <TextView
+                    android:id="@+id/tv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_10"
+                    android:text="Back"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text14" />
 
-
-                    <TextView
-                        android:id="@+id/tvreset"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/margin_20"
-                        android:background="@drawable/round_ed"
-                        android:backgroundTint="@color/red"
-                        android:fontFamily="@font/regular"
-
-
-                        android:gravity="center"
-                        android:paddingLeft="@dimen/margin_side_button"
-                        android:paddingTop="@dimen/padding_15"
-                        android:paddingRight="@dimen/margin_side_button"
-                        android:paddingBottom="@dimen/padding_15"
-                        android:text="Send"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text17" />
-
-                    <TextView
-                        android:id="@+id/tv_back"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/padding_10"
-                        android:fontFamily="@font/regular"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_10"
-                        android:text="Back"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text14" />
-
-                </LinearLayout>
-            </ScrollView>
-        </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
 
     </RelativeLayout>
 </layout>

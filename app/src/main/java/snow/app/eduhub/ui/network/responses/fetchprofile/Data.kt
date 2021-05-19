@@ -38,6 +38,9 @@ data class Data(
     val studentImage: String,
     @SerializedName("student_moblie")
     val studentMoblie: String,
+
+    @SerializedName("country_code")
+    val country_code: String,
     @SerializedName("student_school")
     val studentSchool: String,
     @SerializedName("student_status")

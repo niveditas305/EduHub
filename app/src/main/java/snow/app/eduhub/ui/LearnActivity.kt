@@ -38,8 +38,8 @@ class LearnActivity : BaseActivity() {
 
 
 
-        if (intent.hasExtra("teacher_id")) {
-            viewModel.teacher_id.set(intent.getStringExtra("teacher_id"))
+        if (intent.hasExtra("teacherId")) {
+            viewModel.teacher_id.set(intent.getStringExtra("teacherId"))
         }
 
         viewModel.isLoading.observe(this, Observer {
@@ -90,7 +90,7 @@ class LearnActivity : BaseActivity() {
                         }
                         val linearLayoutManager_ = GridLayoutManager(this, 2)
                         binding.rvLessons.layoutManager = linearLayoutManager_
-                        val searchSubjectsAdapter = SubjectListByIdAdapter(this, arrayList)
+                        val searchSubjectsAdapter = SubjectListByIdAdapter(this, arrayList,viewModel.teacher_id.get().toString())
                         binding.rvLessons.adapter = searchSubjectsAdapter
 
 

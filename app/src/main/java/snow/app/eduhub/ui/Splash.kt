@@ -31,7 +31,7 @@ class Splash : BaseActivity() {
 
 
             if (getSession()?.getAppData() != null) {
-                Log.v("confirmed", getSession()?.getAppData()?.data?.studentStatus.toString())
+             //   Log.v("confirmed", getSession()?.getAppData()?.data?.studentStatus.toString())
                 if (getSession()?.getAppData()?.data?.studentStatus == 0) {
                     startActivity(Intent(this, LoginActivity::class.java))
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {

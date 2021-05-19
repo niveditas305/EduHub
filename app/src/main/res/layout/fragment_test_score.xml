@@ -53,8 +53,8 @@
                         android:layout_marginLeft="@dimen/padding_10"
                         android:layout_marginRight="@dimen/padding_10"
                         android:minHeight="13dp"
-                        android:progress="33"
-                        android:secondaryProgress="66" />
+                        android:progress="0"
+                        android:secondaryProgress="0" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/semi"
                         android:gravity="center"
-                        android:text="92.5"
+                        android:text="0"
                         android:id="@+id/tv_average"
                          android:textColor="@color/white"
                         android:textSize="@dimen/text_15" />
@@ -141,7 +141,7 @@ android:layout_marginRight="@dimen/margin_8"
                 android:fontFamily="@font/regular"
                 android:layout_marginLeft="@dimen/padding_10"
                 android:layout_marginRight="@dimen/padding_10"
-                 android:text="Graphical statistic of test results"
+                 android:text="Graphical statistic of test results of this week or according to dates."
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_11sp" />
         </LinearLayout>
@@ -226,6 +226,9 @@ android:layout_marginRight="@dimen/margin_8"
 
 
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_200sdp">
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart"
@@ -234,6 +237,17 @@ android:layout_marginRight="@dimen/margin_8"
 
          android:layout_margin="@dimen/padding_10"
         android:layout_height="@dimen/_200sdp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bold"
+        android:textSize="@dimen/text_15"
+        android:id="@+id/no_record_found"
+        android:text="@string/no_record_found"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        />
+</RelativeLayout>
     <ImageView
         android:layout_width="match_parent"
         android:src="@drawable/graph"

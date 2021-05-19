@@ -20,6 +20,7 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import snow.app.beautasapserviceprovider.network.responses.signupres.getnotistatus.GetNotificationStatus
 import snow.app.eduhub.ui.network.responses.NotificationCountRes
 import snow.app.eduhub.ui.network.responses.admindetailsres.FetchAdminDetails
 import snow.app.eduhub.ui.network.responses.baseres.BaseRes
@@ -33,7 +34,9 @@ import snow.app.eduhub.ui.network.responses.fetchteachers.FetchTeachersRes
 import snow.app.eduhub.ui.network.responses.getChapters.GetChaptersResponse
 import snow.app.eduhub.ui.network.responses.getconversationid.GetConverstaionIdRes
 import snow.app.eduhub.ui.network.responses.getsubjectlistbyid.GetSubjectListById
+import snow.app.eduhub.ui.network.responses.getuniqueid.GetUniqueId
 import snow.app.eduhub.ui.network.responses.homedatares.HomeDataRes
+import snow.app.eduhub.ui.network.responses.lessonlistres.LessonListRes
 import snow.app.eduhub.ui.network.responses.pastquestions.PastQuestionPpr
 import snow.app.eduhub.ui.network.responses.scoreres.ScoreRes
 import snow.app.eduhub.ui.network.responses.searchres.SearchRes
@@ -46,17 +49,17 @@ import snow.app.eduhub.ui.network.responses.testsummaryres.TestSummaryRes
 import snow.app.eduhub.ui.network.responses.topicdetails.TopicDetailsRes
 import snow.app.eduhub.ui.network.responses.topicdetailsres.GetTopicDetailsRes
 import snow.app.eduhub.ui.network.responses.topiclistres.TopicListRes
+import snow.app.eduhub.ui.network.responses.worksheetlist.WorksheetListRes
+import snow.app.eduhub.util.OnTokenExpired
 
 
 class Repo {
     var apiService = ApiAdapter().getRetrofitInstance()!!.create(ApiService::class.java)
 
-
     fun register(
         onDataReadyCallback: OnDataReadyCallback,
         map: HashMap<String, String>
     ) {
-
         apiService.register(map)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -65,14 +68,10 @@ class Repo {
                 override fun onNext(data: SignupRes) {
                     onDataReadyCallback.onDataReady(data, false)
                 }
-
                 override fun onComplete() {
-
                 }
-
                 override fun onSubscribe(d: Disposable) {
                 }
-
                 override fun onError(e: Throwable) {
                     onDataReadyCallback.onDataReady(null, true)
 
@@ -80,6 +79,8 @@ class Repo {
 
                 }
             })
+
+
     }
 
     fun sendOtpOnemail(
@@ -818,6 +819,38 @@ fun submitAns(
             })
 
     }
+    fun getNotificationStatus(
+        onDataReadyCallback: OnDataReadyCallback,
+        token: String
+    ) {
+        apiService.getNotificationStatus(token)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : Observer<GetNotificationStatus> {
+
+                override fun onNext(data: GetNotificationStatus) {
+                    onDataReadyCallback.onDataReady(data, false)
+                }
+
+                override fun onComplete() {
+
+                }
+
+                override fun onSubscribe(d: Disposable) {
+                }
+
+                override fun onError(e: Throwable) {
+                    if (e.message.equals("HTTP 401 Unauthorized")) {
+                        OnTokenExpired.onTokenExpiredListener?.onTokenExpiredListener()
+                    } else {
+                        onDataReadyCallback.onDataReady(null, true)
+                    }
+
+                }
+            })
+
+
+    }
 
 
     fun getPrivacyPolicyData(
@@ -1140,6 +1173,83 @@ fun submitAns(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : Observer<TestSummaryRes> {
                 override fun onNext(data: TestSummaryRes) {
+                    onDataReadyCallback.onDataReady(data, false)
+                }
+                override fun onComplete() {
+                }
+                override fun onSubscribe(d: Disposable) {
+                }
+
+                override fun onError(e: Throwable) {
+                    onDataReadyCallback.onDataReady(null, true)
+
+                    Log.e("error in login--", "--" + e.toString())
+
+                }
+            })
+
+    }
+ fun getUniqueId(
+        onDataReadyCallback: OnDataReadyCallback,
+        map: HashMap<String, String>,
+        token: String) {
+      apiService.getUniqueId(token, map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : Observer<GetUniqueId> {
+                override fun onNext(data: GetUniqueId) {
+                    onDataReadyCallback.onDataReady(data, false)
+                }
+                override fun onComplete() {
+                }
+                override fun onSubscribe(d: Disposable) {
+                }
+
+                override fun onError(e: Throwable) {
+                    onDataReadyCallback.onDataReady(null, true)
+
+                    Log.e("error in login--", "--" + e.toString())
+
+                }
+            })
+
+    }
+
+ fun getLessonList(
+        onDataReadyCallback: OnDataReadyCallback,
+        map: HashMap<String, String>,
+        token: String) {
+      apiService.getLessonList(token, map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : Observer<LessonListRes> {
+                override fun onNext(data: LessonListRes) {
+                    onDataReadyCallback.onDataReady(data, false)
+                }
+                override fun onComplete() {
+                }
+                override fun onSubscribe(d: Disposable) {
+                }
+
+                override fun onError(e: Throwable) {
+                    onDataReadyCallback.onDataReady(null, true)
+
+                    Log.e("error in login--", "--" + e.toString())
+
+                }
+            })
+
+    }
+
+ fun getWorksheetList(
+        onDataReadyCallback: OnDataReadyCallback,
+        map: HashMap<String, String>,
+        token: String) {
+      apiService.getWorksheetList(token, map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : Observer<WorksheetListRes> {
+                override fun onNext(data: WorksheetListRes) {
                     onDataReadyCallback.onDataReady(data, false)
                 }
                 override fun onComplete() {

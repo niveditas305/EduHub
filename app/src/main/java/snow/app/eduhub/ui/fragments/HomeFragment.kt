@@ -1,34 +1,31 @@
 package snow.app.eduhub.ui.fragments
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
-import snow.app.eduhub.R
-import snow.app.eduhub.ui.TeacherListingScreen
-import snow.app.eduhub.ui.adapter.HomeTopPickAdapter
-import snow.app.eduhub.ui.adapter.MyViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
-import snow.app.eduhub.MainActivity
+import snow.app.eduhub.R
 import snow.app.eduhub.SearchScreen
 import snow.app.eduhub.SeeAllTeacherListingScreen
 import snow.app.eduhub.databinding.FragmentHome2Binding
-import snow.app.eduhub.network.responses.topTeachers.TopTeachers
+import snow.app.eduhub.ui.TeacherListingScreen
 import snow.app.eduhub.ui.TopicClicks
+import snow.app.eduhub.ui.adapter.HomeTopPickAdapter
+import snow.app.eduhub.ui.adapter.MyViewPagerAdapter
 import snow.app.eduhub.ui.adapter.SubjectsAdapter
 import snow.app.eduhub.ui.adapter.TeachersAdapter
 import snow.app.eduhub.ui.network.responses.homedatares.*
@@ -53,6 +50,8 @@ class HomeFragment : BaseFragment(), LikeDislikeListener,
     lateinit var rv_top_home: RecyclerView
     lateinit var dots: TabLayout
     lateinit var tv_main_two: LinearLayout
+
+      var mmContext: Context? = null
     var list: ArrayList<TopTeacher> =
         ArrayList<TopTeacher>()
     lateinit var tv_one: LinearLayout
@@ -107,8 +106,10 @@ class HomeFragment : BaseFragment(), LikeDislikeListener,
 
 binding.tvSeeAll.setOnClickListener {
     val intent: Intent = Intent(requireContext(), SeeAllTeacherListingScreen::class.java)
-    intent.putExtra("fromfilte" +
-            "r", "filter")
+    intent.putExtra(
+        "fromfilte" +
+                "r", "filter"
+    )
     intent.putExtra("name", "Salons")
     val bundle = Bundle()
     val gson = Gson()
@@ -128,12 +129,12 @@ binding.tvSeeAll.setOnClickListener {
             Log.e("respData ", "login--")
             if (it != null) {
 
-                var data:HomeDataRes=it
+                var data: HomeDataRes = it
                 if (it.status) {
                     dialog.dismiss()
                     //clearlist
                     clearList()
-list.clear()
+                    list.clear()
                     list.addAll(it.data.topTeacher)
 
                     //set recently and countinue
@@ -155,20 +156,30 @@ list.clear()
                     binding.llTwo.setOnClickListener {
 
 
-                        var intent:Intent= Intent(requireContext(), TopicClicks::class.java)
-                        intent.putExtra("chapterId",data.data.continueTopic.chapterId.toString())
-                        intent.putExtra("teacherId",data.data.continueTopic.teacherId.toString())
-                        intent.putExtra("subjectId",data.data.continueTopic.subjectId.toString())
-                        intent.putExtra("topic_id",data.data.continueTopic.id.toString())
+                        var intent: Intent = Intent(requireContext(), TopicClicks::class.java)
+                        intent.putExtra("chapterId", data.data.continueTopic.chapterId.toString())
+                        intent.putExtra("teacherId", data.data.continueTopic.teacherId.toString())
+                        intent.putExtra("subjectId", data.data.continueTopic.subjectId.toString())
+                             intent.putExtra("topic_id", data.data.continueTopic.id.toString())
                         startActivity(intent)
                     }
                     binding.llOne.setOnClickListener {
 
 
-                        var intent:Intent= Intent(requireContext(), TopicClicks::class.java)
-                        intent.putExtra("chapterId",data.data.recentLearnTopic.chapterId.toString())
-                        intent.putExtra("teacherId",data.data.recentLearnTopic.teacherId.toString())
-                        intent.putExtra("subjectId",data.data.recentLearnTopic.subjectId.toString())
+                        var intent: Intent = Intent(requireContext(), TopicClicks::class.java)
+                        intent.putExtra(
+                            "chapterId",
+                            data.data.recentLearnTopic.chapterId.toString()
+                        )
+                        intent.putExtra(
+                            "teacherId",
+                            data.data.recentLearnTopic.teacherId.toString()
+                        )
+                        intent.putExtra(
+                            "subjectId",
+                            data.data.recentLearnTopic.subjectId.toString()
+                        )
+                        intent.putExtra("topic_id", data.data.recentLearnTopic.id.toString())
                         startActivity(intent)
                     }
 
@@ -182,7 +193,7 @@ list.clear()
                     //set view pager adapter
 
                     if (bannersList.size != 0) {
-                        val adapter = MyViewPagerAdapter(requireContext(), bannersList)
+                        val adapter = MyViewPagerAdapter(mmContext, bannersList)
                         binding.pager.adapter = adapter
                         binding.dots.setupWithViewPager(binding.pager, true) // <- magic here
                     } else {
@@ -192,7 +203,7 @@ list.clear()
 
 //set data in subject adapter
                     val linearLayoutManager = GridLayoutManager(
-                        requireContext(), 2
+                        mmContext, 2
 
                     )
 
@@ -208,7 +219,11 @@ list.clear()
                     )
 
                     binding.rvTopHome.layoutManager = linearLayoutManager_topics
-                    val homeTopPickAdapter = HomeTopPickAdapter(requireContext(), toptopicslist,this)
+                    val homeTopPickAdapter = HomeTopPickAdapter(
+                        requireContext(),
+                        toptopicslist,
+                        this
+                    )
                     binding.rvTopHome.adapter = homeTopPickAdapter
                     // showSuccess(it.message,requireContext())
 
@@ -282,5 +297,19 @@ list.clear()
         viewModel!!.isLoading.postValue(false)
 
         showTokenError(requireActivity())
+    }
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        mmContext = context
+    }
+
+
+
+    override fun onDetach() {
+        super.onDetach()
+        mmContext = null
     }
 }

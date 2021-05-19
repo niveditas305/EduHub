@@ -10,12 +10,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import snow.app.eduhub.R
-import snow.app.eduhub.ui.TeacherListingScreen
+import snow.app.eduhub.ui.LessonListingScreen
+import snow.app.eduhub.ui.WorksheetListingScreen
 import snow.app.eduhub.ui.network.responses.fetchsubjectlist.Data
-import snow.app.eduhub.ui.network.responses.searchres.SubjectData
 import snow.app.eduhub.util.AppUtils
 
-class SubjectListAdapter(var contxt: Context, var list: List<Data>) :
+class SubjectListAdapter(var contxt: Context, var list: List<Data>,var from:String) :
     RecyclerView.Adapter<SubjectListAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -45,11 +45,27 @@ class SubjectListAdapter(var contxt: Context, var list: List<Data>) :
             holder.container.setBackgroundColor(contxt.resources.getColor(R.color.colorAccent))
         }
 
-        holder.container.setOnClickListener {
+       /* holder.container.setOnClickListener {
             var intent = Intent(contxt, TeacherListingScreen::class.java)
             intent.putExtra("subjectname", item.subjectName.toString())
             intent.putExtra("subjectid", item.id.toString())
             contxt.startActivity(intent)
+        } */
+
+        holder.container.setOnClickListener {
+
+            if(from.equals("lesson")){
+                var intent = Intent(contxt, LessonListingScreen::class.java)
+                intent.putExtra("subjectname", item.subjectName.toString())
+                intent.putExtra("subjectid", item.id.toString())
+                contxt.startActivity(intent)
+            }else{
+              var intent = Intent(contxt, WorksheetListingScreen::class.java)
+                intent.putExtra("subjectname", item.subjectName.toString())
+                intent.putExtra("subjectid", item.id.toString())
+                contxt.startActivity(intent)
+            }
+
         }
 
     }

@@ -50,15 +50,10 @@ class PrivacyScreen : BaseActivity() {
             Log.e("respData ", "login--")
             if (it != null) {
                 if (it.status) {
-                    AppUtils.ImageWithGlide(binding.ivAbout, it.data.get(0).page_image)
-                    binding.tvP.setText(HtmlCompat.fromHtml(it.data.get(0).page_content, 0))
+                     binding.tvP.setText(HtmlCompat.fromHtml(it.data.get(0).page_content, 0))
 
                 } else {
-                    Log.e("statusfalse", "login--")
-                    Glide.with(this)
-                        .load(R.drawable.banner) /*  .transform(new GlideCircleWithBorder(view.getContext(), 2, Color.parseColor("#005194")))*/
-                        .into(binding.ivAbout)
-                   // showError(it.message, this)
+
                 }
             }
 

@@ -15,13 +15,21 @@ class ChaptersVM(var token: String) : BaseViewModel() {
     val respVideoData = MutableLiveData<ChapterVideos>(null)
     val resprecentContinueTopic = MutableLiveData<BaseRes>(null)
     val subject_id = ObservableField<String>("")
+    val con_subject_id = ObservableField<String>("")
+    val topic_id = ObservableField<String>("")
+    val con_topic_id = ObservableField<String>("")
     val continue_topic = ObservableField<String>("")
     val teacher_id = ObservableField<String>("")
+    val con_teacher_id = ObservableField<String>("")
     val chapter_id = ObservableField<String>("")
+    val con_chapter_id = ObservableField<String>("")
     val subjectname = ObservableField<String>("")
     val selected_chapter = ObservableField<String>("")
 
-    // interface call back for api call
+
+
+
+      // interface call back for api call
     val onDataReadyCallback = object : OnDataReadyCallback {
         override fun onDataReady(data: Any?, isErrr: Boolean) {
             isLoading.postValue(false)

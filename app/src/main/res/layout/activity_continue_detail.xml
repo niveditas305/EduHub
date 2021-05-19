@@ -9,214 +9,221 @@
             name="viewModel"
             type="snow.app.eduhub.viewmodels.ChaptersVM" />
     </data>
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.ContinueDetails">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tool_layout"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:layout_height="match_parent"
+        tools:context=".ui.ContinueDetails">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
-            android:id="@+id/ivback"
-            android:layout_height="match_parent"/>
-
-
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:layout_gravity="center"
-            android:fontFamily="@font/bold"
-            android:textSize="@dimen/text17"
-            android:textColor="@color/white"
-
-            android:text="@{viewModel.subjectname}"
-             />
-
-
-
-    </androidx.appcompat.widget.Toolbar>
-
-   <androidx.core.widget.NestedScrollView
-       android:layout_width="match_parent"
-       android:layout_below="@+id/tool_layout"
-       android:layout_height="match_parent">
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:orientation="vertical"
-           android:paddingBottom="@dimen/_50sdp"
-           android:layout_height="wrap_content">
-
-
-           <LinearLayout
-               android:layout_width="wrap_content"
-               android:orientation="horizontal"
-               android:id="@+id/ll_two"
-               android:paddingLeft="@dimen/margin_20"
-               android:paddingRight="@dimen/margin_20"
-               android:layout_gravity="center"
-               android:layout_marginTop="@dimen/padding_10"
-android:backgroundTint="@color/red"
-               android:background="@drawable/round_ed_stroke"
-               android:layout_below="@+id/ll_one"
-               android:layout_height="wrap_content">
-
-               <ImageView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   app:tint="@color/red"
-                   android:layout_gravity="center"
-
-                   android:src="@drawable/play_arrow"/>
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:fontFamily="@font/regular"
-                   android:layout_gravity="center"
-                   android:layout_margin="@dimen/padding_10"
-                   android:textSize="@dimen/text17"
-                   android:gravity="center"
-                   android:textColor="@color/black"
-                   android:text="Continue :"
-                   />
-
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:fontFamily="@font/bold"
-                   android:layout_gravity="center"
-                   android:layout_marginRight="@dimen/padding_10"
-                   android:textSize="@dimen/text17"
-                   android:gravity="center"
-                   android:textColor="@color/colorPrimaryDark"
-                   android:text="@={viewModel.continue_topic}"
-                   />
-           </LinearLayout>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="@dimen/padding_10"
-    android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bold"
-            android:text="Tutorials"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text17" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/grey"
-            android:background="@drawable/roundc_corner_solid_bg"
-            android:drawableRight="@drawable/down_arrow"
-            android:fontFamily="@font/semi"
-            android:drawablePadding="@dimen/padding_15"
-            android:visibility="gone"
-            android:layout_marginLeft="@dimen/padding_10"
-            android:paddingLeft="@dimen/padding_15"
-android:id="@+id/tv_selected"
-            android:paddingRight="@dimen/padding_15"
-            android:paddingTop="@dimen/margin_8"
-            android:paddingBottom="@dimen/margin_8"
-            android:text="@={viewModel.selected_chapter}"
-            android:textColor="@color/textcolordark"
-            android:textSize="@dimen/text_15" />
-    </LinearLayout>
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/padding_10"
-        android:id="@+id/rv_videos"
-
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bold"
-        android:textSize="@dimen/text_15"
-        android:id="@+id/no_record_found"
-        android:text="@string/no_record_found"
-        android:visibility="visible"
-        android:layout_centerInParent="true"
-        />
-</RelativeLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         android:background="@drawable/round_ed_stroke_grey"
-         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/padding_10"
-
-        android:id="@+id/tv_loadmore"
-        android:fontFamily="@font/regular"
-         android:layout_marginLeft="@dimen/padding_10"
-        android:paddingLeft="@dimen/_30sdp"
-        android:paddingRight="@dimen/_30sdp"
-        android:paddingTop="@dimen/_10sdp"
-        android:paddingBottom="@dimen/_10sdp"
-        android:visibility="gone"
-        android:text="Load more"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text17" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bold"
-        android:text="Chapter"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text17" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
->
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_layout"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/padding_10"
-            android:id="@+id/rv_chapters"
-
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bold"
-            android:textSize="@dimen/text_15"
-            android:id="@+id/tv_no_record_found"
-            android:text="@string/no_record_found"
-            android:visibility="visible"
-            android:layout_centerInParent="true"
-            />
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/ivback"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_baseline_keyboard_arrow_left_24" />
 
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/bold"
+                android:text="@{viewModel.subjectname}"
+                android:textColor="@color/white"
 
-</LinearLayout>
+                android:textSize="@dimen/text17" />
 
-       </LinearLayout>
-   </androidx.core.widget.NestedScrollView>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tool_layout">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/_50sdp">
+
+
+                <LinearLayout
+                    android:id="@+id/ll_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_one"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:background="@drawable/round_ed_stroke"
+                    android:backgroundTint="@color/red"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/margin_20"
+                    android:paddingRight="@dimen/margin_20">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/play_arrow"
+
+                        app:tint="@color/red" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/padding_10"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:text="Continue :"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text17" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/padding_10"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="@={viewModel.continue_topic}"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text17" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_10"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/bold"
+                            android:text="Explanation Videos"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text17" />
+
+                        <TextView
+                            android:id="@+id/tv_selected"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/padding_10"
+                            android:background="@drawable/roundc_corner_solid_bg"
+                            android:backgroundTint="@color/grey"
+                            android:drawableRight="@drawable/down_arrow"
+                            android:drawablePadding="@dimen/padding_15"
+                            android:fontFamily="@font/semi"
+                            android:paddingLeft="@dimen/padding_15"
+                            android:paddingTop="@dimen/margin_8"
+                            android:paddingRight="@dimen/padding_15"
+                            android:paddingBottom="@dimen/margin_8"
+                            android:text="@={viewModel.selected_chapter}"
+                            android:textColor="@color/textcolordark"
+                            android:textSize="@dimen/text_15"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_videos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="@dimen/padding_10" />
+
+                        <TextView
+                            android:id="@+id/no_record_found"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="@dimen/_50sdp"
+                            android:fontFamily="@font/bold"
+
+                            android:text="@string/no_record_found"
+                            android:textSize="@dimen/text_15"
+                            android:visibility="invisible" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_loadmore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/padding_10"
+
+                        android:layout_marginTop="@dimen/padding_10"
+                        android:background="@drawable/round_ed_stroke_grey"
+                        android:fontFamily="@font/regular"
+                        android:paddingLeft="@dimen/_30sdp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_30sdp"
+                        android:paddingBottom="@dimen/_10sdp"
+                        android:text="Load more"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text17"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:fontFamily="@font/bold"
+                        android:text="Chapter"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text17" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_chapters"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="@dimen/padding_10" />
+
+                        <TextView
+                            android:id="@+id/tv_no_record_found"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="@dimen/_50sdp"
+
+                            android:fontFamily="@font/bold"
+                            android:text="@string/no_record_found"
+                            android:textSize="@dimen/text_15"
+                            android:visibility="visible" />
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/f_search"
@@ -226,8 +233,8 @@ android:id="@+id/tv_selected"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
             android:layout_margin="16dp"
-            app:maxImageSize="@dimen/_32sdp"
-            app:backgroundTint="@color/white"
             android:src="@drawable/ic_search"
-            />
-    </RelativeLayout></layout>
+            app:backgroundTint="@color/white"
+            app:maxImageSize="@dimen/_32sdp" />
+    </RelativeLayout>
+</layout>

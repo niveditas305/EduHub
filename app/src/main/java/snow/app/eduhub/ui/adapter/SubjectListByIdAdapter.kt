@@ -11,12 +11,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import snow.app.eduhub.R
 import snow.app.eduhub.ui.ContinueDetails
-import snow.app.eduhub.ui.TeacherListingScreen
-import snow.app.eduhub.ui.network.responses.fetchsubjectlist.Data
-import snow.app.eduhub.ui.network.responses.searchres.SubjectData
 import snow.app.eduhub.util.AppUtils
 
-class SubjectListByIdAdapter(var contxt: Context, var list: List<snow.app.eduhub.ui.network.responses.getsubjectlistbyid.Data>) :
+class SubjectListByIdAdapter(var contxt: Context, var list: List<snow.app.eduhub.ui.network.responses.getsubjectlistbyid.Data>,var teacher_id:String) :
     RecyclerView.Adapter<SubjectListByIdAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -47,10 +44,8 @@ class SubjectListByIdAdapter(var contxt: Context, var list: List<snow.app.eduhub
         }
 
         holder.container.setOnClickListener {
-
-
             val intent = Intent(contxt, ContinueDetails::class.java)
-            intent.putExtra("teacherId", list.get(position).id.toString())
+            intent.putExtra("teacherId", teacher_id)
             intent.putExtra("subjectId", item.id.toString())
             intent.putExtra("subjectname", item.subjectName)
             contxt.startActivity(intent)
@@ -62,7 +57,6 @@ class SubjectListByIdAdapter(var contxt: Context, var list: List<snow.app.eduhub
 
 
     inner class MyViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
-
         val subjectName: TextView = view!!.findViewById(R.id.subject_name)
         val image: ImageView = view!!.findViewById(R.id.image)
         val container: LinearLayout = view!!.findViewById(R.id.container)

@@ -39,6 +39,7 @@ class ProfileViewModel(var token: String) : BaseViewModel() {
     var number = ObservableField("")
     var classname = ObservableField("")
     var class_id = ObservableField("")
+    var country_code = ObservableField("")
     var school = ObservableField("")
     var address = ObservableField("")
     var profile = ObservableField("")
@@ -73,10 +74,21 @@ class ProfileViewModel(var token: String) : BaseViewModel() {
                     email.set(d.data.email)
                     number.set(d.data.studentMoblie)
                     school.set(d.data.studentSchool)
-                    address.set(d.data.studentAddress)
+                    country_code.set(d.data.country_code)
+
+
+                    if (d.data.studentAddress == null || d.data.studentAddress.equals("null")) {
+
+                        address.set("")
+                    } else {
+                        address.set(d.data.studentAddress)
+                    }
+
+
+
                     classname.set(d.data.grade)
 
-                    if (d.data.schoolClassId !=0){
+                    if (d.data.schoolClassId != 0) {
                         class_id.set(d.data.schoolClassId.toString())
                     }
 
@@ -147,9 +159,7 @@ class ProfileViewModel(var token: String) : BaseViewModel() {
     }
 
     //UPDATE profile
-    fun update() {
-
-
+    fun update(ccp:String) {
         if (first_name.get().toString().isEmpty()) {
             isError.postValue(AlertModel("Please enter first name.", true));
 
@@ -168,8 +178,8 @@ class ProfileViewModel(var token: String) : BaseViewModel() {
         } else if (school.get().toString().isEmpty()) {
             isError.postValue(AlertModel("Please enter school name.", true));
 
-        } else if (school.get().toString().isEmpty()) {
-            isError.postValue(AlertModel("Please enter school name.", true));
+        } else if (address.get().toString().isEmpty()) {
+            isError.postValue(AlertModel("Please enter address.", true));
 
         } else {
 
@@ -183,6 +193,7 @@ class ProfileViewModel(var token: String) : BaseViewModel() {
             map.put("school_class_id", class_id.get().toString())
             map.put("student_address", address.get().toString())
 
+            map.put("country_code", ccp )
             Log.e("map", map.toString())
             isLoading.postValue(true)
             updateProfile(map, token)
@@ -220,6 +231,9 @@ class ProfileViewModel(var token: String) : BaseViewModel() {
         val student_address =
             RequestBody.create(MediaType.parse("multipart/form-data"), map.get("student_address"))
 
+        val country_code =
+            RequestBody.create(MediaType.parse("multipart/form-data"), map.get("country_code"))
+
 
         apiService.updateProfile(
             token,
@@ -230,7 +244,7 @@ class ProfileViewModel(var token: String) : BaseViewModel() {
             student_school,
             school_class_id,
             student_address,
-
+            country_code,
             profile_image
         )
             .subscribeOn(Schedulers.io())

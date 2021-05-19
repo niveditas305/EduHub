@@ -54,6 +54,7 @@ class TestSummary : BaseActivity() {
 
         if (intent.hasExtra("testid")) {
             viewModel.test_id.set(intent.getStringExtra("testid"))
+            viewModel.test_unique_id.set(intent.getStringExtra("test_unique_id"))
         }
 
         //fetch chapter

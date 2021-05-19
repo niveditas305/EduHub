@@ -16,7 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import snow.app.eduhub.R
 import snow.app.eduhub.TeacherProfile
 import snow.app.eduhub.ui.ChapterFurtherClick
- import snow.app.eduhub.ui.network.responses.topicdetails.TopicPdf
+import snow.app.eduhub.ui.TopicClicks
+import snow.app.eduhub.ui.network.responses.topicdetails.TopicPdf
 
 
 class ChapterDetailssAdapter(
@@ -46,7 +47,16 @@ class ChapterDetailssAdapter(
         holder.tv_rating.setText(dataModel.teacherRating)
         holder.tv_teachername.setText(dataModel.teacherFirstName + " " + dataModel.teacherLastName)
 
+        holder.rv_parent.setOnClickListener {
 
+            val intent = Intent(contxt, TopicClicks::class.java)
+            intent.putExtra("teacherId", dataModel.teacherId.toString())
+            intent.putExtra("subjectId", dataModel.subjectId.toString())
+            intent.putExtra("chapterId", dataModel.chapterId.toString())
+            intent.putExtra("topic_id", dataModel.id.toString())
+            intent.putExtra("topic_name", "")
+            contxt.startActivity(intent)
+        }
         holder.tv_view_profile.setOnClickListener {
 
             val intent = Intent(contxt, TeacherProfile::class.java)
@@ -68,7 +78,7 @@ class ChapterDetailssAdapter(
                contxt.startActivity(browserIntent)
            } */
 
-        holder.view_pdf.setOnClickListener {
+        holder.ll_top.setOnClickListener {
 
 
             if (chapterFurtherClick.isNetworkConnected()) {
@@ -91,6 +101,8 @@ class ChapterDetailssAdapter(
 
         var pdf_name: TextView = view!!.findViewById(R.id.pdf_name)
         var tv_pdf_des: TextView = view!!.findViewById(R.id.tv_pdf_des)
+        var ll_top: RelativeLayout = view!!.findViewById(R.id.ll_top)
+        var rv_parent: RelativeLayout = view!!.findViewById(R.id.rv_parent)
         var view_pdf: TextView = view!!.findViewById(R.id.view_pdf)
         var tv_teachername: TextView = view!!.findViewById(R.id.tv_teachername)
         var tv_rating: TextView = view!!.findViewById(R.id.tv_rating)

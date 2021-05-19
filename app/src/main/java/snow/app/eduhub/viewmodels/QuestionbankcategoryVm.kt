@@ -28,7 +28,9 @@ class QuestionbankcategoryVm(var devicetoken :String): BaseViewModel(){
 
 
                 } else{
-                    isError.postValue(AlertModel(d.message.toString(),true));
+
+                    respData.postValue(d)
+                   // isError.postValue(AlertModel(d.message.toString(),true));
                     Log.e("status","e");
                 }
 

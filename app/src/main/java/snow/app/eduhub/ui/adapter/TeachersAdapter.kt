@@ -109,13 +109,13 @@ class TeachersAdapter(
         holder.tv_view.setOnClickListener {
 
             val intent = Intent(contxt, TeacherProfile::class.java)
-            intent.putExtra("teacher_id", list.get(position).id.toString())
+            intent.putExtra("teacherId", list.get(position).id.toString())
             contxt.startActivity(intent)
         }
      holder.parent_ll.setOnClickListener {
 
          val intent = Intent(contxt, LearnActivity::class.java)
-         intent.putExtra("teacher_id", list.get(position).id.toString())
+         intent.putExtra("teacherId", list.get(position).id.toString())
          contxt.startActivity(intent)
         }
 

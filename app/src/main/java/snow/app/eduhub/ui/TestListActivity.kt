@@ -108,7 +108,13 @@ class TestListActivity : BaseActivity() {
         })
 
 
-//fetch test list
+
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        //fetch test list
         if (isNetworkConnected()) {
             viewModel.testList()
         } else {

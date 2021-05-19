@@ -47,10 +47,7 @@ class TopicDetailsVm(var token: String) : BaseViewModel() {
 
 
     fun getTopicDetailswithpdfs() {
-
-
         val map: HashMap<String, String> = HashMap<String, String>()
-
         map.put("teacherId", teacher_id.get().toString())
         map.put("subjectId", subject_id.get().toString())
         map.put("chapterId", chapter_id.get().toString())
@@ -92,7 +89,7 @@ class TopicDetailsVm(var token: String) : BaseViewModel() {
         map.put("chapter_id", chapterid)
         map.put("subject_id", subjectid)
         map.put("topic_id", topicid)
-        map.put("type", "1") //type 1 (recent topic), 2 (continue topic)
+        map.put("type", "2") //type 1 (recent topic), 2 (continue topic)
 
 
         repoModel.recentContinueTopic(callback_recentContinueTopic, map, token)

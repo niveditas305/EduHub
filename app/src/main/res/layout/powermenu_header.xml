@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/text17"
+        android:gravity="center"
+         android:id="@+id/tv_chapter_name"
+        android:padding="@dimen/padding_10"
+         android:textColor="@color/white"
+        android:text="Select Class"/>
+</RelativeLayout>

@@ -225,7 +225,7 @@
                         android:layout_marginRight="@dimen/margin_5"
                         android:fontFamily="@font/regular"
                         android:text="@string/don_t_have_an_account"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/text_15" />
 
                     <TextView
@@ -236,7 +236,7 @@
                         android:layout_centerVertical="true"
                         android:fontFamily="@font/regular"
                         android:text="@string/sign_up"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/text_15" />
 
                 </LinearLayout>

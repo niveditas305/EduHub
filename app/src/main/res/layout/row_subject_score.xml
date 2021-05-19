@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/regular"
-            android:id="@+id/tv_sub"
+
         android:layout_marginLeft="@dimen/padding_10"
         android:layout_marginTop="@dimen/margin_5"
         android:text="score in "
@@ -38,6 +38,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/tv_sub"
             android:fontFamily="@font/semi"
             android:layout_marginLeft="@dimen/padding_10"
             android:layout_marginTop="@dimen/margin_5"

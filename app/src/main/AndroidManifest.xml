@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="snow.app.eduhub">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -13,7 +14,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
+android:name=".util.MyApplication"
+        android:allowBackup="false"
+   tools:replace="android:allowBackup"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.NotificationScreen"></activity>
@@ -48,7 +51,8 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".ui.ChapterFurtherClick" />
         <activity android:name=".ui.ContinueDetails" />
-        <activity android:name=".ui.VerificationScreen" />
+        <activity android:name=".ui.VerificationScreen"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity android:name=".ui.EnterNumberScreen" />
         <activity
             android:name=".ui.ForgotPassword"
@@ -62,7 +66,8 @@
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity android:name=".ui.WelcomeSignupScreen" />
         <activity android:name=".ui.WelcomeActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
         <activity
             android:name=".ui.Splash"
             android:label="@string/app_name"
@@ -85,6 +90,11 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
+
+        <!-- adds meta data -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3344875363675061~5961754024"/>
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
@@ -98,6 +108,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".SeeAllTeacherListingScreen" />
+        <activity android:name=".ChangeEmailScreen"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
+        <activity android:name=".ui.LessonListingScreen" />
+        <activity android:name=".ui.WorksheetListingScreen" />
 
 
         <meta-data

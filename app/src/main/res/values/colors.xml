@@ -14,6 +14,7 @@
     <color name="correct_answer_border">#22B573</color>
     <color name="incorrect_answer_border">#E85252</color>
     <color name="tab_color">#B4B3B4</color>
+    <color name="box_clr">#dbdbdb</color>
     <color name="question_incorrect">#F1E2E2</color>
     <color name="black">#1A1A1A</color>
     <color name="white">#fff</color>

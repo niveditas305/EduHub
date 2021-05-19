@@ -5,29 +5,25 @@ import com.google.gson.annotations.SerializedName
 
 data class Topic(
     @SerializedName("chapter_id")
-    val chapterId: Int,
-    @SerializedName("continue_topic")
-    val continueTopic: Int,
+    var chapterId: Int,
     @SerializedName("created_at")
-    val createdAt: String,
+    var createdAt: String,
     @SerializedName("id")
-    val id: Int,
-    @SerializedName("recent_topic_status")
-    val recentTopicStatus: Int,
+    var id: Int,
     @SerializedName("school_class_id")
-    val schoolClassId: Int,
+    var schoolClassId: Int,
     @SerializedName("subject_id")
-    val subjectId: Int,
+    var subjectId: Int,
     @SerializedName("teacher_id")
-    val teacherId: Int,
+    var teacherId: Int,
     @SerializedName("topic_description")
-    val topicDescription: String,
+    var topicDescription: Any,
     @SerializedName("topic_name")
-    val topicName: String,
+    var topicName: String,
     @SerializedName("topic_status")
-    val topicStatus: Int,
+    var topicStatus: Int,
     @SerializedName("updated_at")
-    val updatedAt: String,
+    var updatedAt: String,
     @SerializedName("views")
-    val views: Int
+    var views: Int
 )

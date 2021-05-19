@@ -2,14 +2,22 @@ package snow.app.eduhub.ui
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -61,6 +69,9 @@ class TopicClicks : BaseActivity() {
             viewModel.teacher_id.set(intent.getStringExtra("teacherId"))
             viewModel.subject_id.set(intent.getStringExtra("subjectId"))
             viewModel.topic_id.set(intent.getStringExtra("topic_id"))
+            viewModel.topic_name.set(intent.getStringExtra("topic_name"))
+
+
         }
 
 
@@ -124,7 +135,7 @@ class TopicClicks : BaseActivity() {
                         viewModel.selected_topic.set(topiclist.get(0).topicName.toString())
                         if (isNetworkConnected()) {
                             viewModel.getTopicDetails()
-                        }else{
+                        } else {
                             showInternetToast()
                         }
 
@@ -167,6 +178,9 @@ class TopicClicks : BaseActivity() {
                 if (it.status) {
                     dialog.dismiss()
 
+
+
+                    viewModel.rating.set(it.data.rating_status)
                     if (it.data.videos.size == 0 && it.data.worksheets.size == 0) {
                         binding.llData.visibility = View.GONE
                         binding.noData.visibility = View.VISIBLE
@@ -243,6 +257,7 @@ class TopicClicks : BaseActivity() {
             .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
             .setMenuRadius(10f)
             .setMenuShadow(10f)
+            .setTextTypeface(Typeface.create(getResources().getFont(R.font.semi), Typeface.NORMAL))
             .setTextColor(ContextCompat.getColor(this, R.color.black))
             .setTextGravity(Gravity.CENTER)
             .setSelectedTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
@@ -265,7 +280,27 @@ class TopicClicks : BaseActivity() {
             }
 
 
+            //     viewModel.callback_recentContinueTopic
+
+
         }
+
+
+        if (isNetworkConnected()) {
+            viewModel.resprecentContinueTopic(
+                viewModel.chapter_id.toString(),
+                viewModel.subject_id.toString(),
+                viewModel.topic_id.toString(), "1"
+            )
+
+        } else {
+            Toast.makeText(this, "Please check your internet connection!", Toast.LENGTH_SHORT)
+                .show()
+        }
+
+
+
+
         if (topiclist.size > 0) {
 
             viewModel.getTopicDetails()
@@ -275,6 +310,8 @@ class TopicClicks : BaseActivity() {
     }
 
     fun showCompleteDialog() {
+
+
         completeChapterDialogBinding = DataBindingUtil.bind(
             layoutInflater.inflate(
                 R.layout.complete_chapter_dialog,
@@ -288,6 +325,16 @@ class TopicClicks : BaseActivity() {
 
 
         mAlertDialog = mBuilder.show()
+        val lp = WindowManager.LayoutParams()
+        lp.copyFrom(mAlertDialog!!.getWindow()!!.getAttributes())
+        lp.gravity = Gravity.CENTER
+
+
+
+        mAlertDialog!!.getWindow()!!.setAttributes(lp)
+        mAlertDialog!!.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+        mAlertDialog!!.getWindow()!!.setGravity(Gravity.CENTER);
+
         mAlertDialog!!.setCancelable(false)
         completeChapterDialogBinding.lifecycleOwner = this
         //  bindingrow.viewModel = broadcastVm
@@ -297,12 +344,29 @@ class TopicClicks : BaseActivity() {
 
         //show dialog
 
-        mAlertDialog?.findViewById<ImageView>(R.id.iv_cancel)?.setOnClickListener {
+        mAlertDialog?.findViewById<Button>(R.id.iv_cancel)?.setOnClickListener {
             mAlertDialog?.dismiss()
         }
 
         mAlertDialog?.findViewById<TextView>(R.id.tv_give)?.setOnClickListener {
             completeChapterDialogBinding.llRating.visibility = View.VISIBLE
+
+        }
+
+
+
+        if (viewModel.rating.get().toString().equals("0")) {
+            mAlertDialog?.findViewById<TextView>(R.id.tv_give)?.visibility = View.VISIBLE
+        } else {
+            mAlertDialog?.findViewById<TextView>(R.id.tv_give)?.visibility = View.GONE
+            completeChapterDialogBinding.ratingBar.rating =
+                viewModel.rating.get().toString().toFloat()
+            completeChapterDialogBinding.ratingBar.setIsIndicator(true)
+            completeChapterDialogBinding.llRating.visibility = View.VISIBLE
+            completeChapterDialogBinding.tvRating.text =
+                viewModel.rating.get().toString() + " Out of 5.0 Stars"
+            completeChapterDialogBinding.btnRate.visibility = View.GONE
+
 
         }
 
@@ -317,7 +381,7 @@ class TopicClicks : BaseActivity() {
 
                 viewModel.giveRating()
             } else {
-             showInternetToast()
+                showInternetToast()
             }
 
         }

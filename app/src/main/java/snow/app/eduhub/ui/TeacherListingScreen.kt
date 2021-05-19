@@ -61,7 +61,7 @@ class TeacherListingScreen : BaseActivity(), LikeDislikeListener,
                 if (it.status) {
                     dialog.dismiss()
                     val linearLayoutManager = LinearLayoutManager(this)
-                    rv_teachers.layoutManager = linearLayoutManager
+                    binding.rvTeachers.layoutManager = linearLayoutManager
                     val adapter = AllTeachersAdapter(
                         this,
                         it.data,
@@ -69,7 +69,7 @@ class TeacherListingScreen : BaseActivity(), LikeDislikeListener,
                         viewModel?.subject?.get().toString(),
                         this
                     )
-                    rv_teachers.adapter = adapter
+                    binding.rvTeachers.adapter = adapter
 
                 } else {
                     Log.e("statusfalse", "login--")

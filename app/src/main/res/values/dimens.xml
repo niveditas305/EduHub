@@ -21,6 +21,7 @@
     <dimen name="text_21">21sp</dimen>
     <dimen name="margin_8">8dp</dimen>
     <dimen name="text_11sp">11sp</dimen>
+    <dimen name="text_9sp">9sp</dimen>
 
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>

@@ -131,24 +131,54 @@
                 android:text="Phone"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text17" />
-
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/margin_20"
                 android:background="@drawable/round_ed_stroke_grey"
-                android:digits="+1234567890"
-                android:fontFamily="@font/regular"
-                android:inputType="phone"
+                android:orientation="horizontal">
 
-                android:maxLength="14"
-                android:paddingLeft="@dimen/_12sdp"
-                android:paddingTop="@dimen/_8sdp"
-                android:paddingRight="@dimen/_8sdp"
-                android:paddingBottom="@dimen/_8sdp"
-                android:text="@={viewModel.number}"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text17" />
+                <com.rilixtech.CountryCodePicker
+                    android:id="@+id/ccp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/padding_10"
+                    app:ccp_textColor="@color/black"
+                    app:ccp_textSize="@dimen/text17" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:baselineAligned="false"
+                    android:digits="1234567890"
+                     android:fontFamily="@font/regular"
+                     android:inputType="number"
+                    android:maxLength="10"
+                    android:text="@={viewModel.number}"
+                    android:padding="@dimen/padding_12"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/text17" />
+            </LinearLayout>
+            <!--    <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/round_ed_stroke_grey"
+                    android:digits="+1234567890"
+                    android:fontFamily="@font/regular"
+                    android:inputType="phone"
+
+                    android:maxLength="14"
+                    android:paddingLeft="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_8sdp"
+                    android:paddingRight="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_8sdp"
+                    android:text="@={viewModel.number}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text17" />-->
 
             <TextView
                 android:layout_width="match_parent"

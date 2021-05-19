@@ -16,16 +16,19 @@
         <ImageView
             android:layout_width="wrap_content"
             android:src="@drawable/ic_facebook"
+            android:id="@+id/iv_facebook"
             android:layout_marginRight="@dimen/padding_10"
             android:layout_height="wrap_content"/>
         <ImageView
             android:layout_width="wrap_content"
             android:src="@drawable/ic_insta"
             android:layout_marginRight="@dimen/padding_10"
+            android:id="@+id/iv_insta"
             android:layout_height="wrap_content"/>
         <ImageView
             android:layout_width="wrap_content"
             android:src="@drawable/ic_youtube"
+            android:id="@+id/iv_youtube"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 </RelativeLayout>

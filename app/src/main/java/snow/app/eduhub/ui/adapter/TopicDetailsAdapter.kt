@@ -90,6 +90,7 @@ val intent=Intent(contxt,ChapterFurtherClick::class.java)
             intent.putExtra("subjectId", dataModel.subjectId.toString())
             intent.putExtra("chapterId", dataModel.chapterId.toString())
             intent.putExtra("topic_id", dataModel.id.toString())
+            intent.putExtra("topic_name", dataModel.topicName.toString())
             contxt.startActivity(intent)
         }
     }

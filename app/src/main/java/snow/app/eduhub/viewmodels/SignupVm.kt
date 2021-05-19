@@ -9,6 +9,8 @@ import snow.app.eduhub.network.responses.grades.GradesData
 import snow.app.eduhub.repo.OnDataReadyCallback
 import snow.app.eduhub.ui.network.responses.signup.SignupRes
 import snow.app.eduhub.util.AlertModel
+import java.util.*
+import kotlin.collections.HashMap
 
 
 class SignupVm(var devicetoken: String) : BaseViewModel() {
@@ -119,7 +121,7 @@ class SignupVm(var devicetoken: String) : BaseViewModel() {
         repoModel.grades(onDataReadyGradeCallback)
     }
 
-    fun onSignupClick() {
+    fun onSignupClick(ccp: String) {
         val map: HashMap<String, String> = HashMap<String, String>()
 
 
@@ -147,7 +149,7 @@ class SignupVm(var devicetoken: String) : BaseViewModel() {
             if (!repass.get().toString().equals(pass.get().toString())) {
                 isError.postValue(
                     AlertModel(
-                        "Password does not match. Please enter correct password",
+                        "Password and Re-enter password does not match. Please enter correct password",
                         true
                     )
                 )
@@ -155,13 +157,14 @@ class SignupVm(var devicetoken: String) : BaseViewModel() {
                 map.put("last_name", lastname.get().toString())
                 map.put("first_name", name.get().toString())
                 map.put("email", email.get().toString())
-                map.put("student_moblie", phoneno.get().toString())
+                map.put("student_moblie",  phoneno.get().toString())
                 map.put("studentSchool", school.get().toString())
                 map.put("password", pass.get().toString())
                 map.put("studentGrade", gradeid.get().toString())
                 map.put("deviceToken", devicetoken)
+                map.put("country_code", ccp )
                 map.put("reg_status", "1")
-
+                map.put("time_zone", TimeZone.getDefault().id)
                 Log.e("map", map.toString())
                 isLoading.postValue(true)
                 repoModel.register(onDataReadyCallback, map)

@@ -99,6 +99,13 @@ dependencies {
 
     //graph
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //adds
+
+        implementation 'com.google.android.gms:play-services-ads:19.6.0'
+//ccp
+    //ccp
+    implementation 'com.github.joielechong:countrycodepicker:2.3.0'
  }
 repositories {
     mavenCentral()

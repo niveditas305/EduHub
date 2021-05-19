@@ -1,11 +1,9 @@
 package snow.app.eduhub.ui
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.opengl.Visibility
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -13,17 +11,13 @@ import android.view.*
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
-import com.bumptech.glide.load.Option
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_test_series.*
 import kotlinx.android.synthetic.main.test_quit_dialog.view.*
 import kotlinx.android.synthetic.main.time_finish_dialog.view.*
-import kotlinx.android.synthetic.main.time_finish_dialog.view.btn_yes_u
 import snow.app.eduhub.R
 import snow.app.eduhub.databinding.ActivityTestSeriesBinding
 import snow.app.eduhub.ui.adapter.QuestionsAdapter
@@ -95,6 +89,9 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
                 if (it.status) {
                     dialog.dismiss()
                     viewModel.ques_count_value.set("Question 1 to " + it.data.questionsCount.toString())
+
+
+                    queList = it.data.questions
                     if (it.data.questions.size > 0) {
                         binding.rvQuestions.layoutManager = linearLayoutManagertut
                         questionsAdapter =
@@ -107,16 +104,34 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
                                 mCallback_ids, binding, getQueList
                             )
 
-                        queList = it.data.questions
+
                         binding.rvQuestions.adapter = questionsAdapter
                         binding.rvQuestions.setOnTouchListener(object : View.OnTouchListener {
                             override fun onTouch(view: View?, motionEvent: MotionEvent?): Boolean {
                                 return true
                             }
+
+
                         })
                         /*  binding.rvQuestions.addOnItemTouchListener(disabler);
                            binding.rvQuestions.adapter = questionsAdapter
    */
+
+
+
+                        binding.rv.visibility = View.VISIBLE
+                        binding.tvTimeRe.visibility = View.VISIBLE
+
+                        if (it.data.test_time != 0 || it.data.test_time != null) {
+
+                            if (it.data.test_time > 0) {
+                                startCountDown(binding.tvTimeRe, it.data.test_time.toLong())
+                            }else{
+                                binding.tvTimeRe.setText("Time:No time limit.")
+                            }
+                        } else {
+                            binding.tvTimeRe.setText("Time:No time limit.")
+                        }
 
 
                     } else {
@@ -138,10 +153,23 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
         binding.tvTestsummary.setOnClickListener {
             var intent = Intent(this, TestSummary::class.java)
             intent.putExtra("testid", viewModel.test_id.get().toString())
+            intent.putExtra("test_unique_id", viewModel.test_unique_id.get().toString())
             startActivity(intent)
             finish()
         }
 
+        viewModel.respData_getUniqueId.observe(this, Observer {
+            if (it != null) {
+                if (it.status) {
+                    viewModel.test_unique_id.set(it.testUniqueId.toString())
+                    viewModel.testQuestionsList()
+                } else {
+                    Log.e("statusfalse", "login--")
+
+                }
+            }
+
+        })
         viewModel.respData_submitans.observe(this, Observer {
             Log.e("respData ", "login--")
             if (it != null) {
@@ -149,12 +177,12 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
                     if (it.chooseOption != null) {
                         viewModel.api_solution.set(it.solution)
                         questionsAdapter?.updatecorrectselected(it.rightOption, it.chooseOption)
-                        questionsAdapter?.optionAdapter?.setCorrect(it.rightOption.toInt()-1)
+                        questionsAdapter?.optionAdapter?.setCorrect(it.rightOption.toInt() - 1)
 
-                        Log.e("it.rightOption", "---" + (it.rightOption.toInt()-1) + "")
+                        Log.e("it.rightOption", "---" + (it.rightOption.toInt() - 1) + "")
                         if (it.chooseOption.equals(it.rightOption)) {
-                           // questionsAdapter?.optionAdapter?.setIsCorrect(it.rightOption.toInt())
-                            questionsAdapter?.optionAdapter?.setCorrect(it.rightOption.toInt()-1)
+                            // questionsAdapter?.optionAdapter?.setIsCorrect(it.rightOption.toInt())
+                            questionsAdapter?.optionAdapter?.setCorrect(it.rightOption.toInt() - 1)
                             binding.llRightAns.visibility = View.VISIBLE
 
 
@@ -167,7 +195,7 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
                                 binding.tvSummary.visibility = View.VISIBLE
                                 binding.tvSubmit.visibility = View.GONE
                                 binding.tvTestsummary.visibility = View.GONE
-                                questionsAdapter?.setIsSubmitted( linearLayoutManagertut!!.findLastCompletelyVisibleItemPosition())
+                                questionsAdapter?.setIsSubmitted(linearLayoutManagertut!!.findLastCompletelyVisibleItemPosition())
                             }
 
                             binding.llWrongAns.visibility = View.GONE
@@ -175,7 +203,7 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
                             for (i in 0 until optionlist.size) {
                                 //  print("option list ${optionlist[i].selected}")
                                 if (optionlist[i].selected) {
-                               optionlist[i].correct = true
+                                    optionlist[i].correct = true
 
                                 }
                                 Log.e("option list ", "---" + optionlist[i].selected)
@@ -205,7 +233,7 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
                                 binding.tvSummary.visibility = View.VISIBLE
                                 binding.tvSubmit.visibility = View.GONE
                                 binding.tvTestsummary.visibility = View.GONE
-                                questionsAdapter?.setIsSubmitted( linearLayoutManagertut!!.findLastCompletelyVisibleItemPosition())
+                                questionsAdapter?.setIsSubmitted(linearLayoutManagertut!!.findLastCompletelyVisibleItemPosition())
                             }
                             // binding.tvSummary.visibility = View.VISIBLE
                             binding.llWrongAns.visibility = View.VISIBLE
@@ -224,60 +252,67 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
 
         })
         binding.ivNext.setOnClickListener {
-            itemPos = linearLayoutManagertut!!.findLastCompletelyVisibleItemPosition() + 1
-            var tempPos = itemPos
-            tempPos = tempPos++
-            Log.e("pos in ivNext", "--" + tempPos)
 
-            if (itemPos == queList.size - 1) {
-                binding.ivNext.visibility = View.GONE
-                if (queList.get(tempPos).isSubmitted) {
-                    binding.tvTestsummary.visibility = View.VISIBLE
-                    binding.tvSubmit.visibility = View.GONE
-                    binding.tvSummary.visibility = View.GONE
-                } else {
-                    binding.tvSummary.visibility = View.GONE
-                    binding.tvSubmit.visibility = View.VISIBLE
-                }
-            } else {
 
-                binding.tvTestsummary.visibility = View.GONE   //by me
-                binding.ivNext.visibility = View.VISIBLE
-                 if (queList.get(tempPos) != null) {
+            if (queList.size > 0) {
+
+
+                itemPos = linearLayoutManagertut!!.findLastCompletelyVisibleItemPosition() + 1
+                var tempPos = itemPos
+                tempPos = tempPos++
+                Log.e("pos in ivNext", "--" + tempPos)
+
+                if (itemPos == queList.size - 1) {
+                    binding.ivNext.visibility = View.GONE
                     if (queList.get(tempPos).isSubmitted) {
-
-
-                        binding.tvSummary.visibility = View.VISIBLE
+                        binding.tvTestsummary.visibility = View.VISIBLE
                         binding.tvSubmit.visibility = View.GONE
+                        binding.tvSummary.visibility = View.GONE
                     } else {
                         binding.tvSummary.visibility = View.GONE
                         binding.tvSubmit.visibility = View.VISIBLE
                     }
                 } else {
-                    binding.tvSummary.visibility = View.GONE
-                    binding.tvSubmit.visibility = View.VISIBLE
+
+                    binding.tvTestsummary.visibility = View.GONE   //by me
+                    binding.ivNext.visibility = View.VISIBLE
+                    if (queList.get(tempPos) != null) {
+                        if (queList.get(tempPos).isSubmitted) {
+
+
+                            binding.tvSummary.visibility = View.VISIBLE
+                            binding.tvSubmit.visibility = View.GONE
+                        } else {
+                            binding.tvSummary.visibility = View.GONE
+                            binding.tvSubmit.visibility = View.VISIBLE
+                        }
+                    } else {
+                        binding.tvSummary.visibility = View.GONE
+                        binding.tvSubmit.visibility = View.VISIBLE
+                    }
                 }
-            }
 
 
-            if (!submitbuttonclicked) {
+                /*  if (!submitbuttonclicked) {
+                      viewModel.choose_option.set("")
+                      viewModel.attempt_status.set("0")
+                      viewModel.submitAns(it)
+                  }*/
                 viewModel.choose_option.set("")
-                viewModel.attempt_status.set("0")
-                viewModel.submitAns(it)
-            }
-            viewModel.choose_option.set("")
-            viewModel.question_id.set("")
-            viewModel.subject_id.set("")
-            binding.llRightAns.visibility = View.GONE
-            binding.llWrongAns.visibility = View.GONE
-            binding.llSolution.visibility = View.GONE
-            // binding.tvSummary.visibility = View.GONE
-            if (linearLayoutManagertut?.findLastCompletelyVisibleItemPosition()!! < (questionsAdapter?.getItemCount()!!.minus(1))) {
-                linearLayoutManagertut?.scrollToPosition(linearLayoutManagertut!!.findLastCompletelyVisibleItemPosition() + 1);
-            }
-            binding.ivPrevious.visibility = View.VISIBLE
+                viewModel.question_id.set("")
+                viewModel.subject_id.set("")
+                binding.llRightAns.visibility = View.GONE
+                binding.llWrongAns.visibility = View.GONE
+                binding.llSolution.visibility = View.GONE
+                // binding.tvSummary.visibility = View.GONE
+                if (linearLayoutManagertut?.findLastCompletelyVisibleItemPosition()!! < (questionsAdapter?.getItemCount()!!
+                        .minus(1))
+                ) {
+                    linearLayoutManagertut?.scrollToPosition(linearLayoutManagertut!!.findLastCompletelyVisibleItemPosition() + 1);
+                }
+                //    binding.ivPrevious.visibility = View.VISIBLE
 
-
+            }
         }
 
         binding.ivPrevious.setOnClickListener {
@@ -335,25 +370,43 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
         }
 
         if (isNetworkConnected()) {
-            viewModel.testQuestionsList()
+
+
+            viewModel.getUniqueId()
+
         } else {
             showInternetToast()
         }
 
 
-        //  startCountDown(binding.tvTimeRe, 10000)
         binding.tvSubmit.setOnClickListener {
-            if (viewModel.choose_option.get().toString().isEmpty()) {
-                Toast.makeText(this, "Please select option to submit answer", Toast.LENGTH_SHORT)
-                    .show()
-            } else {
-                submitbuttonclicked = true
-                viewModel.submitAns(it)
-                questionsAdapter?.setIsSubmitted(linearLayoutManagertut!!.findLastCompletelyVisibleItemPosition())
 
 
-                Log.e("queList", "--" + Gson().toJson(queList))
-                Log.e("position on btn click", "--" + linearLayoutManagertut!!.findLastCompletelyVisibleItemPosition())
+            if (queList.size > 0) {
+
+                if (viewModel.choose_option.get().toString().isEmpty()) {
+                    Toast.makeText(
+                        this,
+                        "Please select option to submit answer",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                } else {
+                    submitbuttonclicked = true
+                    viewModel.submitAns(it)
+
+
+                    questionsAdapter?.setIsSubmitted(linearLayoutManagertut!!.findLastCompletelyVisibleItemPosition())
+
+
+                    Log.e("queList", "--" + Gson().toJson(queList))
+                    Log.e(
+                        "position on btn click",
+                        "--" + linearLayoutManagertut!!.findLastCompletelyVisibleItemPosition()
+                    )
+
+                }
+
 
             }
         }
@@ -385,12 +438,12 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
         override fun likeClick(pos: Int, list: List<Question>) {
             // viewModel.rv_item_pos.set(pos)
             //   itemPos=pos
-
+/*
             if (pos == 0) {
                 binding.ivPrevious.visibility = View.GONE
             } else {
                 binding.ivPrevious.visibility = View.VISIBLE
-            }
+            }*/
             if (pos == list.size - 1) {
                 binding.ivNext.visibility = View.GONE
                 viewModel.last_pos_rv.set("last")
@@ -407,8 +460,6 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
     }
 
 
-
-
     val mCallback_onsubmitclick = object : SubmitInterface {
         override fun onSubmitClick(list: ArrayList<OptionModel>) {
             optionlist.clear()
@@ -421,7 +472,6 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
             queList = arrayList
         }
     }
-
 
 
     override fun getId(index: String, que_id: String, sub_id: String) {
@@ -442,8 +492,9 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
 
 
     fun startCountDown(_tv: TextView, time: Long/*, item: Data*/) {
-
-        countDownTimer = object : CountDownTimer(900000, 1000) {
+        val minutes = time
+        val milliseconds = (minutes * 60000).toLong()
+        countDownTimer = object : CountDownTimer(milliseconds, 1000) {
             // adjust the milli seconds here
             override fun onTick(millisUntilFinished: Long) {
                 _tv.setText(
@@ -507,6 +558,9 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
             mAlertDialogg.dismiss()
             var intent = Intent(this@TestSeriesActivity, TestSummary::class.java)
             intent.putExtra("testid", viewModel.test_id.get().toString())
+            intent.putExtra("test_unique_id", viewModel.test_unique_id.get().toString())
+
+
             startActivity(intent)
             finish()
         }
@@ -540,6 +594,7 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
             mAlertDialogg.dismiss()
             var intent = Intent(this@TestSeriesActivity, TestSummary::class.java)
             intent.putExtra("testid", viewModel.test_id.get().toString())
+            intent.putExtra("test_unique_id", viewModel.test_unique_id.get().toString())
             startActivity(intent)
             finish()
         }
@@ -551,7 +606,6 @@ class TestSeriesActivity : BaseActivity(), GetPositionOnBackInterface, GetIdfrom
         }
 
     }
-
 
 
     override fun getQueLIst(arrayList: List<Question>) {

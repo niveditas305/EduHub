@@ -93,9 +93,15 @@ val intent=Intent(contxt,ChapterFurtherClick::class.java)
             holder.itemView.findViewById<ImageView>(R.id.iv_up).visibility=View.GONE
          }
        else if (dataModel.topic.size==1){
-            holder.tv_topic_count.setText(dataModel.topicCount.toString() +" topic")
+
+
+
+            holder.itemView.findViewById<ImageView>(R.id.iv_down).visibility=View.VISIBLE
+             holder.tv_topic_count.setText(dataModel.topicCount.toString() +" topic")
         }else{
-            holder.tv_topic_count.setText(dataModel.topicCount.toString() +" topics")
+
+            holder.itemView.findViewById<ImageView>(R.id.iv_down).visibility=View.VISIBLE
+             holder.tv_topic_count.setText(dataModel.topicCount.toString() +" topics")
         }
 
 

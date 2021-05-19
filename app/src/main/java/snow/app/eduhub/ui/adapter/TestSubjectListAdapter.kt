@@ -10,10 +10,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import snow.app.eduhub.R
-import snow.app.eduhub.ui.TeacherListingScreen
 import snow.app.eduhub.ui.TestListActivity
 import snow.app.eduhub.ui.network.responses.fetchsubjectlist.Data
-import snow.app.eduhub.ui.network.responses.searchres.SubjectData
 import snow.app.eduhub.util.AppUtils
 
 class TestSubjectListAdapter(var contxt: Context, var list: List<Data>) :

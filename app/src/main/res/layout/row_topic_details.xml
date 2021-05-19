@@ -6,35 +6,36 @@
     android:padding="@dimen/padding_10">
 
     <TextView
+        android:id="@+id/tv_topic_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bold"
-        android:id="@+id/tv_topic_name"
-         android:text="Unitary Method, Ratio and Percentage"
+        android:text="Unitary Method, Ratio and Percentage"
         android:textColor="@color/black"
         android:textSize="@dimen/text17" />
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_pdfs"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content">
 
-        android:layout_marginTop="@dimen/margin_20"
-        android:layout_marginBottom="@dimen/margin_30" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/semi"
-        android:textSize="@dimen/text_15"
-        android:layout_marginTop="@dimen/_50sdp"
-        android:id="@+id/no_record_found"
-        android:text="No pdfs available."
-        android:visibility="gone"
-        android:layout_centerInParent="true"
-        />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_pdfs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-</RelativeLayout>
+            android:layout_marginTop="@dimen/padding_10"
+         />
+
+        <TextView
+            android:id="@+id/no_record_found"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/_60sdp"
+            android:fontFamily="@font/semi"
+            android:text="No pdfs available."
+            android:textSize="@dimen/text_15"
+            android:visibility="gone" />
+
+    </RelativeLayout>
 </LinearLayout>

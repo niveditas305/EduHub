@@ -28,7 +28,7 @@ class TopicVideosAdapter(var contxt: Context, var list: List<Video>, var topicCl
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.row_tutorials, parent, false)
+            .inflate(R.layout.row_tutorials_horizontal, parent, false)
         return MyViewHolder(itemView)
     }
 
@@ -54,7 +54,7 @@ class TopicVideosAdapter(var contxt: Context, var list: List<Video>, var topicCl
                 topicClicks.viewModel.resprecentContinueTopic(
                     dataModel.chapterId.toString(),
                     dataModel.subjectId.toString(),
-                    dataModel.topicId.toString()
+                    dataModel.topicId.toString(), "1"
                 )
 
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.videoPath));

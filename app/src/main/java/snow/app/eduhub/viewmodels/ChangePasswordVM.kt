@@ -59,10 +59,10 @@ class ChangePasswordVM(var devicetoken:String): BaseViewModel(){
 
         } else if (newpass.get().toString().isEmpty()){
 
-            isError.postValue(AlertModel("Password is required. Please enter a valid password.",true));
+            isError.postValue(AlertModel("Password is required. Please enter a valid password.",true))
 
         }else if (!confirmnew.get().toString().equals(newpass.get().toString())){
-            isError.postValue(AlertModel("Password does not match. Please enter correct password",true));
+            isError.postValue(AlertModel("Password does not match. Please enter correct password",true))
         }
 
         else {
