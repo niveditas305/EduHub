@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import snow.app.eduhub.R
+import snow.app.eduhub.ui.SelectGrade
 import snow.app.eduhub.ui.TeacherListingScreen
 import snow.app.eduhub.ui.network.responses.homedatares.Subject
 import snow.app.eduhub.util.AppUtils
@@ -45,10 +46,13 @@ class SubjectsAdapter(var contxt: Context, var list: List<Subject>) :
         }
 
         holder.container.setOnClickListener {
-            var intent = Intent(contxt, TeacherListingScreen::class.java)
+        /*    var intent = Intent(contxt, TeacherListingScreen::class.java)
             intent.putExtra("subjectname", item.subjectName.toString())
             intent.putExtra("subjectid", item.id.toString())
-            contxt.startActivity(intent)
+            contxt.startActivity(intent)*/
+
+            var intent = Intent(contxt, SelectGrade::class.java)
+              contxt.startActivity(intent)
         }
 
     }

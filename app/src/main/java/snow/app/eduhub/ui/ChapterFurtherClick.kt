@@ -159,8 +159,8 @@ class ChapterFurtherClick : BaseActivity() {
         )
 
         mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712" //test key
-        //  mInterstitialAd.adUnitId = "ca-app-pub-3344875363675061/2836951139" //live key
+      //  mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712" //test key
+      mInterstitialAd.adUnitId = "ca-app-pub-3344875363675061/2836951139" //live key
         mInterstitialAd.loadAd(AdRequest.Builder().build())
     }
 }

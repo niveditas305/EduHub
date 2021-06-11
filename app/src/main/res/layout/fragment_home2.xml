@@ -75,7 +75,15 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/iv_banner" />
                 </RelativeLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
 
+
+android:scaleType="centerCrop"
+
+
+                    android:src="@drawable/bannertwohome"/>
                 <LinearLayout
                     android:id="@+id/ll_section"
                     android:layout_width="match_parent"
@@ -155,6 +163,7 @@
                 <LinearLayout
                     android:id="@+id/ll_one"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_below="@+id/ll_section"
                     android:background="@color/container_color"
@@ -198,6 +207,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ll_one"
                     android:layout_gravity="center"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/margin_20"
                     android:background="@drawable/round_ed_stroke_grey"
                     android:orientation="horizontal"
@@ -240,6 +250,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ll_two"
                     android:layout_marginLeft="@dimen/padding_10"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/margin_20"
                     android:fontFamily="@font/bold"
                     android:gravity="center"
@@ -252,7 +263,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ll_two"
                     android:layout_marginLeft="@dimen/padding_10"
-
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/margin_5"
                      android:fontFamily="@font/med"
                     android:text="What other students of your grade are studying"
@@ -262,6 +273,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_top_home"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_10" />
 
@@ -271,6 +283,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_5"
+                    android:visibility="gone"
                     android:layout_marginRight="@dimen/padding_10"
                     android:orientation="horizontal">
 
@@ -309,6 +322,7 @@
                     android:id="@+id/rv_topteachers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/padding_10" />
 
                 <LinearLayout
@@ -539,6 +553,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
+            android:visibility="gone"
             android:layout_margin="16dp"
              app:maxImageSize="@dimen/_32sdp"
             app:backgroundTint="@color/white"

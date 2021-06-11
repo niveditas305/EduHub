@@ -17,33 +17,39 @@
         <item
             android:id="@+id/learn"
             android:icon="@drawable/ic_lesson"
-            android:title="Lesson" />
+            android:title="Study Guide" />
 
-        <item
+
+        <!--<item
+            android:id="@+id/learn"
+            android:icon="@drawable/ic_lesson"
+            android:title="Lesson" />-->
+
+        <!--<item
             android:id="@+id/worksheets"
             android:icon="@drawable/ic_contract"
-            android:title="Worksheets" />
-        <item
+            android:title="Worksheets" />-->
+       <!-- <item
             android:id="@+id/test"
             android:icon="@drawable/ic_test"
-            android:title="@string/test" />
+            android:title="@string/test" />-->
      <!--   <item
             android:id="@+id/solution"
             android:icon="@drawable/ic_solution"
             android:title="@string/test_solution" />-->
-     <item
+<!--     <item
             android:id="@+id/score"
             android:icon="@drawable/ic_grade"
-            android:title="@string/score" />
+            android:title="@string/score" />-->
         <item
             android:id="@+id/question_bank"
             android:icon="@drawable/ic_archive"
             android:title="Past Question Papers" />
 
-       <item
+  <!--     <item
             android:id="@+id/favtutor"
             android:icon="@drawable/ic_heart_w"
-            android:title="@string/favourite_tutor" />
+            android:title="@string/favourite_tutor" />-->
         <item
             android:id="@+id/chat"
             android:icon="@drawable/ic_chat"
@@ -52,6 +58,10 @@
             android:id="@+id/setting"
             android:icon="@drawable/ic_settings"
             android:title="@string/setting" />
+        <item
+            android:id="@+id/share"
+            android:icon="@drawable/ic_baseline_share_24"
+            android:title="Share" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_logout"

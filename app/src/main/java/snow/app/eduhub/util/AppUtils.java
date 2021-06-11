@@ -190,6 +190,29 @@ public class AppUtils {
         return str;
 
     }
+    public  static  String pdftime(String datee){
+
+
+       // String inputPattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+        String inputPattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+
+        String outputPattern = "yyyy-MM-dd hh:mm a";
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+        Date date = null;
+        String str = null;
+
+        try {
+            date = inputFormat.parse(datee);
+            str = outputFormat.format(date);
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return str;
+
+    }
 
     public static String getSHowTimeWOrksheet(long milliSeconds, String dateFormat) {
         // Create a DateFormatter object for displaying date in specified format.

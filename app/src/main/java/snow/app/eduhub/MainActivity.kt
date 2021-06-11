@@ -29,6 +29,7 @@ import snow.app.eduhub.repo.OnDataReadyCallback
 import snow.app.eduhub.repo.Repo
 import snow.app.eduhub.ui.NotificationScreen
 import snow.app.eduhub.ui.ProfileFragment
+import snow.app.eduhub.ui.SelectGrade
 import snow.app.eduhub.ui.adapter.HomeTopPickAdapter
 import snow.app.eduhub.ui.fragments.*
 import snow.app.eduhub.ui.network.responses.NotificationCountRes
@@ -36,8 +37,6 @@ import snow.app.eduhub.util.BaseActivity
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
-
-
     lateinit var tv_name: TextView
     lateinit var tv_schoolname: TextView
     lateinit var tv_grade: TextView
@@ -54,12 +53,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-          toolbar = findViewById(R.id.toolbar)
+        toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         iv_noti = toolbar.findViewById<ImageView>(R.id.iv_noti)
         tv_unread_noti = toolbar.findViewById<TextView>(R.id.tv_unread_noti)
-
-         getSupportActionBar()?.setDisplayShowTitleEnabled(false);
+        getSupportActionBar()?.setDisplayShowTitleEnabled(false);
 
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         val toggle = ActionBarDrawerToggle(
@@ -93,8 +91,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
 
         iv_profile = v.findViewById<ImageView>(R.id.iv_profile)
-
-
         //   iv_youtube = v.findViewById<ImageView>(R.id.iv_youtube)
         //  iv_facebook = v.findViewById<ImageView>(R.id.iv_facebook)
         tv_name = v.findViewById<TextView>(R.id.tv_name)
@@ -106,6 +102,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             loadFragment(ProfileFragment(), "")
             drawer_layout.closeDrawer(GravityCompat.START)
         }
+
+
         iv_noti.setOnClickListener {
             startActivity(Intent(this, NotificationScreen::class.java))
         }
@@ -124,14 +122,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         }
 
-        if (isNetworkConnected()) {
+  /*      if (isNetworkConnected()) {
 //init adds
             initAdds()
 
             mInterstitialAd.adListener = object : AdListener() {
                 override fun onAdLoaded() {
                     // Code to be executed when an ad finishes loading.
-
 
                     if (mInterstitialAd.isLoaded) {
                         mInterstitialAd.show()
@@ -141,6 +138,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
 
                 override fun onAdFailedToLoad(adError: LoadAdError) {
+
+
+                    //   showToast("error in add"+adError)
+                    // Log.e("err in add ","--"+adError)
                     // Code to be executed when an ad request fails.
                     Log.d("TAG", "The interstitial wasn't loaded onAdFailedToLoad.")
                 }
@@ -165,7 +166,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         } else {
             showInternetToast()
-        }
+        }*/
 
 
     }
@@ -179,8 +180,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         )
 
         mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712" //test key
-        //  mInterstitialAd.adUnitId = "ca-app-pub-3344875363675061/2836951139" //live key
+        //   mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712" //test key
+        mInterstitialAd.adUnitId = "ca-app-pub-3344875363675061/2836951139" //live key
         mInterstitialAd.loadAd(AdRequest.Builder().build())
     }
 
@@ -196,7 +197,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             } else {
 
                 val fragment: Fragment? = supportFragmentManager.findFragmentByTag("Home")
-
                 Log.e("frag", "--" + fragment)
                 if (fragment != null && fragment is HomeFragment) {
                     val builder = AlertDialog.Builder(this)
@@ -211,12 +211,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
 
                     }
-
                     builder.setNegativeButton(
                         "cancel"
                     ) { dialog: DialogInterface?, which: Int ->
-
-
                         dialog?.dismiss()
                     }
                     builder.show()
@@ -264,39 +261,48 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
 
             R.id.iv_facebook -> {
-                showToast("hello fb")
+
+
             }
             R.id.home -> {
-
                 tv_heading.setText("EDUHUB SOUTH AFRICA")
                 loadFragment(HomeFragment(), "Home")
 
             }
             R.id.my_profile -> {
-
                 tv_heading.setText("Profile")
                 loadFragment(ProfileFragment(), "")
             }
+            /*  R.id.learn -> {
+
+                  tv_heading.setText("Lesson")
+                  loadFragment(LearnFragment("lesson"), "")
+
+              }*/
+
             R.id.learn -> {
+                startActivity(Intent(this, SelectGrade::class.java))
 
-                tv_heading.setText("Lesson")
-                loadFragment(LearnFragment("lesson"), "")
-
-            }
-            R.id.test -> {
-
-                tv_heading.setText("Test")
-                loadFragment(TestSubjectFragment(), "")
-
+                /*  tv_heading.setText("Study Guide")
+                  loadFragment(LearnFragment("Study Guide"), "")
+  */
             }
 
 
-            R.id.worksheets -> {
+            /*  R.id.test -> {
 
-                tv_heading.setText("Worksheets")
-                loadFragment(LearnFragment("work"), "")
+                  tv_heading.setText("Test")
+                  loadFragment(TestSubjectFragment(), "")
 
-            }
+              }
+
+
+              R.id.worksheets -> {
+
+                  tv_heading.setText("Worksheets")
+                  loadFragment(LearnFragment("work"), "")
+
+              }*/
             /*  R.id.solution -> {
 
 
@@ -306,35 +312,49 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                   // startActivity(Intent(applicationContext, WithdrawScreen::class.java))
               }*/
 
-            R.id.score -> {
+            /* R.id.score -> {
 
 
-                tv_heading.setText("Score")
-                loadFragment(TestScoreFragment(), "")
-                //   startActivity(Intent(applicationContext, SettingsActivity::class.java))
+                 tv_heading.setText("Score")
+                 loadFragment(TestScoreFragment(), "")
+                 //   startActivity(Intent(applicationContext, SettingsActivity::class.java))
 
-            }
+             }*/
             R.id.question_bank -> {
-
-
                 tv_heading.setText("Past Question Papers")
                 loadFragment(PastSubjectFragment(), "")
                 //   startActivity(Intent(applicationContext, SettingsActivity::class.java))
 
             }
-            R.id.favtutor -> {
+            /* R.id.favtutor -> {
 
-                tv_heading.setText("Favourite Teachers")
-                loadFragment(FavouriteTutorFragment(), "")
-                //  startActivity(Intent(applicationContext, SettingsActivity::class.java))
+                 tv_heading.setText("Favourite Teachers")
+                 loadFragment(FavouriteTutorFragment(), "")
+                 //  startActivity(Intent(applicationContext, SettingsActivity::class.java))
 
-            }
+             }*/
             R.id.chat -> {
                 //      startActivity(Intent(applicationContext, SettingsActivity::class.java))
-
                 tv_heading.setText(getString(R.string.feedback))
                 loadFragment(ChatFragmentJava(), "")
             }
+            R.id.share -> {
+                try {
+                    val shareIntent = Intent(Intent.ACTION_SEND)
+                    shareIntent.type = "text/plain"
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Edu Hub")
+                    var shareMessage =
+                        "\nHey there, I'm using Edu Hub app to get all my Math & Science study guides, worksheets, lessons, explanation videos, past question papers and more. Download using this link my friend...\n\n"
+                    shareMessage =
+                        """${shareMessage}https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}""".trimIndent()
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
+                    startActivity(Intent.createChooser(shareIntent, "choose one"))
+                } catch (e: Exception) {
+                    //e.toString();
+                }
+            }
+
+
             R.id.setting -> {
                 //    startActivity(Intent(applicationContext, SettingsActivity::class.java))
                 tv_heading.setText(getString(R.string.setting))
@@ -354,7 +374,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     dialogg?.dismiss()
                     getSession()?.logout()
                     dialog?.dismiss()
-                  //  viewModel!!.logout()
+                    //  viewModel!!.logout()
 
 
                 }

@@ -33,6 +33,7 @@ import snow.app.eduhub.ui.network.responses.fetchsubjectlist.SubjectList
 import snow.app.eduhub.ui.network.responses.fetchteachers.FetchTeachersRes
 import snow.app.eduhub.ui.network.responses.getChapters.GetChaptersResponse
 import snow.app.eduhub.ui.network.responses.getconversationid.GetConverstaionIdRes
+import snow.app.eduhub.ui.network.responses.getstudyguild.StudyGuideRes
 import snow.app.eduhub.ui.network.responses.getsubjectlistbyid.GetSubjectListById
 import snow.app.eduhub.ui.network.responses.getuniqueid.GetUniqueId
 import snow.app.eduhub.ui.network.responses.homedatares.HomeDataRes
@@ -708,6 +709,35 @@ fun submitAns(
             .subscribeWith(object : Observer<AboutData> {
 
                 override fun onNext(data: AboutData) {
+                    onDataReadyCallback.onDataReady(data, false)
+                }
+
+                override fun onComplete() {
+
+                }
+
+                override fun onSubscribe(d: Disposable) {
+                }
+
+                override fun onError(e: Throwable) {
+                    onDataReadyCallback.onDataReady(null, true)
+
+                    Log.e("error in login--", "--" + e.toString())
+
+                }
+            })
+
+    }
+ fun getStudyGuide(
+        onDataReadyCallback: OnDataReadyCallback,token: String, map: HashMap<String, String>
+    ) {
+
+        apiService.getStudyGuide(token,map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : Observer<StudyGuideRes> {
+
+                override fun onNext(data: StudyGuideRes) {
                     onDataReadyCallback.onDataReady(data, false)
                 }
 

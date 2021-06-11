@@ -32,11 +32,12 @@ import snow.app.eduhub.viewmodels.SignupVm
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Signup : BaseActivity() {
+class  Signup : BaseActivity() {
     var gradelist: ArrayList<String> = ArrayList()
+    lateinit var grades: List<Data>
     var viewModel: SignupVm? = null
     lateinit var binding: ActivitySignupBinding
-    lateinit var grades: List<Data>
+
     lateinit var powerMenu: PowerMenu
     var deviceTokenn: String = "";
     override fun onCreate(savedInstanceState: Bundle?) {

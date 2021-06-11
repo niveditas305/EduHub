@@ -14,6 +14,7 @@ import Constants.Companion.GET_ALL_CHAT_MESSAGES
 import Constants.Companion.GET_ALL_NOTIFICATIONS
 import Constants.Companion.GET_CHAPTERS
 import Constants.Companion.GET_CONVERSATION_ID
+import Constants.Companion.GET_GUIDE_LIST
 import Constants.Companion.GET_NOTIFICATION_STATUS
 import Constants.Companion.GET_NOTI_COUNT
 import Constants.Companion.GET_STARTED_URL
@@ -88,6 +89,7 @@ import snow.app.eduhub.ui.network.responses.fetchteachers.FetchTeachersRes
 import snow.app.eduhub.ui.network.responses.getChapters.GetChaptersResponse
 import snow.app.eduhub.ui.network.responses.getallchats.GetAllChatsRes
 import snow.app.eduhub.ui.network.responses.getconversationid.GetConverstaionIdRes
+import snow.app.eduhub.ui.network.responses.getstudyguild.StudyGuideRes
 import snow.app.eduhub.ui.network.responses.getsubjectlistbyid.GetSubjectListById
 import snow.app.eduhub.ui.network.responses.getuniqueid.GetUniqueId
 import snow.app.eduhub.ui.network.responses.homedatares.HomeDataRes
@@ -123,8 +125,7 @@ interface ApiService {
     fun fetchGrades(): Observable<GradesData>
 
     @POST(VERIFY_OTP)
-    fun verifyOtp(
-        @Header("Authorization") token: String,
+    fun verifyOtp(@Header("Authorization") token: String,
         @Body params: HashMap<String, String>
     ): Observable<VerifyOTP>
 
@@ -134,11 +135,13 @@ interface ApiService {
     @POST(CHANGE_PASSWORD)
     fun changePassword(
         @Header("Authorization") token: String,
-        @Body params: HashMap<String, String>
-    ): Observable<CommonResponse>
+        @Body params: HashMap<String, String>): Observable<CommonResponse>
 
     @GET(ABOUT)
     fun fetchAboutData(): Observable<AboutData>
+
+    @POST(GET_GUIDE_LIST)
+    fun getStudyGuide(   @Header("Authorization") token: String,  @Body params: HashMap<String, String>): Observable<StudyGuideRes>
 
     @GET(ADMIN_DETAILS)
     fun fetchAdminDetails(@Header("Authorization") token: String): Observable<FetchAdminDetails>
@@ -172,18 +175,24 @@ interface ApiService {
 
     @GET(HOME_BANNER)
     fun fetchHomeBanners(): Observable<HomeBannerData>
+
+
     @GET(GET_NOTI_COUNT)
     fun getNotificationsCount(@Header("Authorization") token: String ): Observable<NotificationCountRes>
+
+
     @POST(NOTIFICATION)
     fun changeNotificationStatus(
         @Header("Authorization") token: String,
         @Body params: HashMap<String, String>
     ): Observable<SetNotificationStatus>
+
+
+
     @POST(RECENT_CONTINUE_TOPIC)
     fun recentContinueTopic(
         @Header("Authorization") token: String,
-        @Body params: HashMap<String, String>
-    ): Observable<BaseRes>
+        @Body params: HashMap<String, String>): Observable<BaseRes>
 
     @GET(GET_SUBJECT)
     fun fetchSubjectByGrade(@Header("Authorization") token: String): Observable<GetSubjectByGrade>
@@ -206,8 +215,6 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body params: HashMap<String, String>
     ): Observable<FetchTeachersRes>
-
-
 
     @POST(PAST_QUESTION_PPRS)
     fun fetchPastQuestionpprs(
@@ -244,9 +251,7 @@ interface ApiService {
     @POST(TEST_SUMMARY)
     fun testSummary(
         @Header("Authorization") token: String,
-        @Body params: HashMap<String, String>
-    ): Observable<TestSummaryRes>
-
+        @Body params: HashMap<String, String>): Observable<TestSummaryRes>
 
     @POST(GET_CONVERSATION_ID)
     fun getConversationId(

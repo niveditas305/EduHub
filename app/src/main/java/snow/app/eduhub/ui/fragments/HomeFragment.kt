@@ -50,10 +50,8 @@ class HomeFragment : BaseFragment(), LikeDislikeListener,
     lateinit var rv_top_home: RecyclerView
     lateinit var dots: TabLayout
     lateinit var tv_main_two: LinearLayout
-
-      var mmContext: Context? = null
-    var list: ArrayList<TopTeacher> =
-        ArrayList<TopTeacher>()
+    var mmContext: Context? = null
+    var list: ArrayList<TopTeacher> = ArrayList<TopTeacher>()
     lateinit var tv_one: LinearLayout
     var topteacherlist: ArrayList<TopTeacher> = ArrayList()
     var toptopicslist: ArrayList<TopTopic> = ArrayList()
@@ -65,11 +63,8 @@ class HomeFragment : BaseFragment(), LikeDislikeListener,
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home2, container, false);
         binding.lifecycleOwner = this
-
         viewModel = HomeViewModel(getUserToken())
         binding.viewModel = viewModel
         binding.executePendingBindings()
@@ -77,8 +72,6 @@ class HomeFragment : BaseFragment(), LikeDislikeListener,
         dialog.setMessage("Please wait...")
         dialog.setCancelable(false)
         viewModell = BaseViewModel()
-
-
 
         viewModel?.isLoading?.observe(requireActivity(), Observer {
             if (it) {
@@ -104,21 +97,21 @@ class HomeFragment : BaseFragment(), LikeDislikeListener,
             startActivity(Intent(requireContext(), TeacherListingScreen::class.java))
         }
 
-binding.tvSeeAll.setOnClickListener {
-    val intent: Intent = Intent(requireContext(), SeeAllTeacherListingScreen::class.java)
-    intent.putExtra(
-        "fromfilte" +
-                "r", "filter"
-    )
-    intent.putExtra("name", "Salons")
-    val bundle = Bundle()
-    val gson = Gson()
-    val jsonDetails = gson.toJson(list)
-    bundle.putString("salonlist", jsonDetails)
-    intent.putExtras(bundle)
-    startActivity(intent)
+        binding.tvSeeAll.setOnClickListener {
+            val intent: Intent = Intent(requireContext(), SeeAllTeacherListingScreen::class.java)
+            intent.putExtra(
+                "fromfilte" +
+                        "r", "filter"
+            )
+            intent.putExtra("name", "Salons")
+            val bundle = Bundle()
+            val gson = Gson()
+            val jsonDetails = gson.toJson(list)
+            bundle.putString("salonlist", jsonDetails)
+            intent.putExtras(bundle)
+            startActivity(intent)
 
-}
+        }
 
         binding.fSearch.setOnClickListener {
             startActivity(Intent(requireContext(), SearchScreen::class.java))
@@ -160,7 +153,7 @@ binding.tvSeeAll.setOnClickListener {
                         intent.putExtra("chapterId", data.data.continueTopic.chapterId.toString())
                         intent.putExtra("teacherId", data.data.continueTopic.teacherId.toString())
                         intent.putExtra("subjectId", data.data.continueTopic.subjectId.toString())
-                             intent.putExtra("topic_id", data.data.continueTopic.id.toString())
+                        intent.putExtra("topic_id", data.data.continueTopic.id.toString())
                         startActivity(intent)
                     }
                     binding.llOne.setOnClickListener {
@@ -292,7 +285,6 @@ binding.tvSeeAll.setOnClickListener {
     }
 
 
-
     override fun onTokenExpiredListener() {
         viewModel!!.isLoading.postValue(false)
 
@@ -305,7 +297,6 @@ binding.tvSeeAll.setOnClickListener {
 
         mmContext = context
     }
-
 
 
     override fun onDetach() {

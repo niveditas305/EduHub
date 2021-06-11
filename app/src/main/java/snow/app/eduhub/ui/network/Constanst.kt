@@ -61,5 +61,6 @@ class Constants {
         const val WORKSHEET_LIST = "api/worksheet/list"
         const val LOGINN="login"
         const val GET_NOTIFICATION_STATUS="api/get/notification/status"
+        const val GET_GUIDE_LIST="api/study/guide/list"
     }
 }
