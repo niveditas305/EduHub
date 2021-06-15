@@ -1,9 +1,6 @@
 package snow.app.eduhub.ui.adapter
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,16 +8,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import snow.app.eduhub.MainActivity
 import snow.app.eduhub.R
 import snow.app.eduhub.ui.StudyGuideActivity
-import snow.app.eduhub.ui.TopicClicks
 import snow.app.eduhub.ui.network.responses.getstudyguild.Data
-import snow.app.eduhub.ui.network.responses.topicdetailsres.Video
 import snow.app.eduhub.util.AppUtils
+import snow.app.eduhub.util.PdfClickInterface
 
 
-class StudyGuideVideoAdapter(var contxt: Context, var list: List<Data> ) :
+class StudyGuideVideoAdapter(var contxt: Context, var list: List<Data> ,
+                             val pdfListenr: PdfClickInterface
+) :
     RecyclerView.Adapter<StudyGuideVideoAdapter.MyViewHolder>() {
     var data: List<String> = ArrayList()
     fun updateData(data: List<String>) {
@@ -54,12 +51,13 @@ class StudyGuideVideoAdapter(var contxt: Context, var list: List<Data> ) :
         holder.iv_play.setOnClickListener {
 
             if ((contxt as StudyGuideActivity).isNetworkConnected()) {
+                pdfListenr.onSubmitClick(dataModel.videoPath,"video")
 
-
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.videoPath));
+               /* val intent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.videoPath));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 // intent.setPackage("com.google.android.youtube");
-                contxt.startActivity(intent)
+                contxt.startActivity(intent)*/
+
 
 
             } else {

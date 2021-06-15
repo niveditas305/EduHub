@@ -43,6 +43,7 @@ class HomeTopPickAdapter(var contxt: Context, var list: List<TopTopic>,var mainA
              resprecentContinueTopic(list.get(position).chapterId.toString(),list.get(position).subjectId.toString(),list.get(position).teacherId.toString())
 
               var intent:Intent= Intent(contxt,TopicClicks::class.java)
+
              intent.putExtra("chapterId",list.get(position).chapterId.toString())
              intent.putExtra("teacherId",list.get(position).teacherId.toString())
              intent.putExtra("subjectId",list.get(position).subjectId.toString())

@@ -14,12 +14,14 @@ import snow.app.eduhub.QuestionPaperPdfs
 import snow.app.eduhub.R
 import snow.app.eduhub.ui.network.responses.pastquestions.Data
 import snow.app.eduhub.ui.network.responses.topicdetailsres.Worksheet
+import snow.app.eduhub.util.PdfClickInterface
 
 
 class PastQuestionpprAdapter(
     var contxt: Context,
     var all_pdfs: List<Data>,
-    var topicClicks: QuestionPaperPdfs
+    var topicClicks: QuestionPaperPdfs,
+    var pdfClickInterface: PdfClickInterface
 ) :
     RecyclerView.Adapter<PastQuestionpprAdapter.MyViewHolder>() {
     var data: List<String> = ArrayList()
@@ -47,8 +49,9 @@ class PastQuestionpprAdapter(
 
         holder.tv_ans.setOnClickListener {
             if (topicClicks.isNetworkConnected()) {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.answer_pdf))
-                contxt.startActivity(browserIntent)
+                pdfClickInterface.onSubmitClick(dataModel.answer_pdf,"pdf")
+              /*  val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.answer_pdf))
+                contxt.startActivity(browserIntent)*/
             } else {
                 Toast.makeText(contxt, "Please check your internet connection!", Toast.LENGTH_SHORT)
                     .show()
@@ -58,8 +61,9 @@ class PastQuestionpprAdapter(
         }
         holder.tv_que.setOnClickListener {
             if (topicClicks.isNetworkConnected()) {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.questionPdf))
-                contxt.startActivity(browserIntent)
+                pdfClickInterface.onSubmitClick(dataModel.questionPdf,"pdf")
+               /* val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.questionPdf))
+                contxt.startActivity(browserIntent)*/
             } else {
                 Toast.makeText(contxt, "Please check your internet connection!", Toast.LENGTH_SHORT)
                     .show()

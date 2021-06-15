@@ -17,11 +17,15 @@ import com.skydoves.powermenu.MenuAnimation
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
+import com.unity3d.ads.UnityAds
+import com.unity3d.ads.metadata.MediationMetaData
+import com.unity3d.ads.metadata.PlayerMetaData
 import snow.app.eduhub.R
 import snow.app.eduhub.databinding.ActivitySelectGradeBinding
 import snow.app.eduhub.databinding.ActivityTopicClicksBinding
 import snow.app.eduhub.databinding.CompleteChapterDialogBinding
 import snow.app.eduhub.network.responses.grades.Data
+import snow.app.eduhub.ui.fragments.HomeFragment
 import snow.app.eduhub.util.BaseActivity
 import snow.app.eduhub.viewmodels.SelectGradeVm
 import snow.app.eduhub.viewmodels.SignupVm

@@ -9,9 +9,7 @@ android {
 
     defaultConfig {
         applicationId "snow.app.eduhub"
-
-
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -107,6 +105,7 @@ dependencies {
 //ccp
     //ccp
     implementation 'com.github.joielechong:countrycodepicker:2.3.0'
+    implementation project(':unity-ads')
  }
 repositories {
     mavenCentral()

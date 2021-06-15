@@ -10,6 +10,7 @@ import android.content.SharedPreferences
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Base64
@@ -32,13 +33,22 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.iid.FirebaseInstanceId
+import com.unity3d.ads.IUnityAdsInitializationListener
+import com.unity3d.ads.IUnityAdsListener
+import com.unity3d.ads.UnityAds
+import com.unity3d.ads.metadata.MediationMetaData
+import com.unity3d.ads.metadata.MetaData
+import com.unity3d.ads.metadata.PlayerMetaData
+import com.unity3d.services.core.webview.WebView
 import snow.app.eduhub.ui.LoginActivity
+import snow.app.eduhub.ui.fragments.HomeFragment
+import snow.app.eduhub.ui.fragments.HomeFragment.Companion.ordinal
 import snow.app.eduhub.viewmodels.BaseViewModel
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
 
-open class BaseActivity : AppCompatActivity(), DialogInterface.OnDismissListener  {
+open class BaseActivity : AppCompatActivity(), DialogInterface.OnDismissListener{
     val RC_SIGN_IN = 1
     lateinit var viewModell: BaseViewModel
     var callbackManager: CallbackManager? = null
@@ -132,7 +142,7 @@ open class BaseActivity : AppCompatActivity(), DialogInterface.OnDismissListener
         getDeviceToken()
 //google login init
         googleLoginInit()
-
+//initAds()
         //  getFacebookLoginHash()
 
     }
@@ -402,4 +412,5 @@ open class BaseActivity : AppCompatActivity(), DialogInterface.OnDismissListener
 
             })
     }
+
 }

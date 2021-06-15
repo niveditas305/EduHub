@@ -2,8 +2,6 @@ package snow.app.eduhub.ui.fragments
 
 import android.app.ProgressDialog
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,15 +13,14 @@ import snow.app.eduhub.R
 import snow.app.eduhub.databinding.FragmentStudyGuideBinding
 import snow.app.eduhub.ui.adapter.StudyGuidePdfAdapter
 import snow.app.eduhub.ui.adapter.StudyGuideVideoAdapter
-import snow.app.eduhub.ui.adapter.TopicVideosAdapter
 import snow.app.eduhub.ui.adapter.WorksheetAdapter
 import snow.app.eduhub.ui.network.responses.getstudyguild.Data
 import snow.app.eduhub.util.BaseFragment
-import snow.app.eduhub.viewmodels.ProfileViewModel
+import snow.app.eduhub.util.PdfClickInterface
 import snow.app.eduhub.viewmodels.StudyGuideVm
 
 
-class StudyGuideFragment : BaseFragment() {
+class StudyGuideFragment : BaseFragment(),PdfClickInterface {
     lateinit var rv_all: RecyclerView
     lateinit var viewModel: StudyGuideVm
     lateinit var binding: FragmentStudyGuideBinding
@@ -96,7 +93,7 @@ class StudyGuideFragment : BaseFragment() {
         val linearLayoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         binding.rvVideos.layoutManager = linearLayoutManager
-        val tutorialsAdapter = StudyGuideVideoAdapter(requireContext(), studyguideList)
+        val tutorialsAdapter = StudyGuideVideoAdapter(requireContext(), studyguideList,this)
         binding.rvVideos.adapter = tutorialsAdapter
 
     }
@@ -105,9 +102,13 @@ class StudyGuideFragment : BaseFragment() {
     fun setpdfAdapter(studyguideList: ArrayList<Data>) {
         val linearLayoutManager_worksheet = LinearLayoutManager(requireContext())
         binding.rvChapters.layoutManager = linearLayoutManager_worksheet
-        val worksheetAdapter = StudyGuidePdfAdapter(requireContext(), studyguideList)
+        val worksheetAdapter = StudyGuidePdfAdapter(requireContext(), studyguideList,this)
         binding.rvChapters.adapter = worksheetAdapter
 
+
+    }
+
+    override fun onSubmitClick(url: String, s: String) {
 
     }
 

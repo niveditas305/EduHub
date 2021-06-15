@@ -31,6 +31,10 @@ import com.skydoves.powermenu.MenuAnimation
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
+import com.unity3d.ads.UnityAds
+import com.unity3d.ads.metadata.MediationMetaData
+import com.unity3d.ads.metadata.MetaData
+import com.unity3d.ads.metadata.PlayerMetaData
 import kotlinx.android.synthetic.main.activity_topic_clicks.*
 import snow.app.eduhub.databinding.ActivityContinueDetailBinding
 import snow.app.eduhub.databinding.ActivityTopicClickScreenBinding
@@ -39,6 +43,7 @@ import snow.app.eduhub.databinding.CompleteChapterDialogBinding
 import snow.app.eduhub.network.responses.grades.Data
 import snow.app.eduhub.ui.adapter.TopicVideosAdapter
 import snow.app.eduhub.ui.adapter.WorksheetAdapter
+import snow.app.eduhub.ui.fragments.HomeFragment
 import snow.app.eduhub.util.BaseActivity
 import snow.app.eduhub.viewmodels.ChaptersVM
 import snow.app.eduhub.viewmodels.TopicclickVm
@@ -59,6 +64,8 @@ class TopicClicks : BaseActivity() {
         viewModel = TopicclickVm(getUserToken())
         binding.viewModel = viewModel
         binding.executePendingBindings()
+
+
 
         binding.ivBack.setOnClickListener {
             onBackPressed()

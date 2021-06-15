@@ -1,26 +1,21 @@
 package snow.app.eduhub.ui.adapter
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.makeramen.roundedimageview.RoundedImageView
-import snow.app.eduhub.MainActivity
 import snow.app.eduhub.R
 import snow.app.eduhub.ui.StudyGuideActivity
-import snow.app.eduhub.ui.TopicClicks
 import snow.app.eduhub.ui.network.responses.getstudyguild.Data
-import snow.app.eduhub.ui.network.responses.topicdetailsres.Worksheet
 import snow.app.eduhub.util.AppUtils
 import snow.app.eduhub.util.AppUtils.*
+import snow.app.eduhub.util.PdfClickInterface
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,7 +24,8 @@ import kotlin.collections.ArrayList
 
 class StudyGuidePdfAdapter(
     var contxt: Context,
-    var all_pdfs: ArrayList<Data>
+    var all_pdfs: ArrayList<Data>,
+    val pdfListenr: PdfClickInterface
 ) :
     RecyclerView.Adapter<StudyGuidePdfAdapter.MyViewHolder>() {
     var data: List<String> = ArrayList()
@@ -83,8 +79,20 @@ class StudyGuidePdfAdapter(
 
          holder.rv_parent.setOnClickListener {
             if ((contxt as StudyGuideActivity).isNetworkConnected()) {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.studyPdf))
-                contxt.startActivity(browserIntent)
+
+                pdfListenr.onSubmitClick(dataModel.studyPdf, "pdf")
+               /* val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.studyPdf))
+                contxt.startActivity(browserIntent)*/
+
+           /*     val playerMetaData = PlayerMetaData(contxt)
+                playerMetaData.setServerId("rikshot")
+                playerMetaData.commit()
+
+                val ordinalMetaData = MediationMetaData(contxt)
+                ordinalMetaData.setOrdinal(HomeFragment.ordinal++)
+                ordinalMetaData.commit()*/
+
+
             } else {
                 Toast.makeText(contxt, "Please check your internet connection!", Toast.LENGTH_SHORT)
                     .show()
