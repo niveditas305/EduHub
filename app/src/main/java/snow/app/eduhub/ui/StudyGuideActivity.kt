@@ -282,7 +282,7 @@ class StudyGuideActivity : BaseActivity(), IUnityAdsListener, PdfClickInterface 
                             studyguidePdfList.add(it.data.get(i))
                         }
 
-                        if (!it.data.get(i).videoPath.isEmpty()) {
+                        if (!it.data.get(i).videoPath.isNullOrEmpty()) {
                             studyguideVideoList.add(it.data.get(i))
                         }
 
