@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import snow.app.eduhub.MainActivity
 import snow.app.eduhub.R
 import snow.app.eduhub.ui.SelectGrade
 import snow.app.eduhub.ui.TeacherListingScreen
@@ -50,9 +52,14 @@ class SubjectsAdapter(var contxt: Context, var list: List<Subject>) :
             intent.putExtra("subjectname", item.subjectName.toString())
             intent.putExtra("subjectid", item.id.toString())
             contxt.startActivity(intent)*/
-
             var intent = Intent(contxt, SelectGrade::class.java)
-              contxt.startActivity(intent)
+             intent.putExtra("subject_id", item.id.toString())
+            contxt.startActivity(intent)
+
+         /*   (contxt as MainActivity).showToast("sub id--"+item.id)
+            var intent = Intent(contxt, SelectGrade::class.java).putExtra("subject_id "
+                ,list.get(position).id.toString())
+              contxt.startActivity(intent)*/
         }
 
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -40,117 +40,173 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:gravity="center"
             android:fontFamily="@font/bold"
-            android:text="Study Guide"
+            android:text="@string/explanation_videos_study_guides"
             android:textColor="@color/white"
-            android:textSize="@dimen/text17" />
+            android:textSize="@dimen/text_15" />
 
 
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llSearch"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/tool_layout"
-        android:layout_margin="@dimen/padding_10"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:background="@drawable/rect_ed_stroke"
+        android:backgroundTint="@color/colorPrimary"
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/ed_search_home"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:orientation="horizontal">
+            android:background="@android:color/transparent"
+            android:cursorVisible="true"
+            android:fontFamily="@font/regular"
+            android:gravity="center_vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:hint="Search..."
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            app:layout_constraintRight_toLeftOf="@+id/iv_Search_home"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_14sdp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/iv_Search_home"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/search" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/llSearch"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_margin="@dimen/padding_10"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bold"
+                    android:text="Explanation Videos"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text17" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_videos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="@dimen/padding_10" />
+
+                <TextView
+                    android:id="@+id/no_record_found"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:fontFamily="@font/bold"
+                    android:text="@string/no_record_found"
+                    android:textSize="@dimen/text_15"
+                    android:visibility="invisible" />
+            </RelativeLayout>
 
             <TextView
+                android:id="@+id/tv_loadmore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/padding_10"
+
+                android:layout_marginTop="@dimen/padding_10"
+                android:background="@drawable/round_ed_stroke_grey"
+                android:fontFamily="@font/regular"
+                android:paddingLeft="@dimen/_30sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingRight="@dimen/_30sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:text="Load more"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text17"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:fontFamily="@font/bold"
-                android:text="Explanation Videos"
+                android:text="Study Guides"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text17" />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_chapters"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+android:nestedScrollingEnabled="false"
+                    android:layout_marginTop="@dimen/padding_10" />
+
+                <TextView
+                    android:id="@+id/tv_no_record_found"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:fontFamily="@font/bold"
+                    android:text="@string/no_record_found"
+                    android:textSize="@dimen/text_15"
+                    android:visibility="invisible" />
+
+
+            </RelativeLayout>
 
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_videos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginTop="@dimen/padding_10" />
-
-            <TextView
-                android:id="@+id/no_record_found"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="@dimen/_50sdp"
-                android:fontFamily="@font/bold"
-                android:text="@string/no_record_found"
-                android:textSize="@dimen/text_15"
-                android:visibility="invisible" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tv_loadmore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/padding_10"
-
-            android:layout_marginTop="@dimen/padding_10"
-            android:background="@drawable/round_ed_stroke_grey"
-            android:fontFamily="@font/regular"
-            android:paddingLeft="@dimen/_30sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingRight="@dimen/_30sdp"
-            android:paddingBottom="@dimen/_10sdp"
-            android:text="Load more"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text17"
-            android:visibility="gone" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:fontFamily="@font/bold"
-            android:text="Study Guide"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text17" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_chapters"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginTop="@dimen/padding_10" />
-
-            <TextView
-                android:id="@+id/tv_no_record_found"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="@dimen/_50sdp"
-                android:fontFamily="@font/bold"
-                android:text="@string/no_record_found"
-                android:textSize="@dimen/text_15"
-                android:visibility="invisible" />
-
-
-        </RelativeLayout>
-
-    </LinearLayout>
 
 
 </RelativeLayout>

@@ -7,11 +7,11 @@ data class Subject(
     @SerializedName("created_at")
     val createdAt: String,
     @SerializedName("id")
-    val id: Int,
+    val id: String,
     @SerializedName("school_class_id")
-    val schoolClassId: Int,
+    val schoolClassId: String,
     @SerializedName("status")
-    val status: Int,
+    val status: String,
     @SerializedName("subject_image")
     val subjectImage: String,
     @SerializedName("subject_name")

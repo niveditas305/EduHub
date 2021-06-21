@@ -38,7 +38,7 @@
                 android:fontFamily="@font/bold"
                 android:text="Worksheets"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text17" />
+                android:textSize="@dimen/text_15" />
 
 
         </androidx.appcompat.widget.Toolbar>

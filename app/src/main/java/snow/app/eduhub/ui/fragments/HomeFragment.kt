@@ -80,10 +80,11 @@ class HomeFragment : BaseFragment(), LikeDislikeListener,
     var bannersList: ArrayList<Banner> = ArrayList()
     var viewModel: HomeViewModel? = null
     lateinit var binding: FragmentHome2Binding
-    companion object{
-        var interstitialPlacementId: String?=""
+
+    companion object {
+        var interstitialPlacementId: String? = ""
         var ordinal = 1
-        var mContextt:Activity?=null;
+        var mContextt: Activity? = null;
         fun playVideoAd() {
             val playerMetaData = PlayerMetaData(mContextt)
             playerMetaData.setServerId("rikshot")
@@ -93,9 +94,10 @@ class HomeFragment : BaseFragment(), LikeDislikeListener,
             ordinalMetaData.setOrdinal(ordinal++)
             ordinalMetaData.commit()
 
-            UnityAds.show(mContextt , "Interstitial_Android")
+            UnityAds.show(mContextt, "Interstitial_Android")
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -109,8 +111,8 @@ class HomeFragment : BaseFragment(), LikeDislikeListener,
         dialog.setMessage("Please wait...")
         dialog.setCancelable(false)
         viewModell = BaseViewModel()
-        mContextt= context as Activity?
-initAds()
+        mContextt = context as Activity?
+        initAds()
         viewModel?.isLoading?.observe(requireActivity(), Observer {
             if (it) {
                 dialog.show()
@@ -129,16 +131,16 @@ initAds()
 
 
         binding.ivBanner.setOnClickListener {
-      /*      if ( bannerShowing) {
-                UnityBanners.destroy()
+            /*      if ( bannerShowing) {
+                      UnityBanners.destroy()
 
-                 bannerShowing = false
-            } else {
-                UnityBanners.setBannerPosition(BannerPosition.BOTTOM_CENTER)
-                UnityBanners.setBannerListener(this)
-                UnityBanners.loadBanner(activity, "Banner_Android")
-            }
-*/
+                       bannerShowing = false
+                  } else {
+                      UnityBanners.setBannerPosition(BannerPosition.BOTTOM_CENTER)
+                      UnityBanners.setBannerListener(this)
+                      UnityBanners.loadBanner(activity, "Banner_Android")
+                  }
+      */
 
         }
         binding.tvMainTwo.setOnClickListener {
@@ -316,16 +318,14 @@ initAds()
     }
 
 
-
-
     fun initAds() {
-        if(SdkProperties.isInitialized()) {
+        if (SdkProperties.isInitialized()) {
             Sdk.reinitialize(null)
         }
         val preferences =
             requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE)
         //gameIdEdit.setText(preferences.getString("gameId", defaultGameId))
-      //  testModeCheckBox.setChecked(true)
+        //  testModeCheckBox.setChecked(true)
 
         if (Build.VERSION.SDK_INT >= 19) {
             WebView.setWebContentsDebuggingEnabled(true)
@@ -365,14 +365,14 @@ initAds()
             false,
             object : IUnityAdsInitializationListener {
                 override fun onInitializationComplete() {
-                    Log.e("Unity status","Initialization Complete")
+                    Log.e("Unity status", "Initialization Complete")
                 }
 
                 override fun onInitializationFailed(
                     error: UnityAdsInitializationError,
                     message: String
                 ) {
-                    Log.e("Unity status","Initialization  --"+ message)
+                    Log.e("Unity status", "Initialization  --" + message)
                 }
             })
 
@@ -423,7 +423,7 @@ initAds()
 
     override fun onDetach() {
         super.onDetach()
-
+        UnityBanners.destroy()
         mmContext = null
     }
 
@@ -442,62 +442,61 @@ initAds()
     override fun onUnityAdsReady(zoneId: String?) {
         Utilities.runOnUiThread {
 
-if(zoneId.equals("Banner_Android"))
-{
-  /*  UnityBanners.setBannerPosition(BannerPosition.BOTTOM_CENTER)
-    UnityBanners.setBannerListener(this)
-    UnityBanners.loadBanner(activity, zoneId)*/
+            if (zoneId.equals("Banner_Android")) {
+                /*  UnityBanners.setBannerPosition(BannerPosition.BOTTOM_CENTER)
+                  UnityBanners.setBannerListener(this)
+                  UnityBanners.loadBanner(activity, zoneId)*/
 //    UnityBanners.destroy()
-    UnityBanners.setBannerPosition(BannerPosition.BOTTOM_CENTER)
-    UnityBanners.setBannerListener(this)
-    UnityBanners.loadBanner(activity, "Banner_Android")
-}
-if(zoneId.equals("Interstitial_Android"))
-{
-     interstitialPlacementId = zoneId
- /*   val playerMetaData = PlayerMetaData(activity)
-    playerMetaData.setServerId("rikshot")
-    playerMetaData.commit()
+                UnityBanners.setBannerPosition(BannerPosition.BOTTOM_CENTER)
+                UnityBanners.setBannerListener(this)
+                UnityBanners.loadBanner(activityy, "Banner_Android")
+            }
+            if (zoneId.equals("Interstitial_Android")) {
+                interstitialPlacementId = zoneId
+                /*   val playerMetaData = PlayerMetaData(activity)
+                   playerMetaData.setServerId("rikshot")
+                   playerMetaData.commit()
 
-    val ordinalMetaData = MediationMetaData(activity)
-    ordinalMetaData.setOrdinal(ordinal++)
-    ordinalMetaData.commit()
+                   val ordinalMetaData = MediationMetaData(activity)
+                   ordinalMetaData.setOrdinal(ordinal++)
+                   ordinalMetaData.commit()
 
-    UnityAds.show(activity, interstitialPlacementId) */
+                   UnityAds.show(activity, interstitialPlacementId) */
 //    UnityBanners.destroy()
 /*    UnityBanners.setBannerPosition(BannerPosition.BOTTOM_CENTER)
     UnityBanners.setBannerListener(this)
     UnityBanners.loadBanner(activity, "Banner_Android")*/
-}
-            Log.e("ready","--"+ zoneId)
+            }
+            Log.e("ready", "--" + zoneId)
             // look for various default placement ids over time
         }
-            when (zoneId) {
-                "video", "defaultZone", "defaultVideoAndPictureZone" -> {
-                    interstitialPlacementId = zoneId
-                    val playerMetaData = PlayerMetaData(activity)
-                    playerMetaData.setServerId("rikshot")
-                    playerMetaData.commit()
+        when (zoneId) {
+            "video", "defaultZone", "defaultVideoAndPictureZone" -> {
+                interstitialPlacementId = zoneId
+                val playerMetaData = PlayerMetaData(activity)
+                playerMetaData.setServerId("rikshot")
+                playerMetaData.commit()
 
-                    val ordinalMetaData = MediationMetaData(activity)
-                    ordinalMetaData.setOrdinal(ordinal++)
-                    ordinalMetaData.commit()
+                val ordinalMetaData = MediationMetaData(activity)
+                ordinalMetaData.setOrdinal(ordinal++)
+                ordinalMetaData.commit()
 
-                    UnityAds.show(activity, interstitialPlacementId)
-                   // enableButton(interstitialButton)
-                }
-                "rewardedVideo", "rewardedVideoZone", "incentivizedZone" -> {
-                   // incentivizedPlacementId = zoneId
-                 //   enableButton(incentivizedButton)
-                }
+                UnityAds.show(activity, interstitialPlacementId)
+                // enableButton(interstitialButton)
             }
+            "rewardedVideo", "rewardedVideoZone", "incentivizedZone" -> {
+                // incentivizedPlacementId = zoneId
+                //   enableButton(incentivizedButton)
+            }
+        }
 
 
-      //  toast("Ready", zoneId)
+        //  toast("Ready", zoneId)
     }
 
+
     override fun onUnityBannerLoaded(placementId: String?, view: View?) {
-Log.e("banner ","--"+placementId)
+        Log.e("banner ", "--" + placementId)
         Utilities.runOnUiThread {
             if (view != null) {
                 if (view.getParent() != null) {
@@ -506,7 +505,7 @@ Log.e("banner ","--"+placementId)
                     } // <- fix
                 }
             }
-                activity?.addContentView(view, view?.layoutParams)
+            activity?.addContentView(view, view?.layoutParams)
 
         }
     }
@@ -529,5 +528,10 @@ Log.e("banner ","--"+placementId)
 
     override fun onUnityBannerUnloaded(placementId: String?) {
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        UnityBanners.destroy()
     }
 }

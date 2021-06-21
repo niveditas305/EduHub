@@ -16,10 +16,7 @@ import snow.app.eduhub.MainActivity
 import snow.app.eduhub.QuestionPaperPdfs
 
 import snow.app.eduhub.R
-import snow.app.eduhub.ui.ChapterFurtherClick
-import snow.app.eduhub.ui.ContinueDetails
-import snow.app.eduhub.ui.TestListActivity
-import snow.app.eduhub.ui.TopicClicks
+import snow.app.eduhub.ui.*
 import snow.app.eduhub.ui.network.responses.fetchnotficationres.Data
 
 
@@ -97,15 +94,23 @@ class NotificationListAdapter(
             } else if (arrayList.get(position).notificationType == 7) {//1= new question paper
 
                 val intent: Intent = Intent(context, QuestionPaperPdfs::class.java)
-                intent.putExtra("past_question_category_id", arrayList.get(position).pastQuestionCategoryId.toString())
-                intent.putExtra("past_question_category_name", arrayList.get(position).pastQuestionCategoryName.toString())
+             //   intent.putExtra("past_question_category_id", arrayList.get(position).pastQuestionCategoryId.toString())
+             //   intent.putExtra("past_question_category_name", arrayList.get(position).pastQuestionCategoryName.toString())
                 intent.putExtra("subject_id", arrayList.get(position).subjectId.toString())
+                intent.putExtra("class_id", arrayList.get(position).class_id.toString())
                 context.startActivity(intent)
 
             } else if (arrayList.get(position).notificationType == 8) {//1= chat
 
                 val intent: Intent = Intent(context, MainActivity::class.java)
                 intent.putExtra("chat", "from")
+                context.startActivity(intent)
+
+            }  else if (arrayList.get(position).notificationType == 11) {//1= chat
+
+                val intent: Intent = Intent(context, StudyGuideActivity::class.java)
+                intent.putExtra("gradeid", arrayList.get(position).class_id.toString())
+                intent.putExtra("subject_id", arrayList.get(position).subjectId.toString())
                 context.startActivity(intent)
 
             } else {
@@ -166,21 +171,29 @@ class NotificationListAdapter(
                 intent.putExtra("subjectid", arrayList.get(position).subjectId.toString())
                 context.startActivity(intent)
 
-            } else if (arrayList.get(position).notificationType == 7) {//1= new question paper
+            }else if (arrayList.get(position).notificationType == 7) {//1= new question paper
 
                 val intent: Intent = Intent(context, QuestionPaperPdfs::class.java)
-                intent.putExtra("past_question_category_id", arrayList.get(position).pastQuestionCategoryId.toString())
-                intent.putExtra("past_question_category_name", arrayList.get(position).pastQuestionCategoryName.toString())
+                //   intent.putExtra("past_question_category_id", arrayList.get(position).pastQuestionCategoryId.toString())
+                //   intent.putExtra("past_question_category_name", arrayList.get(position).pastQuestionCategoryName.toString())
                 intent.putExtra("subject_id", arrayList.get(position).subjectId.toString())
+                intent.putExtra("class_id", arrayList.get(position).class_id.toString())
                 context.startActivity(intent)
 
-            } else if (arrayList.get(position).notificationType == 8) {//1= chat
+            }  else if (arrayList.get(position).notificationType == 8) {//1= chat
 
                 val intent: Intent = Intent(context, MainActivity::class.java)
                 intent.putExtra("chat", "from")
                 context.startActivity(intent)
 
-            } else {
+            }else if (arrayList.get(position).notificationType == 11) {//1= chat
+
+                val intent: Intent = Intent(context, StudyGuideActivity::class.java)
+                intent.putExtra("gradeid", arrayList.get(position).class_id.toString())
+                intent.putExtra("subject_id", arrayList.get(position).subjectId.toString())
+                context.startActivity(intent)
+
+            }  else {
                 val intent: Intent = Intent(context, MainActivity::class.java)
                 context.startActivity(intent)
             }

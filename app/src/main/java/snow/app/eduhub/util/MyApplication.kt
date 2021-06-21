@@ -29,7 +29,7 @@ class MyApplication : Application() {
                      Log.e("Unity status","Initialization  --"+ message)
                  }
              })*/
-         MobileAds.initialize(this) {}
+       //  MobileAds.initialize(this) {}
    }
 
 

@@ -47,9 +47,14 @@ class QuestionbankcategoryVm(var devicetoken :String): BaseViewModel(){
 
 
 
-    fun fetchQuestionPprCat(){
+    fun fetchQuestionPprCat(class_id:String,subjectid:String){
+        var map: HashMap<String, String> = HashMap<String, String>()
+        map.put("class_id",class_id)
+        map.put("subject_id",subjectid)
+
+
         isLoading.postValue(true)
-        repoModel.fetchQuestionPprCat(onDataReadyCallback,devicetoken)
+        repoModel.fetchQuestionPprCat(onDataReadyCallback,devicetoken,map)
 
     }
 

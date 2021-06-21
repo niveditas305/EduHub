@@ -12,8 +12,12 @@ data class Data(
     val description: String,
     @SerializedName("id")
     val id: Int,
+    @SerializedName("pdf_description")
+    val pdfDescription: String,
     @SerializedName("pdf_icon")
     val pdfIcon: String,
+    @SerializedName("pdf_title")
+    val pdfTitle: String,
     @SerializedName("school_class_id")
     val schoolClassId: Int,
     @SerializedName("status")
@@ -35,5 +39,5 @@ data class Data(
     @SerializedName("video_thumbnail")
     val videoThumbnail: String,
     @SerializedName("video_type")
-    val videoType: Int
+    val videoType: String
 )

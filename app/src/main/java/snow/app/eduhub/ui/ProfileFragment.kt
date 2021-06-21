@@ -40,7 +40,6 @@ import kotlin.collections.HashMap
 
 
 class ProfileFragment : BaseFragment() {
-
     lateinit var viewModel: ProfileViewModel
     lateinit var binding: FragmentProfileBinding
     lateinit var powerMenu: PowerMenu

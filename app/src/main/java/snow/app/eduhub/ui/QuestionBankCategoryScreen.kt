@@ -91,11 +91,17 @@ class QuestionBankCategoryScreen : BaseActivity() {
 
 
 
-        if (isNetworkConnected()) {
-            viewModel.fetchQuestionPprCat()
-        } else {
-            showInternetToast()
+        if (intent.hasExtra("subject_id")){
+            if (isNetworkConnected()) {
+                viewModel.fetchQuestionPprCat(intent.getStringExtra("class_id").toString(),
+                    intent.getStringExtra("subject_id").toString())
+            } else {
+                showInternetToast()
+            }
         }
+
+
+
 
     }
 }

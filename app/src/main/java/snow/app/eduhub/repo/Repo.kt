@@ -42,6 +42,7 @@ import snow.app.eduhub.ui.network.responses.pastquestions.PastQuestionPpr
 import snow.app.eduhub.ui.network.responses.scoreres.ScoreRes
 import snow.app.eduhub.ui.network.responses.searchres.SearchRes
 import snow.app.eduhub.ui.network.responses.signup.SignupRes
+import snow.app.eduhub.ui.network.responses.subjectsres.SubjectRes
 import snow.app.eduhub.ui.network.responses.submitans.SubmitAnsRes
 import snow.app.eduhub.ui.network.responses.teachersprofile.TeachersProfileRes
 import snow.app.eduhub.ui.network.responses.testlistres.TestListRes
@@ -732,7 +733,7 @@ fun submitAns(
         onDataReadyCallback: OnDataReadyCallback,token: String, map: HashMap<String, String>
     ) {
 
-        apiService.getStudyGuide(token,map)
+        apiService.getStudyGuide(token,map.get("subject_id"),map.get("search_key"),map.get("class_id"))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : Observer<StudyGuideRes> {
@@ -751,7 +752,7 @@ fun submitAns(
                 override fun onError(e: Throwable) {
                     onDataReadyCallback.onDataReady(null, true)
 
-                    Log.e("error in login--", "--" + e.toString())
+                    Log.e("error in study--", "--" + e.toString())
 
                 }
             })
@@ -830,6 +831,37 @@ fun submitAns(
             .subscribeWith(object : Observer<SubjectList> {
 
                 override fun onNext(data: SubjectList) {
+                    onDataReadyCallback.onDataReady(data, false)
+                }
+
+                override fun onComplete() {
+
+                }
+
+                override fun onSubscribe(d: Disposable) {
+                }
+
+                override fun onError(e: Throwable) {
+                    onDataReadyCallback.onDataReady(null, true)
+
+                    Log.e("error in login--", "--" + e.toString())
+
+                }
+            })
+
+    }
+
+    fun getSubjectByClass(
+        onDataReadyCallback: OnDataReadyCallback
+        , token: String, map: HashMap<String, String>
+    ) {
+
+        apiService.getSubjectByClass(token,map.get("class_id"))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : Observer<GetSubjectByGrade> {
+
+                override fun onNext(data: GetSubjectByGrade) {
                     onDataReadyCallback.onDataReady(data, false)
                 }
 
@@ -945,10 +977,10 @@ fun submitAns(
 
     fun fetchQuestionPprCat(
         onDataReadyCallback: OnDataReadyCallback,
-        token: String
+        token: String, map: HashMap<String, String>
     ) {
 
-        apiService.fetchQuepprCat(token)
+        apiService.fetchQuepprCat(token,map)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : Observer<FetchQuestionPprCategoryRes> {
@@ -1520,7 +1552,8 @@ fun submitAns(
         token: String, map: HashMap<String, String>
     ) {
 
-        apiService.fetchPastQuestionpprs(token, map)
+        apiService.fetchPastQuestionpprs(token, map.get("subject_id"),
+           /* map.get("past_question_category_id"),*/map.get("class_id"))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : Observer<PastQuestionPpr> {

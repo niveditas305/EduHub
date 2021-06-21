@@ -19,7 +19,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-        <activity android:name=".ui.StudyGuideActivity"></activity>
+        <activity android:name=".ui.SubjectActivity"></activity>
+        <activity android:name=".ui.StudyGuideActivity" />
         <activity android:name=".ui.SelectGrade" />
         <activity android:name=".ui.NotificationScreen" />
         <activity android:name=".ui.TestListActivity" />

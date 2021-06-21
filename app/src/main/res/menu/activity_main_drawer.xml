@@ -17,7 +17,7 @@
         <item
             android:id="@+id/learn"
             android:icon="@drawable/ic_lesson"
-            android:title="Study Guide" />
+            android:title="@string/study_guide_videos" />
 
 
         <!--<item

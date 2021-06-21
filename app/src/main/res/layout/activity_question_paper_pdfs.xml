@@ -32,9 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bold"
-            android:text="Question Papers"
+            android:text="Past Question Papers"
             android:textColor="@color/white"
-            android:textSize="@dimen/text17" />
+            android:textSize="@dimen/text_15" />
 
 
     </androidx.appcompat.widget.Toolbar>

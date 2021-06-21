@@ -2,11 +2,9 @@ package snow.app.eduhub.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import snow.app.eduhub.network.responses.about.AboutData
 import snow.app.eduhub.repo.OnDataReadyCallback
 import snow.app.eduhub.ui.network.responses.getstudyguild.StudyGuideRes
 import snow.app.eduhub.util.AlertModel
-import java.util.*
 import kotlin.collections.HashMap
 
 
@@ -31,16 +29,18 @@ class StudyGuideVm(var devicetoken:String) : BaseViewModel() {
                 }
             } else {
                 isError.postValue(AlertModel("Something went wrong.", true));
-                Log.e("status", "ee");
+
             }
 
         }
     }
 
 
-    fun getStudyGuide(class_id: String) {
-        val map: HashMap<String, String> = HashMap<String, String>()
+    fun getStudyGuide(class_id: String,subject_id :String,search_key :String) {
+        var map: HashMap<String, String> = HashMap<String, String>()
+        map.put("search_key",search_key)
         map.put("class_id",class_id)
+        map.put("subject_id",subject_id )
         isLoading.postValue(true)
         repoModel.getStudyGuide(onDataReadyCallback,devicetoken,map)
 

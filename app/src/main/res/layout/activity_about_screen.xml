@@ -32,7 +32,7 @@
             android:fontFamily="@font/regular"
             android:text="About Us"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_19" />
+            android:textSize="@dimen/text_15" />
     </androidx.appcompat.widget.Toolbar>
     <ScrollView
         android:layout_width="match_parent"

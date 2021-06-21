@@ -15,7 +15,7 @@ import snow.app.eduhub.util.AppUtils
 import snow.app.eduhub.util.PdfClickInterface
 
 
-class StudyGuideVideoAdapter(var contxt: Context, var list: List<Data> ,
+class StudyGuideVideoAdapter(var contxt: Context, var list: List<Data>,
                              val pdfListenr: PdfClickInterface
 ) :
     RecyclerView.Adapter<StudyGuideVideoAdapter.MyViewHolder>() {

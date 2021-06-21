@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import snow.app.eduhub.R
 import snow.app.eduhub.ui.LessonListingScreen
+import snow.app.eduhub.ui.SelectGrade
 import snow.app.eduhub.ui.WorksheetListingScreen
 import snow.app.eduhub.ui.network.responses.fetchsubjectlist.Data
 import snow.app.eduhub.util.AppUtils
@@ -53,8 +54,10 @@ class SubjectListAdapter(var contxt: Context, var list: List<Data>,var from:Stri
         } */
 
         holder.container.setOnClickListener {
-
-            if(from.equals("lesson")){
+            var intent = Intent(contxt, SelectGrade::class.java)
+            intent.putExtra("subject_id", item.id.toString())
+            contxt.startActivity(intent)
+       /*     if(from.equals("lesson")){
                 var intent = Intent(contxt, LessonListingScreen::class.java)
                 intent.putExtra("subjectname", item.subjectName.toString())
                 intent.putExtra("subjectid", item.id.toString())
@@ -65,7 +68,7 @@ class SubjectListAdapter(var contxt: Context, var list: List<Data>,var from:Stri
                 intent.putExtra("subjectid", item.id.toString())
                 contxt.startActivity(intent)
             }
-
+*/
         }
 
     }

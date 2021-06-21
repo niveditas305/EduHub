@@ -1,5 +1,6 @@
 package snow.app.eduhub
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -17,9 +19,12 @@ import com.unity3d.ads.UnityAds
 import com.unity3d.ads.metadata.MediationMetaData
 import com.unity3d.ads.metadata.MetaData
 import com.unity3d.ads.metadata.PlayerMetaData
+import com.unity3d.services.banners.IUnityBannerListener
 import com.unity3d.services.banners.UnityBanners
 import com.unity3d.services.banners.view.BannerPosition
 import com.unity3d.services.core.api.Sdk
+import com.unity3d.services.core.misc.Utilities
+import com.unity3d.services.core.properties.SdkProperties
 import com.unity3d.services.core.webview.WebView
 import snow.app.eduhub.ui.adapter.WorksheetAdapter
 import kotlinx.android.synthetic.main.activity_question_paper_pdfs.*
@@ -34,7 +39,8 @@ import snow.app.eduhub.util.PdfClickInterface
 import snow.app.eduhub.viewmodels.PastQuestionpprpdfsVm
 import snow.app.eduhub.viewmodels.QuestionbankcategoryVm
 
-class QuestionPaperPdfs : BaseActivity(),PdfClickInterface, IUnityAdsListener {
+class QuestionPaperPdfs : BaseActivity(),PdfClickInterface, IUnityAdsListener ,
+    IUnityBannerListener {
 
     lateinit var viewModel: PastQuestionpprpdfsVm
     private val defaultGameId = "4169571"
@@ -43,28 +49,49 @@ class QuestionPaperPdfs : BaseActivity(),PdfClickInterface, IUnityAdsListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // setContentView(R.layout.activity_question_paper_pdfs)
-        binding =
-            DataBindingUtil.setContentView(this, R.layout.activity_question_paper_pdfs)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_question_paper_pdfs)
         binding.lifecycleOwner = this
         viewModel = PastQuestionpprpdfsVm(getUserToken())
         binding.viewModel = viewModel
         binding.executePendingBindings()
+        UnityBanners.destroy()
         Sdk.reinitialize(null)
         initAds()
-        //UnityBanners.destroy()
+
         binding.ivBack.setOnClickListener {
             onBackPressed()
         }
 
-        if (intent.hasExtra("past_question_category_id")) {
+        if (intent.hasExtra("subject_id")) {
 
             viewModel.subject_id.set(intent.getStringExtra("subject_id"))
-            viewModel.past_question_category_id.set(intent.getStringExtra("past_question_category_id"))
-            viewModel.past_question_category_name.set(intent.getStringExtra("past_question_category_name"))
+           // viewModel.past_question_category_id.set(intent.getStringExtra("past_question_category_id"))
+            //viewModel.past_question_category_name.set(intent.getStringExtra("past_question_category_name"))
 
-            binding.title.setText(intent.getStringExtra("past_question_category_name"))
+        //    binding.title.setText(intent.getStringExtra("past_question_category_name"))
+
+
+            if (isNetworkConnected()) {
+                viewModel.fetchPastQuestionpprs(intent.getStringExtra("class_id").toString(),
+                    intent.getStringExtra("subject_id").toString()
+            /*        ,intent.getStringExtra("past_question_category_id").toString()*/)
+            } else {
+                showInternetToast()
+            }
         }
+        viewModel.isLoading.observe(this, Observer {
+            if (it) {
+                dialog.show()
+            } else {
+                dialog.hide()
+            }
+        })
+        viewModel.isError.observe(this, Observer {
+            if (it.isError) {
+                showError(it.message, this);
+            }
 
+        })
 
         viewModel.respData.observe(this, Observer {
             Log.e("respData ", "login--")
@@ -97,12 +124,11 @@ class QuestionPaperPdfs : BaseActivity(),PdfClickInterface, IUnityAdsListener {
         })
 
 
-        if (isNetworkConnected()) {
-            viewModel.fetchPastQuestionpprs()
-        } else {
-            showInternetToast()
-        }
+
     }
+
+
+
 
     fun initAds() {
 
@@ -200,5 +226,108 @@ class QuestionPaperPdfs : BaseActivity(),PdfClickInterface, IUnityAdsListener {
           //  UnityBanners.setBannerListener(this)
             UnityBanners.loadBanner(this, "Banner_Android")
         }
+
+
+
+
+            //..................
+        Utilities.runOnUiThread {
+
+            if (zoneId.equals("Banner_Android")) {
+                /*  UnityBanners.setBannerPosition(BannerPosition.BOTTOM_CENTER)
+                  UnityBanners.setBannerListener(this)
+                  UnityBanners.loadBanner(activity, zoneId)*/
+//    UnityBanners.destroy()
+                UnityBanners.setBannerPosition(BannerPosition.BOTTOM_CENTER)
+                UnityBanners.setBannerListener(this)
+                UnityBanners.loadBanner(this, "Banner_Android")
+            }
+            if (zoneId.equals("Interstitial_Android")) {
+                HomeFragment.interstitialPlacementId = zoneId
+                /*   val playerMetaData = PlayerMetaData(activity)
+                   playerMetaData.setServerId("rikshot")
+                   playerMetaData.commit()
+
+                   val ordinalMetaData = MediationMetaData(activity)
+                   ordinalMetaData.setOrdinal(ordinal++)
+                   ordinalMetaData.commit()
+
+                   UnityAds.show(activity, interstitialPlacementId) */
+//    UnityBanners.destroy()
+/*    UnityBanners.setBannerPosition(BannerPosition.BOTTOM_CENTER)
+    UnityBanners.setBannerListener(this)
+    UnityBanners.loadBanner(activity, "Banner_Android")*/
+            }
+            Log.e("ready", "--" + zoneId)
+            // look for various default placement ids over time
+        }
+        when (zoneId) {
+            "video", "defaultZone", "defaultVideoAndPictureZone" -> {
+                HomeFragment.interstitialPlacementId = zoneId
+                val playerMetaData = PlayerMetaData(this)
+                playerMetaData.setServerId("rikshot")
+                playerMetaData.commit()
+
+                val ordinalMetaData = MediationMetaData(this)
+                ordinalMetaData.setOrdinal(HomeFragment.ordinal++)
+                ordinalMetaData.commit()
+
+                UnityAds.show(this, HomeFragment.interstitialPlacementId)
+                // enableButton(interstitialButton)
+            }
+            "rewardedVideo", "rewardedVideoZone", "incentivizedZone" -> {
+                // incentivizedPlacementId = zoneId
+                //   enableButton(incentivizedButton)
+            }
+        }
+
+
+        //  toast("Ready", zoneId)
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    override fun onUnityBannerLoaded(placementId: String?, view: View?) {
+        Log.e("banner ", "--" + placementId)
+        Utilities.runOnUiThread {
+            if (view != null) {
+                if (view.getParent() != null) {
+                    if (view != null) {
+                        (view.getParent() as ViewGroup).removeView(view)
+                    } // <- fix
+                }
+            }
+             addContentView(view, view?.layoutParams)
+
+        }
+    }
+
+    override fun onUnityBannerShow(placementId: String?) {
+     }
+
+    override fun onUnityBannerClick(placementId: String?) {
+     }
+
+    override fun onUnityBannerHide(placementId: String?) {
+     }
+
+    override fun onUnityBannerError(message: String?) {
+     }
+
+    override fun onUnityBannerUnloaded(placementId: String?) {
+     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        UnityBanners.destroy()
     }
 }

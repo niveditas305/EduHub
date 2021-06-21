@@ -32,7 +32,7 @@
             android:fontFamily="@font/bold"
             android:text="@string/terms_conditions"
             android:textColor="@color/white"
-            android:textSize="@dimen/text17" />
+            android:textSize="@dimen/text_15" />
     </androidx.appcompat.widget.Toolbar>
     <ScrollView
         android:layout_width="match_parent"

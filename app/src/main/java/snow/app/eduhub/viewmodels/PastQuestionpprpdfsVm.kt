@@ -57,14 +57,15 @@ class PastQuestionpprpdfsVm(var sessiontoken:String):BaseViewModel( ){
 
 
 
-    fun fetchPastQuestionpprs(){
+    fun fetchPastQuestionpprs(class_id:String,subject_id:String){
 
 
 
             val map : HashMap<String, String>
                     = HashMap<String, String> ()
-             map.put("past_question_category_id", past_question_category_id.get().toString())
-             map.put("subject_id",subject_id.get().toString())
+            /* map.put("past_question_category_id", catid)*/
+             map.put("subject_id",subject_id)
+             map.put("class_id",class_id)
 
             Log.e("map",map.toString())
             isLoading.postValue(true)

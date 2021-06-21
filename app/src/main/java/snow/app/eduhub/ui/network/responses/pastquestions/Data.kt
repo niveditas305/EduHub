@@ -16,6 +16,8 @@ data class Data(
     val questionDescription: String,
     @SerializedName("question_name")
     val questionName: String,
+    @SerializedName("question_thumbnail")
+    val question_thumbnail: String,
     @SerializedName("question_pdf")
     val questionPdf: String,
     @SerializedName("answer_pdf")

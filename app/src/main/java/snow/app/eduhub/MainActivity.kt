@@ -30,6 +30,7 @@ import snow.app.eduhub.repo.Repo
 import snow.app.eduhub.ui.NotificationScreen
 import snow.app.eduhub.ui.ProfileFragment
 import snow.app.eduhub.ui.SelectGrade
+import snow.app.eduhub.ui.SubjectActivity
 import snow.app.eduhub.ui.adapter.HomeTopPickAdapter
 import snow.app.eduhub.ui.fragments.*
 import snow.app.eduhub.ui.network.responses.NotificationCountRes
@@ -281,11 +282,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
               }*/
 
             R.id.learn -> {
-                startActivity(Intent(this, SelectGrade::class.java))
 
-                /*  tv_heading.setText("Study Guide")
-                  loadFragment(LearnFragment("Study Guide"), "")
-  */
+
+             // tv_heading.setText("Explanation Videos & Study Guides")
+              //    loadFragment(LearnFragment("Explanation Videos & Study Guides"), "")
+                startActivity(Intent(this, SelectGrade::class.java).putExtra("study","menu"))
             }
 
 
@@ -321,9 +322,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
              }*/
             R.id.question_bank -> {
-                tv_heading.setText("Past Question Papers")
-                loadFragment(PastSubjectFragment(), "")
-                //   startActivity(Intent(applicationContext, SettingsActivity::class.java))
+              //  tv_heading.setText("Past Question Papers")
+               // loadFragment(PastSubjectFragment(), "")
+                startActivity(Intent(applicationContext, SelectGrade::class.java).putExtra("from","main"))
 
             }
             /* R.id.favtutor -> {

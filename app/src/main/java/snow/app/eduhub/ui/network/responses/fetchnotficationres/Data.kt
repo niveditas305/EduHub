@@ -41,5 +41,7 @@ data class Data(
     @SerializedName("updated_at")
     val updatedAt: String ,
     @SerializedName("photo")
-    val photo: String
+    val photo: String,
+    @SerializedName("class_id")
+    val class_id: String
 )

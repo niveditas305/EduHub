@@ -36,7 +36,7 @@
             android:fontFamily="@font/bold"
             android:text="Test Summary"
             android:textColor="@color/white"
-            android:textSize="@dimen/text17" />
+            android:textSize="@dimen/text_15" />
 
 
     </androidx.appcompat.widget.Toolbar>

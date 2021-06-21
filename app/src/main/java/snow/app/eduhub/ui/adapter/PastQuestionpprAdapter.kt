@@ -7,13 +7,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import snow.app.eduhub.QuestionPaperPdfs
 import snow.app.eduhub.R
+import snow.app.eduhub.ui.StudyGuideActivity
 import snow.app.eduhub.ui.network.responses.pastquestions.Data
 import snow.app.eduhub.ui.network.responses.topicdetailsres.Worksheet
+import snow.app.eduhub.util.AppUtils
 import snow.app.eduhub.util.PdfClickInterface
 
 
@@ -47,11 +51,14 @@ class PastQuestionpprAdapter(
              holder.setViewModel(HomeRowVm())
              Log.e("onBindViewHolder", "data")*/
 
-        holder.tv_ans.setOnClickListener {
+
+
+        AppUtils.ImageWithGlide(holder.iv,dataModel.question_thumbnail)
+ /*       holder.tv_ans.setOnClickListener {
             if (topicClicks.isNetworkConnected()) {
                 pdfClickInterface.onSubmitClick(dataModel.answer_pdf,"pdf")
-              /*  val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.answer_pdf))
-                contxt.startActivity(browserIntent)*/
+              *//*  val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.answer_pdf))
+                contxt.startActivity(browserIntent)*//*
             } else {
                 Toast.makeText(contxt, "Please check your internet connection!", Toast.LENGTH_SHORT)
                     .show()
@@ -62,20 +69,32 @@ class PastQuestionpprAdapter(
         holder.tv_que.setOnClickListener {
             if (topicClicks.isNetworkConnected()) {
                 pdfClickInterface.onSubmitClick(dataModel.questionPdf,"pdf")
-               /* val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.questionPdf))
-                contxt.startActivity(browserIntent)*/
+               *//* val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.questionPdf))
+                contxt.startActivity(browserIntent)*//*
             } else {
                 Toast.makeText(contxt, "Please check your internet connection!", Toast.LENGTH_SHORT)
                     .show()
             }
 
 
+        }*/
+
+        holder.rv_parent.setOnClickListener {
+            if (topicClicks.isNetworkConnected()) {
+                pdfClickInterface.onSubmitClick(dataModel.questionPdf,"pdf")
+                /*  val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataModel.answer_pdf))
+                  contxt.startActivity(browserIntent)*/
+            } else {
+                Toast.makeText(contxt, "Please check your internet connection!", Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
 
+      //  holder.tv_class.setText("Class: " + dataModel.class_name + "th")
+     //   holder.tv_date.setText("Uploaded on: " + dataModel.date)
 
-        holder.tv_class.setText("Class: " + dataModel.class_name + "th")
-        holder.tv_date.setText("Uploaded on: " + dataModel.date)
-        holder.tv_subject.setText("Subject: " + dataModel.subjectName)
+      //  holder.tv_date.setText("Uploaded on: " + AppUtils.pdftime(dataModel.updatedAt))
+      //  holder.tv_subject.setText("Subject: " + dataModel.subjectName)
         /*   holder.tv_ans.setOnClickListener {
 
 
@@ -100,9 +119,11 @@ class PastQuestionpprAdapter(
         var tv_pdf_des: TextView = view!!.findViewById(R.id.pdf_des)
         var tv_ans: TextView = view!!.findViewById(R.id.tv_ans)
         var tv_que: TextView = view!!.findViewById(R.id.tv_que)
-        var tv_class: TextView = view!!.findViewById(R.id.tv_class)
-        var tv_subject: TextView = view!!.findViewById(R.id.tv_subject)
+ /*       var tv_class: TextView = view!!.findViewById(R.id.tv_class)
+        var tv_subject: TextView = view!!.findViewById(R.id.tv_subject)*/
         var tv_date: TextView = view!!.findViewById(R.id.tv_date)
+        var iv: ImageView = view!!.findViewById(R.id.iv)
+        var rv_parent: RelativeLayout = view!!.findViewById(R.id.rv_parent)
 
     }
 

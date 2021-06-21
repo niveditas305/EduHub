@@ -20,7 +20,8 @@ import Constants.Companion.GET_NOTI_COUNT
 import Constants.Companion.GET_STARTED_URL
 import Constants.Companion.GET_SUBJECT
 import Constants.Companion.GET_SUBJECTS_BY_ID
- import Constants.Companion.GET_TOP_PICK
+import Constants.Companion.GET_SUBJECT_BY_CLASSID
+import Constants.Companion.GET_TOP_PICK
 import Constants.Companion.GET_TOP_TEACHER
 import Constants.Companion.GET_UNIQUE_ID
 import Constants.Companion.GRADES_URL
@@ -98,6 +99,7 @@ import snow.app.eduhub.ui.network.responses.pastquestions.PastQuestionPpr
 import snow.app.eduhub.ui.network.responses.scoreres.ScoreRes
 import snow.app.eduhub.ui.network.responses.searchres.SearchRes
 import snow.app.eduhub.ui.network.responses.signup.SignupRes
+import snow.app.eduhub.ui.network.responses.subjectsres.SubjectRes
 import snow.app.eduhub.ui.network.responses.submitans.SubmitAnsRes
 import snow.app.eduhub.ui.network.responses.teachersprofile.TeachersProfileRes
 import snow.app.eduhub.ui.network.responses.testlistres.TestListRes
@@ -140,8 +142,19 @@ interface ApiService {
     @GET(ABOUT)
     fun fetchAboutData(): Observable<AboutData>
 
+    @FormUrlEncoded
     @POST(GET_GUIDE_LIST)
-    fun getStudyGuide(   @Header("Authorization") token: String,  @Body params: HashMap<String, String>): Observable<StudyGuideRes>
+    fun getStudyGuide(   @Header("Authorization") token: String,
+
+                         @Field("subject_id") subject_id: String?,
+                         @Field("search_key") search_key: String?,
+                         @Field("class_id") class_id: String?
+                      /*    @Body params: HashMap<String, String>*/): Observable<StudyGuideRes>
+
+    @FormUrlEncoded
+    @POST(GET_SUBJECT_BY_CLASSID)
+    fun getSubjectByClass(   @Header("Authorization") token: String,
+                             @Field("class_id") subject_id: String?): Observable<GetSubjectByGrade>
 
     @GET(ADMIN_DETAILS)
     fun fetchAdminDetails(@Header("Authorization") token: String): Observable<FetchAdminDetails>
@@ -207,8 +220,9 @@ interface ApiService {
     @GET(FAV_TEACHER_LIST)
     fun fetchFavTeachers(@Header("Authorization") token: String): Observable<FetchFavTeacherRes>
 
-    @GET(PAST_QUE_CATEGORY)
-    fun fetchQuepprCat(@Header("Authorization") token: String): Observable<FetchQuestionPprCategoryRes>
+    @POST(PAST_QUE_CATEGORY)
+    fun fetchQuepprCat(@Header("Authorization") token: String,
+                       @Body params: HashMap<String, String>): Observable<FetchQuestionPprCategoryRes>
 
     @POST(GET_TOP_TEACHER)
     fun fetchTopTeachers(
@@ -216,10 +230,16 @@ interface ApiService {
         @Body params: HashMap<String, String>
     ): Observable<FetchTeachersRes>
 
+
+
+    @FormUrlEncoded
     @POST(PAST_QUESTION_PPRS)
     fun fetchPastQuestionpprs(
         @Header("Authorization") token: String,
-        @Body params: HashMap<String, String>
+
+        @Field("subject_id") subject_id: String?,
+       /* @Field("past_question_category_id") past_question_category_id: String?,*/
+        @Field("class_id") class_id: String?
     ): Observable<PastQuestionPpr>
 
     @POST(SEARCH_API)

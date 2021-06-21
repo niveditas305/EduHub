@@ -42,13 +42,13 @@ class StudyGuidePdfAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
         var diff_miliseconds: Long = 0
         var api_time: Long = 0
         var show_time: Long = 0
+
         val dataModel = all_pdfs.get(position)
-        holder.tv_pdf_des.setText(dataModel.videoDescription)
-        holder.tv_pdfname.setText(dataModel.videoName)
+        holder.tv_pdf_des.setText(dataModel.pdfDescription)
+        holder.tv_pdfname.setText(dataModel.pdfTitle)
         /*  diff_miliseconds = getDifferenceBetweenDates(getCurrentDateTime(), dataModel.updatedAt)
           api_time = dataModel.worksheet_time * 60 * 60 * 1000
 
@@ -56,7 +56,7 @@ class StudyGuidePdfAdapter(
 
           show_time = api_time - diff_miliseconds*/
 
-        holder.tv_created_date.setText("Uploaded on: " + pdftime(dataModel.updatedAt))
+      //   holder.tv_created_date.setText("Uploaded on: " + pdftime(dataModel.updatedAt))
 
 
         /*     val dataModel = data[position]

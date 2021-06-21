@@ -43,8 +43,10 @@ class Constants {
         const val TEST_LIST="api/test/list"
         const val TEST_QUESTION_LIST="api/question/list"
         const val SUBMIT_ANS="api/question/submit"
-        const val PAST_QUE_CATEGORY="api/past/question/category/list"
-        const val PAST_QUESTION_PPRS="api/past/questions"
+      /*  const val PAST_QUE_CATEGORY="api/past/question/category/list"*/
+        const val PAST_QUE_CATEGORY="api/past/question/category/list/class"
+    //    const val PAST_QUESTION_PPRS="api/past/questions"
+        const val PAST_QUESTION_PPRS="api/past/questions/class"
         const val GET_ALL_NOTIFICATIONS="api/get/all/notifications"
         const val TEST_SCORE="api/test/score"
          const val TYPE_USER="type_user"
@@ -62,5 +64,6 @@ class Constants {
         const val LOGINN="login"
         const val GET_NOTIFICATION_STATUS="api/get/notification/status"
         const val GET_GUIDE_LIST="api/study/guide/list"
+        const val GET_SUBJECT_BY_CLASSID="api/subject/list/class"
     }
 }

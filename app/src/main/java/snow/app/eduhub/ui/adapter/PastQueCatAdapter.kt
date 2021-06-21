@@ -46,6 +46,7 @@ class PastQueCatAdapter(var contxt: Context, var list: List<Data>) :
         holder.rl_main.setOnClickListener {
             var intent = Intent(contxt, QuestionPaperPdfs::class.java)
             intent.putExtra("subject_id", item.subjectId.toString())
+            intent.putExtra("class_id", item.schoolClassId.toString())
             intent.putExtra("past_question_category_id", item.id.toString())
             intent.putExtra("past_question_category_name", item.categoryName.toString())
             contxt.startActivity(intent)

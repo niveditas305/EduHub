@@ -22,12 +22,15 @@ open class BaseFragment() : Fragment() , DialogInterface.OnDismissListener{
     open lateinit var dialog: ProgressDialog
     lateinit var viewModell: BaseViewModel
     var mContext:Activity?=null
+
+    var activityy: Activity? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return super.onCreateView(inflater, container, savedInstanceState)
+        activityy = activity
         viewModell = BaseViewModel()
         dialog = ProgressDialog(context)
         dialog?.setMessage("Please wait...")
@@ -159,7 +162,12 @@ open class BaseFragment() : Fragment() , DialogInterface.OnDismissListener{
         startActivity(Intent(context, LoginActivity::class.java))
         activity?.finish()
     }
+    override fun onAttach(context: Context) {
+        mContext = requireActivity()
+        activityy=activity
+        super.onAttach(context)
 
+    }
     fun refreshFragment(){
         getFragmentManager()?.beginTransaction()?.detach(this)?.attach(this)?.commit();
 

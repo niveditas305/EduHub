@@ -15,5 +15,5 @@
          android:id="@+id/tv_chapter_name"
         android:padding="@dimen/padding_10"
          android:textColor="@color/white"
-        android:text="Select Class"/>
+        android:text="Select Grade"/>
 </RelativeLayout>

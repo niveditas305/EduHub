@@ -20,10 +20,8 @@
             android:layout_height="@dimen/_70sdp"
             android:scaleType="centerCrop"
             app:riv_corner_radius="10dp"
-
             app:riv_border_width="2dip"
             app:riv_border_color="@android:color/transparent"
-
             app:riv_tile_mode="clamp"
             app:riv_oval="false" />
     </RelativeLayout>
@@ -38,10 +36,11 @@
         android:layout_toLeftOf="@+id/iv_down"
         android:layout_toRightOf="@+id/rv"
         android:gravity="center"
+
         android:orientation="vertical">
 
 
-        <TextView
+            <TextView
             android:id="@+id/tv_pdfname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,6 +56,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:minLines="2"
+            android:maxLines="2"
             android:fontFamily="@font/regular"
             android:text="@string/lipsumshort"
             android:textColor="@color/black"
@@ -67,11 +68,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+
             android:fontFamily="@font/regular"
             android:text=""
             android:textColor="@color/black"
             android:textSize="@dimen/text_13"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_hint"
@@ -91,7 +93,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-
             android:layout_marginTop="@dimen/margin_20"
             android:gravity="right"
             android:orientation="horizontal"
@@ -103,7 +104,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="@dimen/margin_5"
-
                 android:fontFamily="@font/bold"
                 android:text="Questions"
                 android:textColor="@color/red"
@@ -124,7 +124,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <ImageView
+        <ImageView
         android:id="@+id/iv_down"
         android:layout_width="30dp"
         android:layout_height="30dp"
