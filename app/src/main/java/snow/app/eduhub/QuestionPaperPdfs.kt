@@ -55,7 +55,9 @@ class QuestionPaperPdfs : BaseActivity(),PdfClickInterface, IUnityAdsListener ,
         binding.viewModel = viewModel
         binding.executePendingBindings()
         UnityBanners.destroy()
-        Sdk.reinitialize(null)
+        if (SdkProperties.isInitialized()) {
+            Sdk.reinitialize(null)
+        }
         initAds()
 
         binding.ivBack.setOnClickListener {
@@ -206,8 +208,11 @@ class QuestionPaperPdfs : BaseActivity(),PdfClickInterface, IUnityAdsListener ,
     }
 
     override fun onUnityAdsFinish(placementId: String?, result: UnityAds.FinishState?) {
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mUrl))
-        startActivity(browserIntent)
+
+        if(this!=null) {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mUrl))
+            startActivity(browserIntent)
+        }
     }
 
     override fun onUnityAdsError(error: UnityAds.UnityAdsError?, message: String?) {

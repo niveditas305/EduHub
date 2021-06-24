@@ -345,7 +345,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     shareIntent.type = "text/plain"
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Edu Hub")
                     var shareMessage =
-                        "\nHey there, I'm using Edu Hub app to get all my Math & Science study guides, worksheets, lessons, explanation videos, past question papers and more. Download using this link my friend...\n\n"
+                        "\nHey there! I'm using Edu Hub app to get all my Maths, Physics & Math Literacy study guides, worksheets, lessons, explanation videos, past question papers with memos and more for Grades 10,11 and 12. Download this free app using this link my friend.\n\n"
                     shareMessage =
                         """${shareMessage}https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}""".trimIndent()
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)

@@ -5,10 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import snow.app.eduhub.MainActivity
 import snow.app.eduhub.R
@@ -40,12 +37,13 @@ class SubjectsAdapter(var contxt: Context, var list: List<Subject>) :
     override fun onBindViewHolder(holder: SubjectsAdapter.MyViewHolder, position: Int) {
         var item = list.get(position)
         holder.subjectName.setText(item.subjectName)
-        AppUtils.ImageWithGlide(holder.image, item.subjectImage)
-        if ((position % 2) == 0) {
+     //   AppUtils.ImageWithGlide(holder.image, item.subjectImage)
+        AppUtils.ImageWithGlide(holder.ivSub, item.subjectImage)
+     /*   if ((position % 2) == 0) {
             holder.container.setBackgroundColor(contxt.resources.getColor(R.color.red))
         } else {
             holder.container.setBackgroundColor(contxt.resources.getColor(R.color.colorAccent))
-        }
+        }*/
 
         holder.container.setOnClickListener {
         /*    var intent = Intent(contxt, TeacherListingScreen::class.java)
@@ -68,8 +66,9 @@ class SubjectsAdapter(var contxt: Context, var list: List<Subject>) :
     inner class MyViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
 
         val subjectName: TextView = view!!.findViewById(R.id.subject_name)
-        val image: ImageView = view!!.findViewById(R.id.image)
-        val container: LinearLayout = view!!.findViewById(R.id.container)
+/*        val image: ImageView = view!!.findViewById(R.id.image)*/
+        val ivSub: ImageView = view!!.findViewById(R.id.ivSub)
+        val container: RelativeLayout = view!!.findViewById(R.id.container)
     }
 
 }

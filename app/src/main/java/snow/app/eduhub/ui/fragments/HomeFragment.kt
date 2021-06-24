@@ -248,10 +248,9 @@ class HomeFragment : BaseFragment(), LikeDislikeListener,
 
 
 //set data in subject adapter
-                    val linearLayoutManager = GridLayoutManager(
-                        mmContext, 2
+                    val linearLayoutManager =   LinearLayoutManager(activityy, LinearLayoutManager.HORIZONTAL, false)
 
-                    )
+
 
                     binding.rvSubjects.layoutManager = linearLayoutManager
                     val subjectsAdapter = SubjectsAdapter(requireContext(), subjectlist)

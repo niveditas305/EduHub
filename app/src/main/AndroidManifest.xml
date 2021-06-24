@@ -18,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
+
         tools:replace="android:allowBackup">
         <activity android:name=".ui.SubjectActivity"></activity>
         <activity android:name=".ui.StudyGuideActivity" />

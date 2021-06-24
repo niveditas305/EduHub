@@ -154,7 +154,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         builder.setContentTitle(remoteMessage.getData().get("title"));
         builder.setStyle(new NotificationCompat.BigTextStyle().bigText(remoteMessage.getData().get("message")));
         builder.setContentText(remoteMessage.getData().get("message")).setAutoCancel(true).setContentIntent(pendingIntent);
-
         //  builder.setSound(Uri.parse("android.resource://"+ getPackageName()+"/"+R.raw.noti_ring));//Here is FILE_NAME is the name of file that you want to play
 
 
@@ -196,14 +195,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
     public void startTmer(int ringtone) {
-
         MediaPlayer mp = MediaPlayer.create(getApplicationContext(), ringtone);
         mp.start();
         mp.setLooping(true);
-
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
         mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
 

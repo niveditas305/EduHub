@@ -27,6 +27,7 @@ import com.unity3d.services.banners.UnityBanners
 import com.unity3d.services.banners.view.BannerPosition
 import com.unity3d.services.core.api.Sdk
 import com.unity3d.services.core.misc.Utilities
+import com.unity3d.services.core.properties.SdkProperties
 import com.unity3d.services.core.webview.WebView
 import snow.app.eduhub.R
 import snow.app.eduhub.databinding.FragmentStudyGuideBinding
@@ -78,7 +79,9 @@ class StudyGuideActivity : BaseActivity(), IUnityAdsListener, PdfClickInterface 
 
         UnityBanners.destroy()
         listners()
-        Sdk.reinitialize(null)
+        if (SdkProperties.isInitialized()) {
+            Sdk.reinitialize(null)
+        }
         initAds()
 
 
@@ -364,8 +367,12 @@ class StudyGuideActivity : BaseActivity(), IUnityAdsListener, PdfClickInterface 
 
 
         } else {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mUrl))
-            startActivity(browserIntent)
+
+            if(this!=null){
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mUrl))
+                startActivity(browserIntent)
+            }
+
 
         }
         // Sdk.reinitialize( null)
