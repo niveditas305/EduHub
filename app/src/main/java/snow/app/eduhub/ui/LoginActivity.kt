@@ -116,7 +116,7 @@ class LoginActivity : BaseActivity() {
         iv_fb_login.setOnClickListener {
             if (isNetworkConnected()) {
                 LoginManager.getInstance().logOut()
-                LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email"))
+                LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
             } else {
                 showInternetToast()
             }

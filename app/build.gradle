@@ -80,7 +80,7 @@ dependencies {
   /*  //facebook
     implementation 'com.facebook.android:facebook-login:5.15.3'*/
 
-    implementation 'com.facebook.android:facebook-login:8.1.0'
+    implementation 'com.facebook.android:facebook-login:11.0.0'
     //  implementation 'com.github.mirrajabi:search-dialog:1.2.4'
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 

@@ -15,7 +15,6 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.facebook.login.LoginManager
@@ -108,13 +107,17 @@ class  Signup : BaseActivity() {
             if (it != null) {
                 if (it.status) {
 
+                    showToast(it.message)
                     Log.e("status true", "login--")
                     dialog.dismiss()
                     val session: AppSession = AppSession(this)
                     session.saveSession(it);
-                    startActivity(Intent(this, VerificationScreen::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
+                    //  startActivity(Intent(this, LoginActivity::class.java))
                     finish()
                 } else {
+
+                    showToast(it.message)
                     Log.e("statusfalse", "login--")
                     dialog.dismiss()
                     //  showError(it.message, this)
@@ -147,12 +150,12 @@ class  Signup : BaseActivity() {
 
 
 
-        binding.edPhone.addTextChangedListener(object : TextWatcher{
+        binding.edPhone.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-             }
+            }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-             }
+            }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -160,14 +163,14 @@ class  Signup : BaseActivity() {
                     binding.edPhone.setText("0")
                     binding.edPhone.setSelection(1)
                 }
-             }
+            }
 
         })
 
 
 
         binding.edPhone.setOnClickListener {
-            if (binding.edPhone.text.toString().startsWith( "0")){
+            if (binding.edPhone.text.toString().startsWith("0")){
 
             }else{
                 binding.edPhone.setText("0")
@@ -178,7 +181,7 @@ class  Signup : BaseActivity() {
         binding.edPhone.setOnFocusChangeListener { view, b ->
 
             if (b) {
-                if (binding.edPhone.text.toString().startsWith( "0")){
+                if (binding.edPhone.text.toString().startsWith("0")){
 
                 }else{
                     binding.edPhone.setText("0")
@@ -223,7 +226,11 @@ class  Signup : BaseActivity() {
 
         binding.ivRevisible.setOnClickListener(View.OnClickListener {
 
-            binding.edRepass.setTransformationMethod(HideReturnsTransformationMethod.getInstance())
+
+
+
+            binding.edRepass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
 
             binding.ivReinvisible.setVisibility(View.VISIBLE)
             binding.ivRevisible.setVisibility(View.GONE)
@@ -258,6 +265,7 @@ class  Signup : BaseActivity() {
                     val session: AppSession = AppSession(this)
                     session.saveSession(it);
                     session.saveEntryType(LOGINN)
+                    showToast(it.message)
                     if (it.data.studentStatus == 0) {
                         val intent = Intent(this, VerificationScreen::class.java)
                         startActivity(intent)
@@ -285,6 +293,7 @@ class  Signup : BaseActivity() {
                     val session: AppSession = AppSession(this)
                     session.saveSession(it);
                     session.saveEntryType(LOGINN)
+                    showToast(it.message)
                     if (it.data.studentStatus == 0) {
                         startActivity(Intent(this, VerificationScreen::class.java))
                     } else {

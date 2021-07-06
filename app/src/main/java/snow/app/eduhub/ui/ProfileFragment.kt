@@ -200,8 +200,10 @@ class ProfileFragment : BaseFragment() {
                     getSession()?.saveSession(data)
                     startActivity(Intent(requireContext(), MainActivity::class.java))
                 } else {
+                    showToast(it.message)
+
                     dialog.dismiss()
-                    showError("Something went wrong", requireContext())
+                   // showError("Something went wrong", requireContext())
                 }
             }
 

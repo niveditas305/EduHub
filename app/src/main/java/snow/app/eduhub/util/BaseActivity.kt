@@ -10,9 +10,7 @@ import android.content.SharedPreferences
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
-import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Base64
 import android.util.Log
 import android.view.View
@@ -20,10 +18,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.GraphRequest
+import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -33,19 +28,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.iid.FirebaseInstanceId
-import com.unity3d.ads.IUnityAdsInitializationListener
-import com.unity3d.ads.IUnityAdsListener
-import com.unity3d.ads.UnityAds
-import com.unity3d.ads.metadata.MediationMetaData
-import com.unity3d.ads.metadata.MetaData
-import com.unity3d.ads.metadata.PlayerMetaData
-import com.unity3d.services.core.webview.WebView
+import org.json.JSONObject
 import snow.app.eduhub.ui.LoginActivity
-import snow.app.eduhub.ui.fragments.HomeFragment
-import snow.app.eduhub.ui.fragments.HomeFragment.Companion.ordinal
 import snow.app.eduhub.viewmodels.BaseViewModel
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import java.util.*
 
 
 open class BaseActivity : AppCompatActivity(), DialogInterface.OnDismissListener{
@@ -289,8 +277,7 @@ open class BaseActivity : AppCompatActivity(), DialogInterface.OnDismissListener
                 account?.givenName.toString(), "",
                 account?.photoUrl.toString(),
                 "",
-                account?.id.toString()
-                , getDeviceToken(),""
+                account?.id.toString(), getDeviceToken(), ""
             )
 
 
@@ -323,6 +310,9 @@ open class BaseActivity : AppCompatActivity(), DialogInterface.OnDismissListener
 
 
     fun facebookInit() {
+
+
+
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult?> {
                 override fun onSuccess(loginResult: LoginResult?) {
@@ -331,7 +321,82 @@ open class BaseActivity : AppCompatActivity(), DialogInterface.OnDismissListener
                     // App code
 
 
-                    val request = GraphRequest.newMeRequest(loginResult!!.accessToken)
+                    val request = GraphRequest.newMeRequest(
+                        loginResult!!.accessToken,
+                        object : GraphRequest.GraphJSONObjectCallback  {
+                            override fun onCompleted(
+                                `object`: JSONObject?,
+                                response: GraphResponse?
+                            ) {
+                                try {
+                                    Log.d("fb res--", `object`.toString())
+                                    if (`object`!!.has("id")) {
+                                        val givenName: String = `object`!!.getString("name")
+                                        val namearray = givenName.split(" ").toTypedArray()
+                                        if (namearray.size == 2) {
+
+
+                                            if (namearray[1] == null) {
+
+                                                lastname = ""
+                                            } else {
+                                                lastname = namearray[1]
+                                            }
+                                        } else {
+                                            lastname = ""
+                                        }
+                                        val fid = `object`.getString("id")
+                                        val email: String = `object`.optString("email")
+
+
+                                        Log.e("res--", "--" + email)
+                                        if (email == null || email.isEmpty()) {
+                                            showToast("Email required! Please login with email in facebook app")
+                                        } else {
+                                            Log.d(
+                                                "image--",
+                                                "https://graph.facebook.com/" + fid + "/picture?type=large"
+                                            )
+// Log.e("FBLOGIN_FAILD", object.getString(""))
+
+
+                                            viewModell.facebookLogin(
+                                                email,
+                                                namearray[0].trim(), lastname,
+                                                "https://graph.facebook.com/" + fid +
+                                                        "/picture?type=large",
+                                                "",
+                                                fid,
+                                                getDeviceToken(), ""
+
+                                            )
+                                        }
+
+
+                                    } else {
+
+                                        Log.e("FBLOGIN_FAILD", `object`.toString())
+                                    }
+
+
+                                    LoginManager.getInstance().logOut()
+
+
+                                } catch (e: Exception) {
+                                    e.printStackTrace()
+                                }
+
+                            }
+                        })
+                 /*   val parameters = Bundle()
+                    parameters.putString("fields", "id,name,link")
+                    request.parameters = parameters
+                    request.executeAsync()*/
+
+                /*    val request = GraphRequest.newGraphPathRequest(
+                        loginResult!!.accessToken,
+                        requestt
+                    )
                     { `object`, response ->
                         try {
                             Log.d("fb res--", `object`.toString())
@@ -372,7 +437,7 @@ open class BaseActivity : AppCompatActivity(), DialogInterface.OnDismissListener
                                                 "/picture?type=large",
                                         "",
                                         fid,
-                                        getDeviceToken(),""
+                                        getDeviceToken(), ""
 
                                     )
                                 }
@@ -390,9 +455,9 @@ open class BaseActivity : AppCompatActivity(), DialogInterface.OnDismissListener
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }
+*/
 
 
-                    }
 
 
                     val parameters = Bundle()
