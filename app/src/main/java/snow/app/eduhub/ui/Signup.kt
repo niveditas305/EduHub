@@ -7,12 +7,15 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.Gravity
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.facebook.login.LoginManager
@@ -141,6 +144,48 @@ class  Signup : BaseActivity() {
         })
 
 
+
+
+
+        binding.edPhone.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {
+             }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+             }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                if (binding.edPhone.length() == 0) {
+                    binding.edPhone.setText("0")
+                    binding.edPhone.setSelection(1)
+                }
+             }
+
+        })
+
+
+
+        binding.edPhone.setOnClickListener {
+            if (binding.edPhone.text.toString().startsWith( "0")){
+
+            }else{
+                binding.edPhone.setText("0")
+                binding.edPhone.setSelection(1)
+            }
+        }
+
+        binding.edPhone.setOnFocusChangeListener { view, b ->
+
+            if (b) {
+                if (binding.edPhone.text.toString().startsWith( "0")){
+
+                }else{
+                    binding.edPhone.setText("0")
+                    binding.edPhone.setSelection(1)
+                }
+            }
+        }
 
         binding.ivGSignup.setOnClickListener {
 
